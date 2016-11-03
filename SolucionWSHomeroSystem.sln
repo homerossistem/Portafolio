@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.DALC", "Biblioteca.DALC\Biblioteca.DALC.csproj", "{B9C47DD9-6EA5-4ADE-AFE4-C283C8CEE3DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Negocio", "Biblioteca.Negocio\Biblioteca.Negocio.csproj", "{D6A9CD14-CF63-4511-A462-2A29DFAFF633}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSHomeroSystem", "WSHomeroSystem\WSHomeroSystem.csproj", "{2D9FE8FB-3716-42CC-9BE4-1556EB1CDD2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9C47DD9-6EA5-4ADE-AFE4-C283C8CEE3DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9C47DD9-6EA5-4ADE-AFE4-C283C8CEE3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9C47DD9-6EA5-4ADE-AFE4-C283C8CEE3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9C47DD9-6EA5-4ADE-AFE4-C283C8CEE3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6A9CD14-CF63-4511-A462-2A29DFAFF633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A9CD14-CF63-4511-A462-2A29DFAFF633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A9CD14-CF63-4511-A462-2A29DFAFF633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A9CD14-CF63-4511-A462-2A29DFAFF633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D9FE8FB-3716-42CC-9BE4-1556EB1CDD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D9FE8FB-3716-42CC-9BE4-1556EB1CDD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D9FE8FB-3716-42CC-9BE4-1556EB1CDD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9FE8FB-3716-42CC-9BE4-1556EB1CDD2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

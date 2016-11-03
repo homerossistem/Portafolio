@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1f605760195c489fab0219b062c1b7af" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.BASE_DATOS" Width="1.5" PointX="10.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DOCUMENTO" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EQUIPO_TRABAJO" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FUNCIONARIO" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HASH_PASS" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HASH_PASS_BASE_DATOS" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HASH_PASS_SERVIDOR" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LENGUAJE" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MODULO" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MOTOR_BASE_DATOS" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ORGANIZACION" Width="1.5" PointX="12.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PROVEEDOR" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RACK" Width="1.5" PointX="8.25" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ROL" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SALA_SERVIDORES" Width="1.5" PointX="6" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SEGURIDAD" Width="1.5" PointX="12.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SENSIBILIDAD" Width="1.5" PointX="12.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SERVICIOS" Width="1.5" PointX="12.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SERVIDOR" Width="1.5" PointX="10.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SISTEMA" Width="1.5" PointX="15" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SISTEMA_OPERATIVO" Width="1.5" PointX="8.25" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SOLUCION" Width="1.5" PointX="9.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TICKET" Width="1.5" PointX="7.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPO" Width="1.5" PointX="8.25" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPO_NIVEL" Width="1.5" PointX="8.25" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPO_SERVICIO" Width="1.5" PointX="10.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USUARIO" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.BASE_DATOS_MODULO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BASE_DATOS_MOTOR_BASE_DATOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BASE_DATOS_SERVIDOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.HASH_PASS_BASE_DATOS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.MODULO_DOCUMENTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FUNCIONARIO_EQUIPO_TRABAJO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TICKET_FUNCIONARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USUARIO_FUNCIONARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.HASH_PASS_USUARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.HASH_PASS_SERVIDOR_SERVIDOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVICIOS_LENGUAJE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SISTEMA_LENGUAJE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVICIOS_MODULO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVIDOR_MODULO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SISTEMA_MODULO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TICKET_MODULO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RACK_SALA_SERVIDORES_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVIDOR_RACK_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USUARIO_ROL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SISTEMA_SEGURIDAD_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SISTEMA_SENSIBILIDAD_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVICIOS_SERVIDOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVICIOS_TIPO_SERVICIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVIDOR_SISTEMA_OPERATIVO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVIDOR_TIPO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVIDOR_TIPO_NIVEL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SISTEMA_SERVIDOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SOLUCION_TICKET_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ADMINISTRADOR_MODULO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BASE_DE_DATOS_DE_SERVICIOS" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BASES_DE_DATOS_DE_SISTEMAS" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DETALLE_ORGNIZACION" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DETALLE_PROVEEDOR" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SERVICIOS_DE_SISTEMAS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

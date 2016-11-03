@@ -1,0 +1,2126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMINISTRADOR_MODULO">
+          <Key>
+            <PropertyRef Name="RUT_FUNCIONARIO" />
+            <PropertyRef Name="COD_MODULO" />
+          </Key>
+          <Property Name="RUT_FUNCIONARIO" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BASE_DATOS">
+          <Key>
+            <PropertyRef Name="COD_BASE_DATOS" />
+          </Key>
+          <Property Name="COD_BASE_DATOS" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="NOM_USUARIO" Type="varchar2" MaxLength="50" />
+          <Property Name="ID_MOTOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COD_SERVIDOR" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BASE_DE_DATOS_DE_SERVICIOS">
+          <Key>
+            <PropertyRef Name="COD_SERVICIO" />
+            <PropertyRef Name="COD_BASEDEDATOS" />
+          </Key>
+          <Property Name="COD_SERVICIO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="COD_BASEDEDATOS" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BASES_DE_DATOS_DE_SISTEMAS">
+          <Key>
+            <PropertyRef Name="COD_BASEDATOS" />
+            <PropertyRef Name="COD_SISTEMA" />
+          </Key>
+          <Property Name="COD_BASEDATOS" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="COD_SISTEMA" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_ORGNIZACION">
+          <Key>
+            <PropertyRef Name="ID_ORGANIZACION" />
+            <PropertyRef Name="COD_MODULO" />
+          </Key>
+          <Property Name="ID_ORGANIZACION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_PROVEEDOR">
+          <Key>
+            <PropertyRef Name="MODULO_COD_MODULO" />
+            <PropertyRef Name="ID_PROVEEDOR" />
+          </Key>
+          <Property Name="MODULO_COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ID_PROVEEDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCUMENTO">
+          <Key>
+            <PropertyRef Name="ID_DOCUMENTO" />
+          </Key>
+          <Property Name="ID_DOCUMENTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="URL_DOCUMENTO" Type="varchar2" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="EQUIPO_TRABAJO">
+          <Key>
+            <PropertyRef Name="ID_EQUIPO_TRABAJO" />
+          </Key>
+          <Property Name="ID_EQUIPO_TRABAJO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_EQUIPO" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FUNCIONARIO">
+          <Key>
+            <PropertyRef Name="RUT_FUNCIONARIO" />
+          </Key>
+          <Property Name="RUT_FUNCIONARIO" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="50" />
+          <Property Name="APELLIDO" Type="varchar2" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
+          <Property Name="CELULAR" Type="number" Precision="38" Scale="0" />
+          <Property Name="DIRECION" Type="varchar2" MaxLength="50" />
+          <Property Name="ID_EQUIPO_TRABAJO" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HASH_PASS">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="HASH_PASS" Type="varchar2" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HASH_PASS_BASE_DATOS">
+          <Key>
+            <PropertyRef Name="COD_MODULO" />
+          </Key>
+          <Property Name="COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="HASH_PASS" Type="varchar2" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="HASH_PASS_SERVIDOR">
+          <Key>
+            <PropertyRef Name="COD_MODULO" />
+          </Key>
+          <Property Name="COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="HAS_PASS" Type="varchar2" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="LENGUAJE">
+          <Key>
+            <PropertyRef Name="ID_LENGUAJE" />
+          </Key>
+          <Property Name="ID_LENGUAJE" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_LENGUAJE" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MODULO">
+          <Key>
+            <PropertyRef Name="COD_MODULO" />
+          </Key>
+          <Property Name="COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="100" />
+          <Property Name="GARANTIA" Type="number" Precision="38" Scale="0" />
+          <Property Name="ID_DOCUMENTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MOTOR_BASE_DATOS">
+          <Key>
+            <PropertyRef Name="ID_MOTOR" />
+          </Key>
+          <Property Name="ID_MOTOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_MOTOR" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ORGANIZACION">
+          <Key>
+            <PropertyRef Name="ID_ORGANIZACION" />
+          </Key>
+          <Property Name="ID_ORGANIZACION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_ORGANIZACION" Type="varchar2" MaxLength="100" />
+          <Property Name="DIRECCION" Type="varchar2" MaxLength="50" />
+          <Property Name="TELEFONO" Type="number" Precision="38" Scale="0" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PROVEEDOR">
+          <Key>
+            <PropertyRef Name="ID_PROVEEDOR" />
+          </Key>
+          <Property Name="ID_PROVEEDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_EMPRESA" Type="varchar2" MaxLength="50" />
+          <Property Name="NOMBRE_ENCARGADO" Type="varchar2" MaxLength="50" />
+          <Property Name="TELEFONO" Type="number" Precision="38" Scale="0" />
+          <Property Name="CELULAR" Type="number" Precision="38" Scale="0" />
+          <Property Name="DIRECCION" Type="varchar2" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RACK">
+          <Key>
+            <PropertyRef Name="ID_RACK" />
+          </Key>
+          <Property Name="ID_RACK" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIDAD_RACK" Type="number" Precision="38" Scale="0" />
+          <Property Name="ID_SALA_SERVIDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="ID_ROL" />
+          </Key>
+          <Property Name="ID_ROL" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_ROL" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SALA_SERVIDORES">
+          <Key>
+            <PropertyRef Name="ID_SALA_SERVIDOR" />
+          </Key>
+          <Property Name="ID_SALA_SERVIDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_SALA" Type="varchar2" MaxLength="50" />
+          <Property Name="PISO" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="SEGURIDAD">
+          <Key>
+            <PropertyRef Name="ID_SEGURIDAD" />
+          </Key>
+          <Property Name="ID_SEGURIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO_SEGURIDAD" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SENSIBILIDAD">
+          <Key>
+            <PropertyRef Name="ID_SENSIBILIDAD" />
+          </Key>
+          <Property Name="ID_SENSIBILIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO_SENSIBILIDAD" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SERVICIOS">
+          <Key>
+            <PropertyRef Name="COD_SERVICIO" />
+          </Key>
+          <Property Name="COD_SERVICIO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="COD_SERVIDOR" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="500" />
+          <Property Name="ID_LENGUAJE" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SERVICIOS_DE_SISTEMAS">
+          <Key>
+            <PropertyRef Name="COD_SISTEMA" />
+            <PropertyRef Name="COD_SERVICIO" />
+          </Key>
+          <Property Name="COD_SISTEMA" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="COD_SERVICIO" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SERVIDOR">
+          <Key>
+            <PropertyRef Name="COD_SERVIDOR" />
+          </Key>
+          <Property Name="COD_SERVIDOR" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="IP" Type="varchar2" MaxLength="12" />
+          <Property Name="DISCO_DURO" Type="number" Precision="38" Scale="0" />
+          <Property Name="RAM" Type="number" Precision="38" Scale="0" />
+          <Property Name="ID_SO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_RACK" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_NIVEL" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_LENGUAJE" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SISTEMA">
+          <Key>
+            <PropertyRef Name="CODIGO_SISTEMA" />
+          </Key>
+          <Property Name="CODIGO_SISTEMA" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ID_SENSIBILIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SEGURIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COD_SERVIDOR" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="500" />
+          <Property Name="ID_LENGUAJE" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SISTEMA_OPERATIVO">
+          <Key>
+            <PropertyRef Name="ID_SO" />
+          </Key>
+          <Property Name="ID_SO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_SO" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SOLUCION">
+          <Key>
+            <PropertyRef Name="ID_SOLUCION" />
+          </Key>
+          <Property Name="ID_SOLUCION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION_SOLUCION" Type="varchar2" MaxLength="500" />
+          <Property Name="FECHA_SOLUCION" Type="date" />
+          <Property Name="ID_TICKET" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TICKET">
+          <Key>
+            <PropertyRef Name="ID_TICKET" />
+          </Key>
+          <Property Name="ID_TICKET" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHA_PROBLEMA" Type="date" Nullable="false" />
+          <Property Name="PROBLEMA" Type="varchar2" MaxLength="500" Nullable="false" />
+          <Property Name="RUT_FUNCIONARIO" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="MODULO_COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TIPO">
+          <Key>
+            <PropertyRef Name="ID_TIPO" />
+          </Key>
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TIPO_NIVEL">
+          <Key>
+            <PropertyRef Name="ID_TIPO_NIVEL" />
+          </Key>
+          <Property Name="ID_TIPO_NIVEL" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO_NIVEL" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TIPO_SERVICIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO" />
+          </Key>
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO" Type="varchar2" MaxLength="100" />
+          <Property Name="ESTADO" Type="number" Precision="38" Scale="0" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="ID_ROL" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RUT_FUNCIONARIO" Type="varchar2" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="BASE_DATOS_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="BASE_DATOS">
+              <PropertyRef Name="COD_BASE_DATOS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BASE_DATOS_MOTOR_BASE_DATOS_FK">
+          <End Role="MOTOR_BASE_DATOS" Type="Self.MOTOR_BASE_DATOS" Multiplicity="1" />
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOTOR_BASE_DATOS">
+              <PropertyRef Name="ID_MOTOR" />
+            </Principal>
+            <Dependent Role="BASE_DATOS">
+              <PropertyRef Name="ID_MOTOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BASE_DATOS_SERVIDOR_FK">
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="1" />
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Principal>
+            <Dependent Role="BASE_DATOS">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BASE_DE_DATO_CON_SISTEMA_FK">
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="1" />
+          <End Role="BASES_DE_DATOS_DE_SISTEMAS" Type="Self.BASES_DE_DATOS_DE_SISTEMAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BASE_DATOS">
+              <PropertyRef Name="COD_BASE_DATOS" />
+            </Principal>
+            <Dependent Role="BASES_DE_DATOS_DE_SISTEMAS">
+              <PropertyRef Name="COD_BASEDATOS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BASE_DE_DATO_DE_SERVICIO_FK">
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="1" />
+          <End Role="BASE_DE_DATOS_DE_SERVICIOS" Type="Self.BASE_DE_DATOS_DE_SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BASE_DATOS">
+              <PropertyRef Name="COD_BASE_DATOS" />
+            </Principal>
+            <Dependent Role="BASE_DE_DATOS_DE_SERVICIOS">
+              <PropertyRef Name="COD_BASEDEDATOS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_FUNCIONARIO_FK">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="ADMINISTRADOR_MODULO" Type="Self.ADMINISTRADOR_MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="ADMINISTRADOR_MODULO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_FUNCIONARIO_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="ADMINISTRADOR_MODULO" Type="Self.ADMINISTRADOR_MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="ADMINISTRADOR_MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_ORGNIZACION_FK">
+          <End Role="ORGANIZACION" Type="Self.ORGANIZACION" Multiplicity="1" />
+          <End Role="DETALLE_ORGNIZACION" Type="Self.DETALLE_ORGNIZACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORGANIZACION">
+              <PropertyRef Name="ID_ORGANIZACION" />
+            </Principal>
+            <Dependent Role="DETALLE_ORGNIZACION">
+              <PropertyRef Name="ID_ORGANIZACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_ORGNIZACION_SISTEMA_FK">
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="1" />
+          <End Role="DETALLE_ORGNIZACION" Type="Self.DETALLE_ORGNIZACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SISTEMA">
+              <PropertyRef Name="CODIGO_SISTEMA" />
+            </Principal>
+            <Dependent Role="DETALLE_ORGNIZACION">
+              <PropertyRef Name="COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_PROVEEDOR_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="DETALLE_PROVEEDOR" Type="Self.DETALLE_PROVEEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="DETALLE_PROVEEDOR">
+              <PropertyRef Name="MODULO_COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_PROVEEDOR_PROVEEDOR_FK">
+          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+          <End Role="DETALLE_PROVEEDOR" Type="Self.DETALLE_PROVEEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Principal>
+            <Dependent Role="DETALLE_PROVEEDOR">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_SISTEMA_SERVICIOS_FK">
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="1" />
+          <End Role="SERVICIOS_DE_SISTEMAS" Type="Self.SERVICIOS_DE_SISTEMAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICIOS">
+              <PropertyRef Name="COD_SERVICIO" />
+            </Principal>
+            <Dependent Role="SERVICIOS_DE_SISTEMAS">
+              <PropertyRef Name="COD_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_SISTEMA_SISTEMA_FK">
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="1" />
+          <End Role="SERVICIOS_DE_SISTEMAS" Type="Self.SERVICIOS_DE_SISTEMAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SISTEMA">
+              <PropertyRef Name="CODIGO_SISTEMA" />
+            </Principal>
+            <Dependent Role="SERVICIOS_DE_SISTEMAS">
+              <PropertyRef Name="COD_SISTEMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FUNCIONARIO_EQUIPO_TRABAJO_FK">
+          <End Role="EQUIPO_TRABAJO" Type="Self.EQUIPO_TRABAJO" Multiplicity="1" />
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO_TRABAJO">
+              <PropertyRef Name="ID_EQUIPO_TRABAJO" />
+            </Principal>
+            <Dependent Role="FUNCIONARIO">
+              <PropertyRef Name="ID_EQUIPO_TRABAJO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HASH_PASS_BASE_DATOS_FK">
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="1" />
+          <End Role="HASH_PASS_BASE_DATOS" Type="Self.HASH_PASS_BASE_DATOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BASE_DATOS">
+              <PropertyRef Name="COD_BASE_DATOS" />
+            </Principal>
+            <Dependent Role="HASH_PASS_BASE_DATOS">
+              <PropertyRef Name="COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HASH_PASS_SERVIDOR_SERVIDOR_FK">
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="1" />
+          <End Role="HASH_PASS_SERVIDOR" Type="Self.HASH_PASS_SERVIDOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Principal>
+            <Dependent Role="HASH_PASS_SERVIDOR">
+              <PropertyRef Name="COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HASH_PASS_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="HASH_PASS" Type="Self.HASH_PASS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="HASH_PASS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_DOCUMENTO_FK">
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO">
+              <PropertyRef Name="ID_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="MODULO">
+              <PropertyRef Name="ID_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RACK_SALA_SERVIDORES_FK">
+          <End Role="SALA_SERVIDORES" Type="Self.SALA_SERVIDORES" Multiplicity="1" />
+          <End Role="RACK" Type="Self.RACK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALA_SERVIDORES">
+              <PropertyRef Name="ID_SALA_SERVIDOR" />
+            </Principal>
+            <Dependent Role="RACK">
+              <PropertyRef Name="ID_SALA_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_BASE_DE_DATO_FK">
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="1" />
+          <End Role="BASE_DE_DATOS_DE_SERVICIOS" Type="Self.BASE_DE_DATOS_DE_SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICIOS">
+              <PropertyRef Name="COD_SERVICIO" />
+            </Principal>
+            <Dependent Role="BASE_DE_DATOS_DE_SERVICIOS">
+              <PropertyRef Name="COD_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_LENGUAJE_FK">
+          <End Role="LENGUAJE" Type="Self.LENGUAJE" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LENGUAJE">
+              <PropertyRef Name="ID_LENGUAJE" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="ID_LENGUAJE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="COD_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_SERVIDOR_FK">
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_TIPO_SERVICIO_FK">
+          <End Role="TIPO_SERVICIO" Type="Self.TIPO_SERVICIO" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_SERVICIO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_RACK_FK">
+          <End Role="RACK" Type="Self.RACK" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RACK">
+              <PropertyRef Name="ID_RACK" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="ID_RACK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_SISTEMA_OPERATIVO_FK">
+          <End Role="SISTEMA_OPERATIVO" Type="Self.SISTEMA_OPERATIVO" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SISTEMA_OPERATIVO">
+              <PropertyRef Name="ID_SO" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="ID_SO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_TIPO_FK">
+          <End Role="TIPO" Type="Self.TIPO" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_TIPO_NIVEL_FK">
+          <End Role="TIPO_NIVEL" Type="Self.TIPO_NIVEL" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_NIVEL">
+              <PropertyRef Name="ID_TIPO_NIVEL" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="ID_TIPO_NIVEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_BASE_DE_DATO_FK">
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="1" />
+          <End Role="BASES_DE_DATOS_DE_SISTEMAS" Type="Self.BASES_DE_DATOS_DE_SISTEMAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SISTEMA">
+              <PropertyRef Name="CODIGO_SISTEMA" />
+            </Principal>
+            <Dependent Role="BASES_DE_DATOS_DE_SISTEMAS">
+              <PropertyRef Name="COD_SISTEMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_LENGUAJE_FK">
+          <End Role="LENGUAJE" Type="Self.LENGUAJE" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LENGUAJE">
+              <PropertyRef Name="ID_LENGUAJE" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="ID_LENGUAJE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="CODIGO_SISTEMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_SEGURIDAD_FK">
+          <End Role="SEGURIDAD" Type="Self.SEGURIDAD" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEGURIDAD">
+              <PropertyRef Name="ID_SEGURIDAD" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="ID_SEGURIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_SENSIBILIDAD_FK">
+          <End Role="SENSIBILIDAD" Type="Self.SENSIBILIDAD" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SENSIBILIDAD">
+              <PropertyRef Name="ID_SENSIBILIDAD" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="ID_SENSIBILIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_SERVIDOR_FK">
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SOLUCION_TICKET_FK">
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="1" />
+          <End Role="SOLUCION" Type="Self.SOLUCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TICKET">
+              <PropertyRef Name="ID_TICKET" />
+            </Principal>
+            <Dependent Role="SOLUCION">
+              <PropertyRef Name="ID_TICKET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TICKET_FUNCIONARIO_FK">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TICKET_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="MODULO_COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_FUNCIONARIO_FK">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_ROL_FK">
+          <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="ID_ROL" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ADMINISTRADOR_MODULO" EntityType="Self.ADMINISTRADOR_MODULO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="BASE_DATOS" EntityType="Self.BASE_DATOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="BASE_DE_DATOS_DE_SERVICIOS" EntityType="Self.BASE_DE_DATOS_DE_SERVICIOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="BASES_DE_DATOS_DE_SISTEMAS" EntityType="Self.BASES_DE_DATOS_DE_SISTEMAS" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="DETALLE_ORGNIZACION" EntityType="Self.DETALLE_ORGNIZACION" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="DETALLE_PROVEEDOR" EntityType="Self.DETALLE_PROVEEDOR" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="EQUIPO_TRABAJO" EntityType="Self.EQUIPO_TRABAJO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="FUNCIONARIO" EntityType="Self.FUNCIONARIO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="HASH_PASS" EntityType="Self.HASH_PASS" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="HASH_PASS_BASE_DATOS" EntityType="Self.HASH_PASS_BASE_DATOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="HASH_PASS_SERVIDOR" EntityType="Self.HASH_PASS_SERVIDOR" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="LENGUAJE" EntityType="Self.LENGUAJE" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="MODULO" EntityType="Self.MODULO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="MOTOR_BASE_DATOS" EntityType="Self.MOTOR_BASE_DATOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="ORGANIZACION" EntityType="Self.ORGANIZACION" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="RACK" EntityType="Self.RACK" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="ROL" EntityType="Self.ROL" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SALA_SERVIDORES" EntityType="Self.SALA_SERVIDORES" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SEGURIDAD" EntityType="Self.SEGURIDAD" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SENSIBILIDAD" EntityType="Self.SENSIBILIDAD" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SERVICIOS" EntityType="Self.SERVICIOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SERVICIOS_DE_SISTEMAS" EntityType="Self.SERVICIOS_DE_SISTEMAS" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SERVIDOR" EntityType="Self.SERVIDOR" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SISTEMA" EntityType="Self.SISTEMA" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SISTEMA_OPERATIVO" EntityType="Self.SISTEMA_OPERATIVO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="SOLUCION" EntityType="Self.SOLUCION" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="TICKET" EntityType="Self.TICKET" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="TIPO" EntityType="Self.TIPO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="TIPO_NIVEL" EntityType="Self.TIPO_NIVEL" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="TIPO_SERVICIO" EntityType="Self.TIPO_SERVICIO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="HOMEROSYSTEM" store:Type="Tables" />
+          <AssociationSet Name="BASE_DATOS_MODULO_FK" Association="Self.BASE_DATOS_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+          </AssociationSet>
+          <AssociationSet Name="BASE_DATOS_MOTOR_BASE_DATOS_FK" Association="Self.BASE_DATOS_MOTOR_BASE_DATOS_FK">
+            <End Role="MOTOR_BASE_DATOS" EntitySet="MOTOR_BASE_DATOS" />
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+          </AssociationSet>
+          <AssociationSet Name="BASE_DATOS_SERVIDOR_FK" Association="Self.BASE_DATOS_SERVIDOR_FK">
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+          </AssociationSet>
+          <AssociationSet Name="BASE_DE_DATO_CON_SISTEMA_FK" Association="Self.BASE_DE_DATO_CON_SISTEMA_FK">
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+            <End Role="BASES_DE_DATOS_DE_SISTEMAS" EntitySet="BASES_DE_DATOS_DE_SISTEMAS" />
+          </AssociationSet>
+          <AssociationSet Name="BASE_DE_DATO_DE_SERVICIO_FK" Association="Self.BASE_DE_DATO_DE_SERVICIO_FK">
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+            <End Role="BASE_DE_DATOS_DE_SERVICIOS" EntitySet="BASE_DE_DATOS_DE_SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_FUNCIONARIO_FK" Association="Self.DETALLE_FUNCIONARIO_FK">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="ADMINISTRADOR_MODULO" EntitySet="ADMINISTRADOR_MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_FUNCIONARIO_MODULO_FK" Association="Self.DETALLE_FUNCIONARIO_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="ADMINISTRADOR_MODULO" EntitySet="ADMINISTRADOR_MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_ORGNIZACION_FK" Association="Self.DETALLE_ORGNIZACION_FK">
+            <End Role="ORGANIZACION" EntitySet="ORGANIZACION" />
+            <End Role="DETALLE_ORGNIZACION" EntitySet="DETALLE_ORGNIZACION" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_ORGNIZACION_SISTEMA_FK" Association="Self.DETALLE_ORGNIZACION_SISTEMA_FK">
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+            <End Role="DETALLE_ORGNIZACION" EntitySet="DETALLE_ORGNIZACION" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_PROVEEDOR_MODULO_FK" Association="Self.DETALLE_PROVEEDOR_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="DETALLE_PROVEEDOR" EntitySet="DETALLE_PROVEEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_PROVEEDOR_PROVEEDOR_FK" Association="Self.DETALLE_PROVEEDOR_PROVEEDOR_FK">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+            <End Role="DETALLE_PROVEEDOR" EntitySet="DETALLE_PROVEEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_SISTEMA_SERVICIOS_FK" Association="Self.DETALLE_SISTEMA_SERVICIOS_FK">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="SERVICIOS_DE_SISTEMAS" EntitySet="SERVICIOS_DE_SISTEMAS" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_SISTEMA_SISTEMA_FK" Association="Self.DETALLE_SISTEMA_SISTEMA_FK">
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+            <End Role="SERVICIOS_DE_SISTEMAS" EntitySet="SERVICIOS_DE_SISTEMAS" />
+          </AssociationSet>
+          <AssociationSet Name="FUNCIONARIO_EQUIPO_TRABAJO_FK" Association="Self.FUNCIONARIO_EQUIPO_TRABAJO_FK">
+            <End Role="EQUIPO_TRABAJO" EntitySet="EQUIPO_TRABAJO" />
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+          </AssociationSet>
+          <AssociationSet Name="HASH_PASS_BASE_DATOS_FK" Association="Self.HASH_PASS_BASE_DATOS_FK">
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+            <End Role="HASH_PASS_BASE_DATOS" EntitySet="HASH_PASS_BASE_DATOS" />
+          </AssociationSet>
+          <AssociationSet Name="HASH_PASS_SERVIDOR_SERVIDOR_FK" Association="Self.HASH_PASS_SERVIDOR_SERVIDOR_FK">
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+            <End Role="HASH_PASS_SERVIDOR" EntitySet="HASH_PASS_SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="HASH_PASS_USUARIO_FK" Association="Self.HASH_PASS_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="HASH_PASS" EntitySet="HASH_PASS" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_DOCUMENTO_FK" Association="Self.MODULO_DOCUMENTO_FK">
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="RACK_SALA_SERVIDORES_FK" Association="Self.RACK_SALA_SERVIDORES_FK">
+            <End Role="SALA_SERVIDORES" EntitySet="SALA_SERVIDORES" />
+            <End Role="RACK" EntitySet="RACK" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_BASE_DE_DATO_FK" Association="Self.SERVICIOS_BASE_DE_DATO_FK">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="BASE_DE_DATOS_DE_SERVICIOS" EntitySet="BASE_DE_DATOS_DE_SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_LENGUAJE_FK" Association="Self.SERVICIOS_LENGUAJE_FK">
+            <End Role="LENGUAJE" EntitySet="LENGUAJE" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_MODULO_FK" Association="Self.SERVICIOS_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_SERVIDOR_FK" Association="Self.SERVICIOS_SERVIDOR_FK">
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_TIPO_SERVICIO_FK" Association="Self.SERVICIOS_TIPO_SERVICIO_FK">
+            <End Role="TIPO_SERVICIO" EntitySet="TIPO_SERVICIO" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_MODULO_FK" Association="Self.SERVIDOR_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_RACK_FK" Association="Self.SERVIDOR_RACK_FK">
+            <End Role="RACK" EntitySet="RACK" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_SISTEMA_OPERATIVO_FK" Association="Self.SERVIDOR_SISTEMA_OPERATIVO_FK">
+            <End Role="SISTEMA_OPERATIVO" EntitySet="SISTEMA_OPERATIVO" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_TIPO_FK" Association="Self.SERVIDOR_TIPO_FK">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_TIPO_NIVEL_FK" Association="Self.SERVIDOR_TIPO_NIVEL_FK">
+            <End Role="TIPO_NIVEL" EntitySet="TIPO_NIVEL" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_BASE_DE_DATO_FK" Association="Self.SISTEMA_BASE_DE_DATO_FK">
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+            <End Role="BASES_DE_DATOS_DE_SISTEMAS" EntitySet="BASES_DE_DATOS_DE_SISTEMAS" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_LENGUAJE_FK" Association="Self.SISTEMA_LENGUAJE_FK">
+            <End Role="LENGUAJE" EntitySet="LENGUAJE" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_MODULO_FK" Association="Self.SISTEMA_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_SEGURIDAD_FK" Association="Self.SISTEMA_SEGURIDAD_FK">
+            <End Role="SEGURIDAD" EntitySet="SEGURIDAD" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_SENSIBILIDAD_FK" Association="Self.SISTEMA_SENSIBILIDAD_FK">
+            <End Role="SENSIBILIDAD" EntitySet="SENSIBILIDAD" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_SERVIDOR_FK" Association="Self.SISTEMA_SERVIDOR_FK">
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SOLUCION_TICKET_FK" Association="Self.SOLUCION_TICKET_FK">
+            <End Role="TICKET" EntitySet="TICKET" />
+            <End Role="SOLUCION" EntitySet="SOLUCION" />
+          </AssociationSet>
+          <AssociationSet Name="TICKET_FUNCIONARIO_FK" Association="Self.TICKET_FUNCIONARIO_FK">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="TICKET_MODULO_FK" Association="Self.TICKET_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_FUNCIONARIO_FK" Association="Self.USUARIO_FUNCIONARIO_FK">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_ROL_FK" Association="Self.USUARIO_ROL_FK">
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BASE_DATOS">
+          <Key>
+            <PropertyRef Name="COD_BASE_DATOS" />
+          </Key>
+          <Property Name="COD_BASE_DATOS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOM_USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_MOTOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COD_SERVIDOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MODULO" Relationship="Self.BASE_DATOS_MODULO_FK" FromRole="BASE_DATOS" ToRole="MODULO" />
+          <NavigationProperty Name="MOTOR_BASE_DATOS" Relationship="Self.BASE_DATOS_MOTOR_BASE_DATOS_FK" FromRole="BASE_DATOS" ToRole="MOTOR_BASE_DATOS" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.BASE_DATOS_SERVIDOR_FK" FromRole="BASE_DATOS" ToRole="SERVIDOR" />
+          <NavigationProperty Name="HASH_PASS_BASE_DATOS" Relationship="Self.HASH_PASS_BASE_DATOS_FK" FromRole="BASE_DATOS" ToRole="HASH_PASS_BASE_DATOS" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.BASE_DE_DATOS_DE_SERVICIOS" FromRole="BASE_DATOS" ToRole="SERVICIOS" />
+          <NavigationProperty Name="SISTEMA" Relationship="Self.BASES_DE_DATOS_DE_SISTEMAS" FromRole="BASE_DATOS" ToRole="SISTEMA" />
+        </EntityType>
+        <EntityType Name="DOCUMENTO">
+          <Key>
+            <PropertyRef Name="ID_DOCUMENTO" />
+          </Key>
+          <Property Name="ID_DOCUMENTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="URL_DOCUMENTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MODULO" Relationship="Self.MODULO_DOCUMENTO_FK" FromRole="DOCUMENTO" ToRole="MODULO" />
+        </EntityType>
+        <EntityType Name="EQUIPO_TRABAJO">
+          <Key>
+            <PropertyRef Name="ID_EQUIPO_TRABAJO" />
+          </Key>
+          <Property Name="ID_EQUIPO_TRABAJO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_EQUIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FUNCIONARIO" Relationship="Self.FUNCIONARIO_EQUIPO_TRABAJO_FK" FromRole="EQUIPO_TRABAJO" ToRole="FUNCIONARIO" />
+        </EntityType>
+        <EntityType Name="FUNCIONARIO">
+          <Key>
+            <PropertyRef Name="RUT_FUNCIONARIO" />
+          </Key>
+          <Property Name="RUT_FUNCIONARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CELULAR" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="DIRECION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_EQUIPO_TRABAJO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="EQUIPO_TRABAJO" Relationship="Self.FUNCIONARIO_EQUIPO_TRABAJO_FK" FromRole="FUNCIONARIO" ToRole="EQUIPO_TRABAJO" />
+          <NavigationProperty Name="TICKET" Relationship="Self.TICKET_FUNCIONARIO_FK" FromRole="FUNCIONARIO" ToRole="TICKET" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_FUNCIONARIO_FK" FromRole="FUNCIONARIO" ToRole="USUARIO" />
+          <NavigationProperty Name="MODULO" Relationship="Self.ADMINISTRADOR_MODULO" FromRole="FUNCIONARIO" ToRole="MODULO" />
+        </EntityType>
+        <EntityType Name="HASH_PASS">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="HASH_PASS1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.HASH_PASS_USUARIO_FK" FromRole="HASH_PASS" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="HASH_PASS_BASE_DATOS">
+          <Key>
+            <PropertyRef Name="COD_MODULO" />
+          </Key>
+          <Property Name="COD_MODULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HASH_PASS" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BASE_DATOS" Relationship="Self.HASH_PASS_BASE_DATOS_FK" FromRole="HASH_PASS_BASE_DATOS" ToRole="BASE_DATOS" />
+        </EntityType>
+        <EntityType Name="HASH_PASS_SERVIDOR">
+          <Key>
+            <PropertyRef Name="COD_MODULO" />
+          </Key>
+          <Property Name="COD_MODULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HAS_PASS" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.HASH_PASS_SERVIDOR_SERVIDOR_FK" FromRole="HASH_PASS_SERVIDOR" ToRole="SERVIDOR" />
+        </EntityType>
+        <EntityType Name="LENGUAJE">
+          <Key>
+            <PropertyRef Name="ID_LENGUAJE" />
+          </Key>
+          <Property Name="ID_LENGUAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_LENGUAJE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.SERVICIOS_LENGUAJE_FK" FromRole="LENGUAJE" ToRole="SERVICIOS" />
+          <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_LENGUAJE_FK" FromRole="LENGUAJE" ToRole="SISTEMA" />
+        </EntityType>
+        <EntityType Name="MODULO">
+          <Key>
+            <PropertyRef Name="COD_MODULO" />
+          </Key>
+          <Property Name="COD_MODULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GARANTIA" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ID_DOCUMENTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="BASE_DATOS" Relationship="Self.BASE_DATOS_MODULO_FK" FromRole="MODULO" ToRole="BASE_DATOS" />
+          <NavigationProperty Name="DOCUMENTO" Relationship="Self.MODULO_DOCUMENTO_FK" FromRole="MODULO" ToRole="DOCUMENTO" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.SERVICIOS_MODULO_FK" FromRole="MODULO" ToRole="SERVICIOS" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_MODULO_FK" FromRole="MODULO" ToRole="SERVIDOR" />
+          <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_MODULO_FK" FromRole="MODULO" ToRole="SISTEMA" />
+          <NavigationProperty Name="TICKET" Relationship="Self.TICKET_MODULO_FK" FromRole="MODULO" ToRole="TICKET" />
+          <NavigationProperty Name="FUNCIONARIO" Relationship="Self.ADMINISTRADOR_MODULO" FromRole="MODULO" ToRole="FUNCIONARIO" />
+          <NavigationProperty Name="PROVEEDOR" Relationship="Self.DETALLE_PROVEEDOR" FromRole="MODULO" ToRole="PROVEEDOR" />
+        </EntityType>
+        <EntityType Name="MOTOR_BASE_DATOS">
+          <Key>
+            <PropertyRef Name="ID_MOTOR" />
+          </Key>
+          <Property Name="ID_MOTOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_MOTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BASE_DATOS" Relationship="Self.BASE_DATOS_MOTOR_BASE_DATOS_FK" FromRole="MOTOR_BASE_DATOS" ToRole="BASE_DATOS" />
+        </EntityType>
+        <EntityType Name="ORGANIZACION">
+          <Key>
+            <PropertyRef Name="ID_ORGANIZACION" />
+          </Key>
+          <Property Name="ID_ORGANIZACION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_ORGANIZACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SISTEMA" Relationship="Self.DETALLE_ORGNIZACION" FromRole="ORGANIZACION" ToRole="SISTEMA" />
+        </EntityType>
+        <EntityType Name="PROVEEDOR">
+          <Key>
+            <PropertyRef Name="ID_PROVEEDOR" />
+          </Key>
+          <Property Name="ID_PROVEEDOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_EMPRESA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_ENCARGADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CELULAR" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MODULO" Relationship="Self.DETALLE_PROVEEDOR" FromRole="PROVEEDOR" ToRole="MODULO" />
+        </EntityType>
+        <EntityType Name="RACK">
+          <Key>
+            <PropertyRef Name="ID_RACK" />
+          </Key>
+          <Property Name="ID_RACK" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIDAD_RACK" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ID_SALA_SERVIDOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="SALA_SERVIDORES" Relationship="Self.RACK_SALA_SERVIDORES_FK" FromRole="RACK" ToRole="SALA_SERVIDORES" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_RACK_FK" FromRole="RACK" ToRole="SERVIDOR" />
+        </EntityType>
+        <EntityType Name="ROL">
+          <Key>
+            <PropertyRef Name="ID_ROL" />
+          </Key>
+          <Property Name="ID_ROL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_ROL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_ROL_FK" FromRole="ROL" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="SALA_SERVIDORES">
+          <Key>
+            <PropertyRef Name="ID_SALA_SERVIDOR" />
+          </Key>
+          <Property Name="ID_SALA_SERVIDOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_SALA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PISO" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="RACK" Relationship="Self.RACK_SALA_SERVIDORES_FK" FromRole="SALA_SERVIDORES" ToRole="RACK" />
+        </EntityType>
+        <EntityType Name="SEGURIDAD">
+          <Key>
+            <PropertyRef Name="ID_SEGURIDAD" />
+          </Key>
+          <Property Name="ID_SEGURIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO_SEGURIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_SEGURIDAD_FK" FromRole="SEGURIDAD" ToRole="SISTEMA" />
+        </EntityType>
+        <EntityType Name="SENSIBILIDAD">
+          <Key>
+            <PropertyRef Name="ID_SENSIBILIDAD" />
+          </Key>
+          <Property Name="ID_SENSIBILIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO_SENSIBILIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_SENSIBILIDAD_FK" FromRole="SENSIBILIDAD" ToRole="SISTEMA" />
+        </EntityType>
+        <EntityType Name="SERVICIOS">
+          <Key>
+            <PropertyRef Name="COD_SERVICIO" />
+          </Key>
+          <Property Name="COD_SERVICIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COD_SERVIDOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ID_LENGUAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="LENGUAJE" Relationship="Self.SERVICIOS_LENGUAJE_FK" FromRole="SERVICIOS" ToRole="LENGUAJE" />
+          <NavigationProperty Name="MODULO" Relationship="Self.SERVICIOS_MODULO_FK" FromRole="SERVICIOS" ToRole="MODULO" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVICIOS_SERVIDOR_FK" FromRole="SERVICIOS" ToRole="SERVIDOR" />
+          <NavigationProperty Name="TIPO_SERVICIO" Relationship="Self.SERVICIOS_TIPO_SERVICIO_FK" FromRole="SERVICIOS" ToRole="TIPO_SERVICIO" />
+          <NavigationProperty Name="BASE_DATOS" Relationship="Self.BASE_DE_DATOS_DE_SERVICIOS" FromRole="SERVICIOS" ToRole="BASE_DATOS" />
+          <NavigationProperty Name="SISTEMA" Relationship="Self.SERVICIOS_DE_SISTEMAS" FromRole="SERVICIOS" ToRole="SISTEMA" />
+        </EntityType>
+        <EntityType Name="SERVIDOR">
+          <Key>
+            <PropertyRef Name="COD_SERVIDOR" />
+          </Key>
+          <Property Name="COD_SERVIDOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="DISCO_DURO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="RAM" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ID_SO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_RACK" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_NIVEL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_LENGUAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="BASE_DATOS" Relationship="Self.BASE_DATOS_SERVIDOR_FK" FromRole="SERVIDOR" ToRole="BASE_DATOS" />
+          <NavigationProperty Name="HASH_PASS_SERVIDOR" Relationship="Self.HASH_PASS_SERVIDOR_SERVIDOR_FK" FromRole="SERVIDOR" ToRole="HASH_PASS_SERVIDOR" />
+          <NavigationProperty Name="MODULO" Relationship="Self.SERVIDOR_MODULO_FK" FromRole="SERVIDOR" ToRole="MODULO" />
+          <NavigationProperty Name="RACK" Relationship="Self.SERVIDOR_RACK_FK" FromRole="SERVIDOR" ToRole="RACK" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.SERVICIOS_SERVIDOR_FK" FromRole="SERVIDOR" ToRole="SERVICIOS" />
+          <NavigationProperty Name="SISTEMA_OPERATIVO" Relationship="Self.SERVIDOR_SISTEMA_OPERATIVO_FK" FromRole="SERVIDOR" ToRole="SISTEMA_OPERATIVO" />
+          <NavigationProperty Name="TIPO" Relationship="Self.SERVIDOR_TIPO_FK" FromRole="SERVIDOR" ToRole="TIPO" />
+          <NavigationProperty Name="TIPO_NIVEL" Relationship="Self.SERVIDOR_TIPO_NIVEL_FK" FromRole="SERVIDOR" ToRole="TIPO_NIVEL" />
+          <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_SERVIDOR_FK" FromRole="SERVIDOR" ToRole="SISTEMA" />
+        </EntityType>
+        <EntityType Name="SISTEMA">
+          <Key>
+            <PropertyRef Name="CODIGO_SISTEMA" />
+          </Key>
+          <Property Name="CODIGO_SISTEMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_SENSIBILIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SEGURIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COD_SERVIDOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ID_LENGUAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="LENGUAJE" Relationship="Self.SISTEMA_LENGUAJE_FK" FromRole="SISTEMA" ToRole="LENGUAJE" />
+          <NavigationProperty Name="MODULO" Relationship="Self.SISTEMA_MODULO_FK" FromRole="SISTEMA" ToRole="MODULO" />
+          <NavigationProperty Name="SEGURIDAD" Relationship="Self.SISTEMA_SEGURIDAD_FK" FromRole="SISTEMA" ToRole="SEGURIDAD" />
+          <NavigationProperty Name="SENSIBILIDAD" Relationship="Self.SISTEMA_SENSIBILIDAD_FK" FromRole="SISTEMA" ToRole="SENSIBILIDAD" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.SISTEMA_SERVIDOR_FK" FromRole="SISTEMA" ToRole="SERVIDOR" />
+          <NavigationProperty Name="BASE_DATOS" Relationship="Self.BASES_DE_DATOS_DE_SISTEMAS" FromRole="SISTEMA" ToRole="BASE_DATOS" />
+          <NavigationProperty Name="ORGANIZACION" Relationship="Self.DETALLE_ORGNIZACION" FromRole="SISTEMA" ToRole="ORGANIZACION" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.SERVICIOS_DE_SISTEMAS" FromRole="SISTEMA" ToRole="SERVICIOS" />
+        </EntityType>
+        <EntityType Name="SISTEMA_OPERATIVO">
+          <Key>
+            <PropertyRef Name="ID_SO" />
+          </Key>
+          <Property Name="ID_SO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_SISTEMA_OPERATIVO_FK" FromRole="SISTEMA_OPERATIVO" ToRole="SERVIDOR" />
+        </EntityType>
+        <EntityType Name="SOLUCION">
+          <Key>
+            <PropertyRef Name="ID_SOLUCION" />
+          </Key>
+          <Property Name="ID_SOLUCION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION_SOLUCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_SOLUCION" Type="DateTime" />
+          <Property Name="ID_TICKET" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="TICKET" Relationship="Self.SOLUCION_TICKET_FK" FromRole="SOLUCION" ToRole="TICKET" />
+        </EntityType>
+        <EntityType Name="TICKET">
+          <Key>
+            <PropertyRef Name="ID_TICKET" />
+          </Key>
+          <Property Name="ID_TICKET" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHA_PROBLEMA" Type="DateTime" Nullable="false" />
+          <Property Name="PROBLEMA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RUT_FUNCIONARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MODULO_COD_MODULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FUNCIONARIO" Relationship="Self.TICKET_FUNCIONARIO_FK" FromRole="TICKET" ToRole="FUNCIONARIO" />
+          <NavigationProperty Name="MODULO" Relationship="Self.TICKET_MODULO_FK" FromRole="TICKET" ToRole="MODULO" />
+          <NavigationProperty Name="SOLUCION" Relationship="Self.SOLUCION_TICKET_FK" FromRole="TICKET" ToRole="SOLUCION" />
+        </EntityType>
+        <EntityType Name="TIPO">
+          <Key>
+            <PropertyRef Name="ID_TIPO" />
+          </Key>
+          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_TIPO_FK" FromRole="TIPO" ToRole="SERVIDOR" />
+        </EntityType>
+        <EntityType Name="TIPO_NIVEL">
+          <Key>
+            <PropertyRef Name="ID_TIPO_NIVEL" />
+          </Key>
+          <Property Name="ID_TIPO_NIVEL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO_NIVEL1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_TIPO_NIVEL_FK" FromRole="TIPO_NIVEL" ToRole="SERVIDOR" />
+        </EntityType>
+        <EntityType Name="TIPO_SERVICIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO" />
+          </Key>
+          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.SERVICIOS_TIPO_SERVICIO_FK" FromRole="TIPO_SERVICIO" ToRole="SERVICIOS" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="FECHA_CREACION" Type="DateTime" />
+          <Property Name="ID_ROL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RUT_FUNCIONARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FUNCIONARIO" Relationship="Self.USUARIO_FUNCIONARIO_FK" FromRole="USUARIO" ToRole="FUNCIONARIO" />
+          <NavigationProperty Name="HASH_PASS" Relationship="Self.HASH_PASS_USUARIO_FK" FromRole="USUARIO" ToRole="HASH_PASS" />
+          <NavigationProperty Name="ROL" Relationship="Self.USUARIO_ROL_FK" FromRole="USUARIO" ToRole="ROL" />
+        </EntityType>
+        <Association Name="BASE_DATOS_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="BASE_DATOS">
+              <PropertyRef Name="COD_BASE_DATOS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BASE_DATOS_MOTOR_BASE_DATOS_FK">
+          <End Role="MOTOR_BASE_DATOS" Type="Self.MOTOR_BASE_DATOS" Multiplicity="1" />
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOTOR_BASE_DATOS">
+              <PropertyRef Name="ID_MOTOR" />
+            </Principal>
+            <Dependent Role="BASE_DATOS">
+              <PropertyRef Name="ID_MOTOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BASE_DATOS_SERVIDOR_FK">
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="1" />
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Principal>
+            <Dependent Role="BASE_DATOS">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HASH_PASS_BASE_DATOS_FK">
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="1" />
+          <End Role="HASH_PASS_BASE_DATOS" Type="Self.HASH_PASS_BASE_DATOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BASE_DATOS">
+              <PropertyRef Name="COD_BASE_DATOS" />
+            </Principal>
+            <Dependent Role="HASH_PASS_BASE_DATOS">
+              <PropertyRef Name="COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_DOCUMENTO_FK">
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO">
+              <PropertyRef Name="ID_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="MODULO">
+              <PropertyRef Name="ID_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FUNCIONARIO_EQUIPO_TRABAJO_FK">
+          <End Role="EQUIPO_TRABAJO" Type="Self.EQUIPO_TRABAJO" Multiplicity="1" />
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EQUIPO_TRABAJO">
+              <PropertyRef Name="ID_EQUIPO_TRABAJO" />
+            </Principal>
+            <Dependent Role="FUNCIONARIO">
+              <PropertyRef Name="ID_EQUIPO_TRABAJO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TICKET_FUNCIONARIO_FK">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_FUNCIONARIO_FK">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HASH_PASS_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="HASH_PASS" Type="Self.HASH_PASS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="HASH_PASS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HASH_PASS_SERVIDOR_SERVIDOR_FK">
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="1" />
+          <End Role="HASH_PASS_SERVIDOR" Type="Self.HASH_PASS_SERVIDOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Principal>
+            <Dependent Role="HASH_PASS_SERVIDOR">
+              <PropertyRef Name="COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_LENGUAJE_FK">
+          <End Role="LENGUAJE" Type="Self.LENGUAJE" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LENGUAJE">
+              <PropertyRef Name="ID_LENGUAJE" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="ID_LENGUAJE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_LENGUAJE_FK">
+          <End Role="LENGUAJE" Type="Self.LENGUAJE" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LENGUAJE">
+              <PropertyRef Name="ID_LENGUAJE" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="ID_LENGUAJE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="COD_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="CODIGO_SISTEMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TICKET_MODULO_FK">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULO">
+              <PropertyRef Name="COD_MODULO" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="MODULO_COD_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RACK_SALA_SERVIDORES_FK">
+          <End Role="SALA_SERVIDORES" Type="Self.SALA_SERVIDORES" Multiplicity="1" />
+          <End Role="RACK" Type="Self.RACK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALA_SERVIDORES">
+              <PropertyRef Name="ID_SALA_SERVIDOR" />
+            </Principal>
+            <Dependent Role="RACK">
+              <PropertyRef Name="ID_SALA_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_RACK_FK">
+          <End Role="RACK" Type="Self.RACK" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RACK">
+              <PropertyRef Name="ID_RACK" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="ID_RACK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_ROL_FK">
+          <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROL">
+              <PropertyRef Name="ID_ROL" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_SEGURIDAD_FK">
+          <End Role="SEGURIDAD" Type="Self.SEGURIDAD" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEGURIDAD">
+              <PropertyRef Name="ID_SEGURIDAD" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="ID_SEGURIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_SENSIBILIDAD_FK">
+          <End Role="SENSIBILIDAD" Type="Self.SENSIBILIDAD" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SENSIBILIDAD">
+              <PropertyRef Name="ID_SENSIBILIDAD" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="ID_SENSIBILIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_SERVIDOR_FK">
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIOS_TIPO_SERVICIO_FK">
+          <End Role="TIPO_SERVICIO" Type="Self.TIPO_SERVICIO" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_SERVICIO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_SISTEMA_OPERATIVO_FK">
+          <End Role="SISTEMA_OPERATIVO" Type="Self.SISTEMA_OPERATIVO" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SISTEMA_OPERATIVO">
+              <PropertyRef Name="ID_SO" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="ID_SO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_TIPO_FK">
+          <End Role="TIPO" Type="Self.TIPO" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO">
+              <PropertyRef Name="ID_TIPO" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="ID_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVIDOR_TIPO_NIVEL_FK">
+          <End Role="TIPO_NIVEL" Type="Self.TIPO_NIVEL" Multiplicity="1" />
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_NIVEL">
+              <PropertyRef Name="ID_TIPO_NIVEL" />
+            </Principal>
+            <Dependent Role="SERVIDOR">
+              <PropertyRef Name="ID_TIPO_NIVEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SISTEMA_SERVIDOR_FK">
+          <End Role="SERVIDOR" Type="Self.SERVIDOR" Multiplicity="1" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVIDOR">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Principal>
+            <Dependent Role="SISTEMA">
+              <PropertyRef Name="COD_SERVIDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SOLUCION_TICKET_FK">
+          <End Role="TICKET" Type="Self.TICKET" Multiplicity="1" />
+          <End Role="SOLUCION" Type="Self.SOLUCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TICKET">
+              <PropertyRef Name="ID_TICKET" />
+            </Principal>
+            <Dependent Role="SOLUCION">
+              <PropertyRef Name="ID_TICKET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ADMINISTRADOR_MODULO">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="*" />
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="*" />
+        </Association>
+        <Association Name="BASE_DE_DATOS_DE_SERVICIOS">
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="*" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+        </Association>
+        <Association Name="BASES_DE_DATOS_DE_SISTEMAS">
+          <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="*" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+        </Association>
+        <Association Name="DETALLE_ORGNIZACION">
+          <End Role="ORGANIZACION" Type="Self.ORGANIZACION" Multiplicity="*" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+        </Association>
+        <Association Name="DETALLE_PROVEEDOR">
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="*" />
+          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="*" />
+        </Association>
+        <Association Name="SERVICIOS_DE_SISTEMAS">
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="HomeroSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BASE_DATOS" EntityType="Self.BASE_DATOS" />
+          <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" />
+          <EntitySet Name="EQUIPO_TRABAJO" EntityType="Self.EQUIPO_TRABAJO" />
+          <EntitySet Name="FUNCIONARIO" EntityType="Self.FUNCIONARIO" />
+          <EntitySet Name="HASH_PASS" EntityType="Self.HASH_PASS" />
+          <EntitySet Name="HASH_PASS_BASE_DATOS" EntityType="Self.HASH_PASS_BASE_DATOS" />
+          <EntitySet Name="HASH_PASS_SERVIDOR" EntityType="Self.HASH_PASS_SERVIDOR" />
+          <EntitySet Name="LENGUAJE" EntityType="Self.LENGUAJE" />
+          <EntitySet Name="MODULO" EntityType="Self.MODULO" />
+          <EntitySet Name="MOTOR_BASE_DATOS" EntityType="Self.MOTOR_BASE_DATOS" />
+          <EntitySet Name="ORGANIZACION" EntityType="Self.ORGANIZACION" />
+          <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
+          <EntitySet Name="RACK" EntityType="Self.RACK" />
+          <EntitySet Name="ROL" EntityType="Self.ROL" />
+          <EntitySet Name="SALA_SERVIDORES" EntityType="Self.SALA_SERVIDORES" />
+          <EntitySet Name="SEGURIDAD" EntityType="Self.SEGURIDAD" />
+          <EntitySet Name="SENSIBILIDAD" EntityType="Self.SENSIBILIDAD" />
+          <EntitySet Name="SERVICIOS" EntityType="Self.SERVICIOS" />
+          <EntitySet Name="SERVIDOR" EntityType="Self.SERVIDOR" />
+          <EntitySet Name="SISTEMA" EntityType="Self.SISTEMA" />
+          <EntitySet Name="SISTEMA_OPERATIVO" EntityType="Self.SISTEMA_OPERATIVO" />
+          <EntitySet Name="SOLUCION" EntityType="Self.SOLUCION" />
+          <EntitySet Name="TICKET" EntityType="Self.TICKET" />
+          <EntitySet Name="TIPO" EntityType="Self.TIPO" />
+          <EntitySet Name="TIPO_NIVEL" EntityType="Self.TIPO_NIVEL" />
+          <EntitySet Name="TIPO_SERVICIO" EntityType="Self.TIPO_SERVICIO" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <AssociationSet Name="BASE_DATOS_MODULO_FK" Association="Self.BASE_DATOS_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+          </AssociationSet>
+          <AssociationSet Name="BASE_DATOS_MOTOR_BASE_DATOS_FK" Association="Self.BASE_DATOS_MOTOR_BASE_DATOS_FK">
+            <End Role="MOTOR_BASE_DATOS" EntitySet="MOTOR_BASE_DATOS" />
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+          </AssociationSet>
+          <AssociationSet Name="BASE_DATOS_SERVIDOR_FK" Association="Self.BASE_DATOS_SERVIDOR_FK">
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+          </AssociationSet>
+          <AssociationSet Name="HASH_PASS_BASE_DATOS_FK" Association="Self.HASH_PASS_BASE_DATOS_FK">
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+            <End Role="HASH_PASS_BASE_DATOS" EntitySet="HASH_PASS_BASE_DATOS" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_DOCUMENTO_FK" Association="Self.MODULO_DOCUMENTO_FK">
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="FUNCIONARIO_EQUIPO_TRABAJO_FK" Association="Self.FUNCIONARIO_EQUIPO_TRABAJO_FK">
+            <End Role="EQUIPO_TRABAJO" EntitySet="EQUIPO_TRABAJO" />
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+          </AssociationSet>
+          <AssociationSet Name="TICKET_FUNCIONARIO_FK" Association="Self.TICKET_FUNCIONARIO_FK">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_FUNCIONARIO_FK" Association="Self.USUARIO_FUNCIONARIO_FK">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="HASH_PASS_USUARIO_FK" Association="Self.HASH_PASS_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="HASH_PASS" EntitySet="HASH_PASS" />
+          </AssociationSet>
+          <AssociationSet Name="HASH_PASS_SERVIDOR_SERVIDOR_FK" Association="Self.HASH_PASS_SERVIDOR_SERVIDOR_FK">
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+            <End Role="HASH_PASS_SERVIDOR" EntitySet="HASH_PASS_SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_LENGUAJE_FK" Association="Self.SERVICIOS_LENGUAJE_FK">
+            <End Role="LENGUAJE" EntitySet="LENGUAJE" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_LENGUAJE_FK" Association="Self.SISTEMA_LENGUAJE_FK">
+            <End Role="LENGUAJE" EntitySet="LENGUAJE" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_MODULO_FK" Association="Self.SERVICIOS_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_MODULO_FK" Association="Self.SERVIDOR_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_MODULO_FK" Association="Self.SISTEMA_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="TICKET_MODULO_FK" Association="Self.TICKET_MODULO_FK">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="RACK_SALA_SERVIDORES_FK" Association="Self.RACK_SALA_SERVIDORES_FK">
+            <End Role="SALA_SERVIDORES" EntitySet="SALA_SERVIDORES" />
+            <End Role="RACK" EntitySet="RACK" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_RACK_FK" Association="Self.SERVIDOR_RACK_FK">
+            <End Role="RACK" EntitySet="RACK" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_ROL_FK" Association="Self.USUARIO_ROL_FK">
+            <End Role="ROL" EntitySet="ROL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_SEGURIDAD_FK" Association="Self.SISTEMA_SEGURIDAD_FK">
+            <End Role="SEGURIDAD" EntitySet="SEGURIDAD" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_SENSIBILIDAD_FK" Association="Self.SISTEMA_SENSIBILIDAD_FK">
+            <End Role="SENSIBILIDAD" EntitySet="SENSIBILIDAD" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_SERVIDOR_FK" Association="Self.SERVICIOS_SERVIDOR_FK">
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_TIPO_SERVICIO_FK" Association="Self.SERVICIOS_TIPO_SERVICIO_FK">
+            <End Role="TIPO_SERVICIO" EntitySet="TIPO_SERVICIO" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_SISTEMA_OPERATIVO_FK" Association="Self.SERVIDOR_SISTEMA_OPERATIVO_FK">
+            <End Role="SISTEMA_OPERATIVO" EntitySet="SISTEMA_OPERATIVO" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_TIPO_FK" Association="Self.SERVIDOR_TIPO_FK">
+            <End Role="TIPO" EntitySet="TIPO" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SERVIDOR_TIPO_NIVEL_FK" Association="Self.SERVIDOR_TIPO_NIVEL_FK">
+            <End Role="TIPO_NIVEL" EntitySet="TIPO_NIVEL" />
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SISTEMA_SERVIDOR_FK" Association="Self.SISTEMA_SERVIDOR_FK">
+            <End Role="SERVIDOR" EntitySet="SERVIDOR" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="SOLUCION_TICKET_FK" Association="Self.SOLUCION_TICKET_FK">
+            <End Role="TICKET" EntitySet="TICKET" />
+            <End Role="SOLUCION" EntitySet="SOLUCION" />
+          </AssociationSet>
+          <AssociationSet Name="ADMINISTRADOR_MODULO" Association="Self.ADMINISTRADOR_MODULO">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="BASE_DE_DATOS_DE_SERVICIOS" Association="Self.BASE_DE_DATOS_DE_SERVICIOS">
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="BASES_DE_DATOS_DE_SISTEMAS" Association="Self.BASES_DE_DATOS_DE_SISTEMAS">
+            <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_ORGNIZACION" Association="Self.DETALLE_ORGNIZACION">
+            <End Role="ORGANIZACION" EntitySet="ORGANIZACION" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_PROVEEDOR" Association="Self.DETALLE_PROVEEDOR">
+            <End Role="MODULO" EntitySet="MODULO" />
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIOS_DE_SISTEMAS" Association="Self.SERVICIOS_DE_SISTEMAS">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="SISTEMA" EntitySet="SISTEMA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="HomeroSystemEntities">
+          <EntitySetMapping Name="BASE_DATOS">
+            <EntityTypeMapping TypeName="Model.BASE_DATOS">
+              <MappingFragment StoreEntitySet="BASE_DATOS">
+                <ScalarProperty Name="COD_BASE_DATOS" ColumnName="COD_BASE_DATOS" />
+                <ScalarProperty Name="NOM_USUARIO" ColumnName="NOM_USUARIO" />
+                <ScalarProperty Name="ID_MOTOR" ColumnName="ID_MOTOR" />
+                <ScalarProperty Name="COD_SERVIDOR" ColumnName="COD_SERVIDOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCUMENTO">
+            <EntityTypeMapping TypeName="Model.DOCUMENTO">
+              <MappingFragment StoreEntitySet="DOCUMENTO">
+                <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+                <ScalarProperty Name="URL_DOCUMENTO" ColumnName="URL_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EQUIPO_TRABAJO">
+            <EntityTypeMapping TypeName="Model.EQUIPO_TRABAJO">
+              <MappingFragment StoreEntitySet="EQUIPO_TRABAJO">
+                <ScalarProperty Name="ID_EQUIPO_TRABAJO" ColumnName="ID_EQUIPO_TRABAJO" />
+                <ScalarProperty Name="NOMBRE_EQUIPO" ColumnName="NOMBRE_EQUIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FUNCIONARIO">
+            <EntityTypeMapping TypeName="Model.FUNCIONARIO">
+              <MappingFragment StoreEntitySet="FUNCIONARIO">
+                <ScalarProperty Name="RUT_FUNCIONARIO" ColumnName="RUT_FUNCIONARIO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="DIRECION" ColumnName="DIRECION" />
+                <ScalarProperty Name="ID_EQUIPO_TRABAJO" ColumnName="ID_EQUIPO_TRABAJO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HASH_PASS">
+            <EntityTypeMapping TypeName="Model.HASH_PASS">
+              <MappingFragment StoreEntitySet="HASH_PASS">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="HASH_PASS1" ColumnName="HASH_PASS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HASH_PASS_BASE_DATOS">
+            <EntityTypeMapping TypeName="Model.HASH_PASS_BASE_DATOS">
+              <MappingFragment StoreEntitySet="HASH_PASS_BASE_DATOS">
+                <ScalarProperty Name="COD_MODULO" ColumnName="COD_MODULO" />
+                <ScalarProperty Name="HASH_PASS" ColumnName="HASH_PASS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HASH_PASS_SERVIDOR">
+            <EntityTypeMapping TypeName="Model.HASH_PASS_SERVIDOR">
+              <MappingFragment StoreEntitySet="HASH_PASS_SERVIDOR">
+                <ScalarProperty Name="COD_MODULO" ColumnName="COD_MODULO" />
+                <ScalarProperty Name="HAS_PASS" ColumnName="HAS_PASS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LENGUAJE">
+            <EntityTypeMapping TypeName="Model.LENGUAJE">
+              <MappingFragment StoreEntitySet="LENGUAJE">
+                <ScalarProperty Name="ID_LENGUAJE" ColumnName="ID_LENGUAJE" />
+                <ScalarProperty Name="NOMBRE_LENGUAJE" ColumnName="NOMBRE_LENGUAJE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODULO">
+            <EntityTypeMapping TypeName="Model.MODULO">
+              <MappingFragment StoreEntitySet="MODULO">
+                <ScalarProperty Name="COD_MODULO" ColumnName="COD_MODULO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="GARANTIA" ColumnName="GARANTIA" />
+                <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOTOR_BASE_DATOS">
+            <EntityTypeMapping TypeName="Model.MOTOR_BASE_DATOS">
+              <MappingFragment StoreEntitySet="MOTOR_BASE_DATOS">
+                <ScalarProperty Name="ID_MOTOR" ColumnName="ID_MOTOR" />
+                <ScalarProperty Name="NOMBRE_MOTOR" ColumnName="NOMBRE_MOTOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORGANIZACION">
+            <EntityTypeMapping TypeName="Model.ORGANIZACION">
+              <MappingFragment StoreEntitySet="ORGANIZACION">
+                <ScalarProperty Name="ID_ORGANIZACION" ColumnName="ID_ORGANIZACION" />
+                <ScalarProperty Name="NOMBRE_ORGANIZACION" ColumnName="NOMBRE_ORGANIZACION" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDOR">
+            <EntityTypeMapping TypeName="Model.PROVEEDOR">
+              <MappingFragment StoreEntitySet="PROVEEDOR">
+                <ScalarProperty Name="ID_PROVEEDOR" ColumnName="ID_PROVEEDOR" />
+                <ScalarProperty Name="NOMBRE_EMPRESA" ColumnName="NOMBRE_EMPRESA" />
+                <ScalarProperty Name="NOMBRE_ENCARGADO" ColumnName="NOMBRE_ENCARGADO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RACK">
+            <EntityTypeMapping TypeName="Model.RACK">
+              <MappingFragment StoreEntitySet="RACK">
+                <ScalarProperty Name="ID_RACK" ColumnName="ID_RACK" />
+                <ScalarProperty Name="UNIDAD_RACK" ColumnName="UNIDAD_RACK" />
+                <ScalarProperty Name="ID_SALA_SERVIDOR" ColumnName="ID_SALA_SERVIDOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROL">
+            <EntityTypeMapping TypeName="Model.ROL">
+              <MappingFragment StoreEntitySet="ROL">
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="NOMBRE_ROL" ColumnName="NOMBRE_ROL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALA_SERVIDORES">
+            <EntityTypeMapping TypeName="Model.SALA_SERVIDORES">
+              <MappingFragment StoreEntitySet="SALA_SERVIDORES">
+                <ScalarProperty Name="ID_SALA_SERVIDOR" ColumnName="ID_SALA_SERVIDOR" />
+                <ScalarProperty Name="NOMBRE_SALA" ColumnName="NOMBRE_SALA" />
+                <ScalarProperty Name="PISO" ColumnName="PISO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEGURIDAD">
+            <EntityTypeMapping TypeName="Model.SEGURIDAD">
+              <MappingFragment StoreEntitySet="SEGURIDAD">
+                <ScalarProperty Name="ID_SEGURIDAD" ColumnName="ID_SEGURIDAD" />
+                <ScalarProperty Name="TIPO_SEGURIDAD" ColumnName="TIPO_SEGURIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SENSIBILIDAD">
+            <EntityTypeMapping TypeName="Model.SENSIBILIDAD">
+              <MappingFragment StoreEntitySet="SENSIBILIDAD">
+                <ScalarProperty Name="ID_SENSIBILIDAD" ColumnName="ID_SENSIBILIDAD" />
+                <ScalarProperty Name="TIPO_SENSIBILIDAD" ColumnName="TIPO_SENSIBILIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICIOS">
+            <EntityTypeMapping TypeName="Model.SERVICIOS">
+              <MappingFragment StoreEntitySet="SERVICIOS">
+                <ScalarProperty Name="COD_SERVICIO" ColumnName="COD_SERVICIO" />
+                <ScalarProperty Name="COD_SERVIDOR" ColumnName="COD_SERVIDOR" />
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ID_LENGUAJE" ColumnName="ID_LENGUAJE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVIDOR">
+            <EntityTypeMapping TypeName="Model.SERVIDOR">
+              <MappingFragment StoreEntitySet="SERVIDOR">
+                <ScalarProperty Name="COD_SERVIDOR" ColumnName="COD_SERVIDOR" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="DISCO_DURO" ColumnName="DISCO_DURO" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="ID_SO" ColumnName="ID_SO" />
+                <ScalarProperty Name="ID_RACK" ColumnName="ID_RACK" />
+                <ScalarProperty Name="ID_TIPO_NIVEL" ColumnName="ID_TIPO_NIVEL" />
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="ID_LENGUAJE" ColumnName="ID_LENGUAJE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SISTEMA">
+            <EntityTypeMapping TypeName="Model.SISTEMA">
+              <MappingFragment StoreEntitySet="SISTEMA">
+                <ScalarProperty Name="CODIGO_SISTEMA" ColumnName="CODIGO_SISTEMA" />
+                <ScalarProperty Name="ID_SENSIBILIDAD" ColumnName="ID_SENSIBILIDAD" />
+                <ScalarProperty Name="ID_SEGURIDAD" ColumnName="ID_SEGURIDAD" />
+                <ScalarProperty Name="COD_SERVIDOR" ColumnName="COD_SERVIDOR" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ID_LENGUAJE" ColumnName="ID_LENGUAJE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SISTEMA_OPERATIVO">
+            <EntityTypeMapping TypeName="Model.SISTEMA_OPERATIVO">
+              <MappingFragment StoreEntitySet="SISTEMA_OPERATIVO">
+                <ScalarProperty Name="ID_SO" ColumnName="ID_SO" />
+                <ScalarProperty Name="NOMBRE_SO" ColumnName="NOMBRE_SO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLUCION">
+            <EntityTypeMapping TypeName="Model.SOLUCION">
+              <MappingFragment StoreEntitySet="SOLUCION">
+                <ScalarProperty Name="ID_SOLUCION" ColumnName="ID_SOLUCION" />
+                <ScalarProperty Name="DESCRIPCION_SOLUCION" ColumnName="DESCRIPCION_SOLUCION" />
+                <ScalarProperty Name="FECHA_SOLUCION" ColumnName="FECHA_SOLUCION" />
+                <ScalarProperty Name="ID_TICKET" ColumnName="ID_TICKET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TICKET">
+            <EntityTypeMapping TypeName="Model.TICKET">
+              <MappingFragment StoreEntitySet="TICKET">
+                <ScalarProperty Name="ID_TICKET" ColumnName="ID_TICKET" />
+                <ScalarProperty Name="FECHA_PROBLEMA" ColumnName="FECHA_PROBLEMA" />
+                <ScalarProperty Name="PROBLEMA" ColumnName="PROBLEMA" />
+                <ScalarProperty Name="RUT_FUNCIONARIO" ColumnName="RUT_FUNCIONARIO" />
+                <ScalarProperty Name="MODULO_COD_MODULO" ColumnName="MODULO_COD_MODULO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO">
+            <EntityTypeMapping TypeName="Model.TIPO">
+              <MappingFragment StoreEntitySet="TIPO">
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="TIPO1" ColumnName="TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_NIVEL">
+            <EntityTypeMapping TypeName="Model.TIPO_NIVEL">
+              <MappingFragment StoreEntitySet="TIPO_NIVEL">
+                <ScalarProperty Name="ID_TIPO_NIVEL" ColumnName="ID_TIPO_NIVEL" />
+                <ScalarProperty Name="TIPO_NIVEL1" ColumnName="TIPO_NIVEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_SERVICIO">
+            <EntityTypeMapping TypeName="Model.TIPO_SERVICIO">
+              <MappingFragment StoreEntitySet="TIPO_SERVICIO">
+                <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="Model.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="RUT_FUNCIONARIO" ColumnName="RUT_FUNCIONARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ADMINISTRADOR_MODULO" TypeName="Model.ADMINISTRADOR_MODULO" StoreEntitySet="ADMINISTRADOR_MODULO">
+            <EndProperty Name="FUNCIONARIO">
+              <ScalarProperty Name="RUT_FUNCIONARIO" ColumnName="RUT_FUNCIONARIO" />
+            </EndProperty>
+            <EndProperty Name="MODULO">
+              <ScalarProperty Name="COD_MODULO" ColumnName="COD_MODULO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="BASE_DE_DATOS_DE_SERVICIOS" TypeName="Model.BASE_DE_DATOS_DE_SERVICIOS" StoreEntitySet="BASE_DE_DATOS_DE_SERVICIOS">
+            <EndProperty Name="BASE_DATOS">
+              <ScalarProperty Name="COD_BASE_DATOS" ColumnName="COD_BASEDEDATOS" />
+            </EndProperty>
+            <EndProperty Name="SERVICIOS">
+              <ScalarProperty Name="COD_SERVICIO" ColumnName="COD_SERVICIO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="BASES_DE_DATOS_DE_SISTEMAS" TypeName="Model.BASES_DE_DATOS_DE_SISTEMAS" StoreEntitySet="BASES_DE_DATOS_DE_SISTEMAS">
+            <EndProperty Name="BASE_DATOS">
+              <ScalarProperty Name="COD_BASE_DATOS" ColumnName="COD_BASEDATOS" />
+            </EndProperty>
+            <EndProperty Name="SISTEMA">
+              <ScalarProperty Name="CODIGO_SISTEMA" ColumnName="COD_SISTEMA" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DETALLE_ORGNIZACION" TypeName="Model.DETALLE_ORGNIZACION" StoreEntitySet="DETALLE_ORGNIZACION">
+            <EndProperty Name="ORGANIZACION">
+              <ScalarProperty Name="ID_ORGANIZACION" ColumnName="ID_ORGANIZACION" />
+            </EndProperty>
+            <EndProperty Name="SISTEMA">
+              <ScalarProperty Name="CODIGO_SISTEMA" ColumnName="COD_MODULO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DETALLE_PROVEEDOR" TypeName="Model.DETALLE_PROVEEDOR" StoreEntitySet="DETALLE_PROVEEDOR">
+            <EndProperty Name="MODULO">
+              <ScalarProperty Name="COD_MODULO" ColumnName="MODULO_COD_MODULO" />
+            </EndProperty>
+            <EndProperty Name="PROVEEDOR">
+              <ScalarProperty Name="ID_PROVEEDOR" ColumnName="ID_PROVEEDOR" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SERVICIOS_DE_SISTEMAS" TypeName="Model.SERVICIOS_DE_SISTEMAS" StoreEntitySet="SERVICIOS_DE_SISTEMAS">
+            <EndProperty Name="SERVICIOS">
+              <ScalarProperty Name="COD_SERVICIO" ColumnName="COD_SERVICIO" />
+            </EndProperty>
+            <EndProperty Name="SISTEMA">
+              <ScalarProperty Name="CODIGO_SISTEMA" ColumnName="COD_SISTEMA" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
