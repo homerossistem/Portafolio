@@ -126,8 +126,7 @@ namespace Biblioteca.Negocio.DAO
         }
         public Rack BuscarRack(int id_rack)
         {
-            Rack _objRack = null;
-            Rack _objRack2 = null;
+            Rack _objRack = null;            
             RACK objrack = CommonBC.HomeroSystemEntities.RACK.First(rack => rack.ID_RACK == id_rack);
             if (objrack != null)
             {
