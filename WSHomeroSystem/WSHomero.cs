@@ -15,6 +15,7 @@ namespace WSHomeroSystem
     {
         #region Clases DAO
         UsuarioDAO objUsuarioDAO = new UsuarioDAO();
+        RackDAO objRackDAO = new RackDAO();
         HashPassDAO objHashPassDAO = new HashPassDAO();
         FuncionarioDAO objFuncionarioDAO = new FuncionarioDAO();
         TicketDAO objTicketDAO = new TicketDAO();
@@ -29,6 +30,39 @@ namespace WSHomeroSystem
         DocumentoDAO objDocumentoDAO = new DocumentoDAO();
         #endregion
         #region Metodos Web Service
+        #region Metodos Rack
+        public bool AgregarRack(Rack _rack)
+        {            
+            return objRackDAO.AgregarRack(_rack);
+        }
+
+        public List<Rack> listadoRacks()
+        {
+            return objRackDAO.listadoRacks();
+        }
+
+        public List<DTO> listadoRacksSalas()
+        {
+
+            return objRackDAO.listadoRacksSalas();
+        }
+
+        public bool EliminarRack(int id_rack)
+        {
+            return objRackDAO.EliminarRack(id_rack);
+        }
+
+        public bool ModificarRack(Rack _objRack)
+        {
+            return objRackDAO.ModificarRack(_objRack);
+        }
+
+        public Rack BuscarRack(int id_rack)
+        {
+            return objRackDAO.BuscarRack(id_rack);
+        }
+
+        #endregion
         #region Agregar,Listra,Modificar,Eliminar,IniciarSession Usuarios
         public string AgregarUsuario(Usuario objusuario, HashPass objHashPass,Funcionario objFuncionario)
         {
@@ -318,5 +352,7 @@ namespace WSHomeroSystem
         {
            return objServicioDAO.agregarBaseDatosServicio(codServicio, codBaseDatos);
         }
+
+
     }
 }
