@@ -180,11 +180,11 @@ namespace WSHomeroSystem
         }
         #endregion
         #region Agregar,Modificar,listado Servicio
-        public string AgregarServicio(Servicio objServicio)
+        public string AgregarServicio(Servicio objServicio,List<string>listadoCodBaseDatos)
         {
             string mensaje = "";
             try {
-                if (objServicioDAO.agregarServicio(objServicio))
+                if (objServicioDAO.agregarServicio(objServicio,listadoCodBaseDatos))
                 {
                     mensaje = "Servicio Agregado Con Exito";
                 } else
@@ -313,5 +313,10 @@ namespace WSHomeroSystem
         }
         #endregion
         #endregion
+
+        public bool agregarBaseDatosServicio(string codServicio, List<string> codBaseDatos)
+        {
+           return objServicioDAO.agregarBaseDatosServicio(codServicio, codBaseDatos);
+        }
     }
 }

@@ -11,8 +11,9 @@ namespace Biblioteca.Negocio.DAO
 {
     public class ServicioDAO
     {
-        public bool agregarServicio(Servicio _servicio)
+        public bool agregarServicio(Servicio _servicio,List<string> codBaseDatos)
         {
+            List<BASE_DATOS> listadoBaseDatos = new List<BASE_DATOS>();
             try
             {
                 string codigoServicio = GeneradorCodigoServicio();
@@ -27,7 +28,20 @@ namespace Biblioteca.Negocio.DAO
                 objServicioDALC.DESCRIPCION = _servicio.Descripcion;
                 objServicioDALC.ID_TIPO = _servicio.Id_tipo;
                 objServicioDALC.ID_LENGUAJE = _servicio.Id_lenguaje;
-                CommonBC.HomeroSystemEntities.MODULO.Add(objModuloDALC);
+                objServicioDALC.MODULO = objModuloDALC;
+                if(codBaseDatos.Count>=1)
+                {
+                    foreach (string cod in codBaseDatos)
+                    {
+                        BASE_DATOS objBaseDatos = CommonBC.HomeroSystemEntities.BASE_DATOS.First
+                            (
+                              bd => bd.COD_BASE_DATOS == cod
+                            );
+                        listadoBaseDatos.Add(objBaseDatos);
+                    }
+                    objServicioDALC.BASE_DATOS = listadoBaseDatos;
+                }
+                    
                 CommonBC.HomeroSystemEntities.SERVICIOS.Add(objServicioDALC);
                 CommonBC.HomeroSystemEntities.SaveChanges();
                 return true;
@@ -133,7 +147,7 @@ namespace Biblioteca.Negocio.DAO
              
             }catch(Exception e)
             {
-               
+                Console.WriteLine(e.Message);
             }
 
             return listadoServicios;
@@ -151,6 +165,62 @@ namespace Biblioteca.Negocio.DAO
                 listadoTipoServicio.Add(objTipoServicio);
             }
             return listadoTipoServicio;
+        }
+
+        public bool agregarBaseDatosServicio(string codServicio,List<string>codBaseDatos)
+        {
+            List<BASE_DATOS> listadoBaseDatos = new List<BASE_DATOS>();
+            SERVICIOS objServicio = CommonBC.HomeroSystemEntities.SERVICIOS.First
+                (
+                   servi=>servi.COD_SERVICIO == codServicio
+                );
+            foreach(string cod in codBaseDatos)
+            {
+                BASE_DATOS objBaseDatos = CommonBC.HomeroSystemEntities.BASE_DATOS.First
+                    (
+                      bd=>bd.COD_BASE_DATOS == cod
+                    );
+                listadoBaseDatos.Add(objBaseDatos);
+            }
+
+            objServicio.BASE_DATOS = listadoBaseDatos;
+
+
+            CommonBC.HomeroSystemEntities.SaveChanges();
+            return true;
+        }
+
+        public Servicio BuscarServicio(string codigoServicio)
+        {
+            List<BaseDeDatos> listadoBaseDatos = new List<BaseDeDatos>();
+            SERVICIOS objServicioDALC = CommonBC.HomeroSystemEntities.SERVICIOS.First(servi=>servi.COD_SERVICIO == codigoServicio);
+            Servicio objServicio = new Servicio();
+            objServicio.Codigo = objServicioDALC.COD_SERVICIO;
+            objServicio.Nombre = objServicioDALC.MODULO.NOMBRE;
+            objServicio.Garantia =int.Parse(objServicioDALC.MODULO.GARANTIA.ToString());
+            objServicio.Id_documento = int.Parse(objServicioDALC.MODULO.ID_DOCUMENTO.ToString());
+            objServicio.Descripcion = objServicioDALC.DESCRIPCION;
+            objServicio.Codigo_servidor = objServicioDALC.COD_SERVIDOR;
+            objServicio.Id_lenguaje = int.Parse(objServicioDALC.ID_LENGUAJE.ToString());
+            objServicio.Id_tipo = int.Parse(objServicioDALC.ID_TIPO.ToString());
+            if (objServicioDALC.BASE_DATOS.Count >= 0)
+            {
+                foreach (BASE_DATOS baseDatos in objServicioDALC.BASE_DATOS)
+                {
+                    BaseDeDatos objBaseDatos = new BaseDeDatos();
+                    objBaseDatos.Codigo = baseDatos.COD_BASE_DATOS;
+                    objBaseDatos.Nombre = baseDatos.MODULO.NOMBRE;
+                    objBaseDatos.Garantia = int.Parse(baseDatos.MODULO.GARANTIA.ToString());
+                    objBaseDatos.Id_documento = int.Parse(baseDatos.MODULO.ID_DOCUMENTO.ToString());
+                    objBaseDatos.Id_motor = int.Parse(baseDatos.ID_MOTOR.ToString());
+                    objBaseDatos.Codigo_servidor = baseDatos.COD_SERVIDOR;
+                    objBaseDatos.NomUSer = baseDatos.NOM_USUARIO;
+                    listadoBaseDatos.Add(objBaseDatos);
+                }
+
+                objServicio.ListadoBaseDatos = listadoBaseDatos;
+            }
+            return objServicio;
         }
     }
 }

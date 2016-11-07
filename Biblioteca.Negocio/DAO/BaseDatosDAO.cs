@@ -22,16 +22,17 @@ namespace Biblioteca.Negocio.DAO
                 objModuloDALC.NOMBRE = _objBaseDatos.Nombre;
                 objModuloDALC.GARANTIA = _objBaseDatos.Garantia;
                 objModuloDALC.ID_DOCUMENTO = _objBaseDatos.Id_documento;
+                HASH_PASS_BASE_DATOS objHashPassDALC = new HASH_PASS_BASE_DATOS();
+                objHashPassDALC.COD_MODULO = codigoGenerado;
+                objHashPassDALC.HASH_PASS = EncriptarPasswordBaseDeDatos(_hashBaseDatos.Hash_pass);
                 BASE_DATOS objBaseDatosDALC = new BASE_DATOS();
                 objBaseDatosDALC.COD_BASE_DATOS = codigoGenerado;
                 objBaseDatosDALC.ID_MOTOR = _objBaseDatos.Id_motor;
                 objBaseDatosDALC.COD_SERVIDOR = _objBaseDatos.Codigo_servidor;
-                HASH_PASS_BASE_DATOS objHashPassDALC = new HASH_PASS_BASE_DATOS();
-                objHashPassDALC.COD_MODULO = codigoGenerado;
-                objHashPassDALC.HASH_PASS = EncriptarPasswordBaseDeDatos(_hashBaseDatos.Hash_pass);
-                CommonBC.HomeroSystemEntities.MODULO.Add(objModuloDALC);
+                objBaseDatosDALC.NOM_USUARIO = _objBaseDatos.NomUSer;
+                objBaseDatosDALC.MODULO = objModuloDALC;
+                objBaseDatosDALC.HASH_PASS_BASE_DATOS = objHashPassDALC;
                 CommonBC.HomeroSystemEntities.BASE_DATOS.Add(objBaseDatosDALC);
-                CommonBC.HomeroSystemEntities.HASH_PASS_BASE_DATOS.Add(objHashPassDALC);
                 CommonBC.HomeroSystemEntities.SaveChanges();
 
             }

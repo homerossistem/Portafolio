@@ -22,7 +22,7 @@ namespace WSHomeroSystem
         [OperationContract]
         string AgregarBaseDatos(BaseDeDatos _objBaseDatos,HashPassModulo _hashpass);
         [OperationContract]
-        string AgregarServicio(Servicio objServicio);
+        string AgregarServicio(Servicio objServicio, List<string> listadoCodBaseDatos);
         [OperationContract]
         string AgregarTipoServicio(TipoServicio objTipoServicio);
         [OperationContract]
@@ -61,5 +61,7 @@ namespace WSHomeroSystem
         List<DTO> listadoServidores();
         [OperationContract]
         List<Servidor> listadoServidorAplicaciones();
+        [OperationContract]
+        bool agregarBaseDatosServicio(string codServicio, List<string> codBaseDatos);
     }
 }

@@ -23,8 +23,11 @@ namespace Biblioteca.Negocio.DAO
                 objModuloDALC.NOMBRE = _servidor.Nombre;
                 objModuloDALC.GARANTIA = _servidor.Garantia;
                 objModuloDALC.ID_DOCUMENTO = _servidor.Id_documento;
+                HASH_PASS_SERVIDOR objHashPassDALC = new HASH_PASS_SERVIDOR();
+                objHashPassDALC.COD_MODULO = codigoGenerado;
+                objHashPassDALC.HAS_PASS = EncriptarPasswordBaseDeDatos(_hashServidor.Hash_pass);
                 SERVIDOR objServidorDALC = new SERVIDOR();
-                objServidorDALC.COD_SERVIDOR = codigoGenerado;
+                objServidorDALC.COD_SERVIDOR = objModuloDALC.COD_MODULO;
                 objServidorDALC.IP = _servidor.Ip;
                 objServidorDALC.DISCO_DURO = _servidor.DiscoDuro;
                 objServidorDALC.RAM = _servidor.Ram;
@@ -32,12 +35,10 @@ namespace Biblioteca.Negocio.DAO
                 objServidorDALC.ID_RACK = _servidor.Id_rack;
                 objServidorDALC.ID_TIPO_NIVEL = _servidor.Id_tipo_nivel;
                 objServidorDALC.ID_TIPO = _servidor.Id_tipo;
-                HASH_PASS_SERVIDOR objHashPassDALC = new HASH_PASS_SERVIDOR();
-                objHashPassDALC.COD_MODULO = codigoGenerado;
-                objHashPassDALC.HAS_PASS = EncriptarPasswordBaseDeDatos(_hashServidor.Hash_pass);
-                CommonBC.HomeroSystemEntities.MODULO.Add(objModuloDALC);
+                objServidorDALC.MODULO = objModuloDALC;
+                objServidorDALC.HASH_PASS_SERVIDOR = objHashPassDALC;
+               
                 CommonBC.HomeroSystemEntities.SERVIDOR.Add(objServidorDALC);
-                CommonBC.HomeroSystemEntities.HASH_PASS_SERVIDOR.Add(objHashPassDALC);
                 CommonBC.HomeroSystemEntities.SaveChanges();
 
             }
