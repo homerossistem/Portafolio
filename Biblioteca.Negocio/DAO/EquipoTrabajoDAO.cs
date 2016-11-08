@@ -30,6 +30,81 @@ namespace Biblioteca.Negocio.DAO
 
             return listaEquipos;
         }
-   }
+
+
+
+        private static int idTemporal = 0;
+        public bool AgregarEquipoTrabajo(EquipoTrabajo _equipo )
+        {
+            try
+            {
+                idTemporal++;
+                EQUIPO_TRABAJO equipoDALC = new EQUIPO_TRABAJO();
+                equipoDALC.ID_EQUIPO_TRABAJO = idTemporal;
+                equipoDALC.NOMBRE_EQUIPO = _equipo.Nombre_equipo;
+
+                CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.Add(equipoDALC);
+                CommonBC.HomeroSystemEntities.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+
+            return true;
+        }
+
+
+        public bool ExisteEquipo(String nombre)
+        {
+            int count = CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.Count
+                  (
+                    equ => equ.NOMBRE_EQUIPO == nombre
+                  );
+            if (count >= 1)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
+        public EquipoTrabajo buscarEquipo(String nombre)
+        {
+            EquipoTrabajo equipo = new EquipoTrabajo();
+            EQUIPO_TRABAJO equipoDALC = CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.First
+                (
+                    equ => equ.NOMBRE_EQUIPO == nombre
+                );
+            equipo.Id_equipo = int.Parse(equipoDALC.ID_EQUIPO_TRABAJO.ToString());
+            equipo.Nombre_equipo = equipoDALC.NOMBRE_EQUIPO;
+
+            return equipo;
+        }
+
+
+        public bool eliminarEquipo(EquipoTrabajo _equipoTrabajo)
+        {
+            try
+            {
+                EQUIPO_TRABAJO equipo = CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.First
+                    (
+                        equ => equ.ID_EQUIPO_TRABAJO == _equipoTrabajo.Id_equipo
+                    );
+
+                CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.Remove(equipo);
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
+    }
 
 }
