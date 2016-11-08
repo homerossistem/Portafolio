@@ -407,6 +407,27 @@ namespace WSHomeroSystem
             return objOrganizacionDAO.BuscarOrganizacion(id_Org);
         }
         #endregion
+        #region EquipoTrabajo
+        public bool AgregarEquipoTrabajo(EquipoTrabajo _equipo)
+        {
+            return objEquipoDAO.AgregarEquipoTrabajo(_equipo);
+        }
+
+        public bool ExisteEquipo(string nombre)
+        {
+            return objEquipoDAO.ExisteEquipo(nombre);
+        }
+
+        public EquipoTrabajo buscarEquipo(string nombre)
+        {
+            return objEquipoDAO.buscarEquipo(nombre);
+        }
+
+        public bool eliminarEquipo(EquipoTrabajo _equipoTrabajo)
+        {
+            return objEquipoDAO.eliminarEquipo(_equipoTrabajo);
+        }
+        #endregion
         #endregion
     }
 }

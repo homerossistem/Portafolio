@@ -93,6 +93,14 @@ namespace WSHomeroSystem
         bool ModificarOrganizacion(Organizacion _objOrg);
         [OperationContract]
         Organizacion BuscarOrganizacion(int id_Org);
+        [OperationContract]
+        bool AgregarEquipoTrabajo(EquipoTrabajo _equipo);
+        [OperationContract]
+        bool ExisteEquipo(String nombre);
+        [OperationContract]
+        EquipoTrabajo buscarEquipo(String nombre);
+        [OperationContract]
+        bool eliminarEquipo(EquipoTrabajo _equipoTrabajo);
 
     }
 }
