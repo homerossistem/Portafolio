@@ -355,12 +355,6 @@ namespace WSHomeroSystem
             return objSalaServidoresDao.ListadoSalaServidores();
         }
         #endregion
-        #endregion
-
-        public bool agregarBaseDatosServicio(string codServicio, List<string> codBaseDatos)
-        {
-           return objServicioDAO.agregarBaseDatosServicio(codServicio, codBaseDatos);
-        }
         #region Agregar,Modificar,listado,Buscar, Eliminar Proveedor
         public bool AgregarProveedor(Proveedor _prov)
         {
@@ -387,7 +381,6 @@ namespace WSHomeroSystem
             return objProveedorDAO.BuscarProveedor(id_prov);
         }
         #endregion
-
         #region Agregar,Modificar,listado,Buscar, Eliminar Organizaciones
         public bool AgregarOrganizacion(Organizacion _org)
         {
@@ -414,5 +407,12 @@ namespace WSHomeroSystem
             return objOrganizacionDAO.BuscarOrganizacion(id_Org);
         }
         #endregion
+        #endregion
+
+        public bool agregarBaseDatosServicio(string codServicio, List<string> codBaseDatos)
+        {
+           return objServicioDAO.agregarBaseDatosServicio(codServicio, codBaseDatos);
+        }
+
     }
 }
