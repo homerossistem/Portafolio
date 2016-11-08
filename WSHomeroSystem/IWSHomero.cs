@@ -64,18 +64,38 @@ namespace WSHomeroSystem
         [OperationContract]
         bool agregarBaseDatosServicio(string codServicio, List<string> codBaseDatos);
 
-
         [OperationContract]
-        bool AgregarEquipoTrabajo(EquipoTrabajo objEquipo);
+        bool AgregarRack(Rack _rack);
         [OperationContract]
-        bool ExisteEquipo(string nombre);
+        List<Rack> listadoRacks();
         [OperationContract]
-        EquipoTrabajo BuscarEquipo(string nombre);
+        List<DTO> listadoRacksSalas();
         [OperationContract]
-        bool EliminarEquipo(EquipoTrabajo equipo);
+        bool EliminarRack(int id_rack);
         [OperationContract]
-
-
+        bool ModificarRack(Rack _objRack);
+        [OperationContract]
+        Rack BuscarRack(int id_rack);
+        [OperationContract]
+        bool AgregarProveedor(Proveedor _prov);
+        [OperationContract]
+        List<Proveedor> listadoProveedores();
+        [OperationContract]
+        bool EliminarProveedor(int id_prov);
+        [OperationContract]
+        bool ModificarProveedor(Proveedor _objProv);
+        [OperationContract]
+        Proveedor BuscarProveedor(int id_prov);
+        [OperationContract]
+        bool AgregarOrganizacion(Organizacion _org);
+        [OperationContract]
+        List<Organizacion> listadoOrganizaciones();
+        [OperationContract]
+        bool EliminarOrganizacion(int id_organizacion);
+        [OperationContract]
+        bool ModificarOrganizacion(Organizacion _objOrg);
+        [OperationContract]
+        Organizacion BuscarOrganizacion(int id_Org);
 
     }
 }
