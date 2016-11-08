@@ -74,10 +74,28 @@ namespace WSHomeroSystem
         bool EliminarRack(int id_rack);
         [OperationContract]
         bool ModificarRack(Rack _objRack);
-
         [OperationContract]
         Rack BuscarRack(int id_rack);
         [OperationContract]
-        Rack Buscar(int id_rack);
+        bool AgregarProveedor(Proveedor _prov);
+        [OperationContract]
+        List<Proveedor> listadoProveedores();
+        [OperationContract]
+        bool EliminarProveedor(int id_prov);
+        [OperationContract]
+        bool ModificarProveedor(Proveedor _objProv);
+        [OperationContract]
+        Proveedor BuscarProveedor(int id_prov);
+        [OperationContract]
+        bool AgregarOrganizacion(Organizacion _org);
+        [OperationContract]
+        List<Organizacion> listadoOrganizaciones();
+        [OperationContract]
+        bool EliminarOrganizacion(int id_organizacion);
+        [OperationContract]
+        bool ModificarOrganizacion(Organizacion _objOrg);
+        [OperationContract]
+        Organizacion BuscarOrganizacion(int id_Org);
+
     }
 }
