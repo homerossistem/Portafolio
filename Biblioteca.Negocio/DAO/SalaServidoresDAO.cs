@@ -128,7 +128,7 @@ namespace Biblioteca.Negocio.DAO
 
             return listadoSalaServidores;
         }
-        public List<SalaServidores> ListadoTrabajador()
+        public List<SalaServidores> ListadoSalaServidores()
         {
             var salaServidores = CommonBC.HomeroSystemEntities.SALA_SERVIDORES.ToList();
             return GenerarListado(salaServidores);

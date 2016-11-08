@@ -15,6 +15,7 @@ namespace WSHomeroSystem
     {
         #region Clases DAO
         UsuarioDAO objUsuarioDAO = new UsuarioDAO();
+        SalaServidoresDAO objSalaServidoresDao = new SalaServidoresDAO();
         RackDAO objRackDAO = new RackDAO();
         HashPassDAO objHashPassDAO = new HashPassDAO();
         FuncionarioDAO objFuncionarioDAO = new FuncionarioDAO();
@@ -344,6 +345,12 @@ namespace WSHomeroSystem
         public List<TipoServicio> listadoTipoServicio()
         {
             return objServicioDAO.listadoTipoServicio();
+        }
+        #endregion
+        #region Sala Servidores
+        public List<SalaServidores> ListadoSalaServidores()
+        {
+            return objSalaServidoresDao.ListadoSalaServidores();
         }
         #endregion
         #endregion
