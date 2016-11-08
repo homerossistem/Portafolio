@@ -63,5 +63,19 @@ namespace WSHomeroSystem
         List<Servidor> listadoServidorAplicaciones();
         [OperationContract]
         bool agregarBaseDatosServicio(string codServicio, List<string> codBaseDatos);
+
+
+        [OperationContract]
+        bool AgregarEquipoTrabajo(EquipoTrabajo objEquipo);
+        [OperationContract]
+        bool ExisteEquipo(string nombre);
+        [OperationContract]
+        EquipoTrabajo BuscarEquipo(string nombre);
+        [OperationContract]
+        bool EliminarEquipo(EquipoTrabajo equipo);
+        [OperationContract]
+
+
+
     }
 }

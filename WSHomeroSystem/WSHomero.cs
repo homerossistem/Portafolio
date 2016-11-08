@@ -318,5 +318,29 @@ namespace WSHomeroSystem
         {
            return objServicioDAO.agregarBaseDatosServicio(codServicio, codBaseDatos);
         }
+
+        #region Metodos equipo de trabajo
+
+        public bool ExisteEquipo(string nombre)
+        {
+            return objEquipoDAO.ExisteEquipo(nombre);
+        }
+
+        public bool AgregarEquipoTrabajo(EquipoTrabajo objEquipo)
+        {
+            return objEquipoDAO.AgregarEquipoTrabajo(objEquipo);
+        }
+
+        public EquipoTrabajo BuscarEquipo(string nombre)
+        {
+            return objEquipoDAO.buscarEquipo(nombre);
+        }
+
+        public bool EliminarEquipo(EquipoTrabajo equipo)
+        {
+            return objEquipoDAO.eliminarEquipo(equipo);
+        }
+
+        #endregion
     }
 }
