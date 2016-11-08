@@ -94,6 +94,8 @@
     <Compile Include="DAO\FuncionarioDAO.cs" />
     <Compile Include="DAO\HashPassDAO.cs" />
     <Compile Include="DAO\LenguajeDAO.cs" />
+    <Compile Include="DAO\OrganizacionesDAO.cs" />
+    <Compile Include="DAO\ProveedorDAO.cs" />
     <Compile Include="DAO\RackDAO.cs" />
     <Compile Include="DAO\RolDAO.cs" />
     <Compile Include="DAO\SalaServidoresDAO.cs" />

@@ -77,5 +77,7 @@ namespace WSHomeroSystem
 
         [OperationContract]
         Rack BuscarRack(int id_rack);
+        [OperationContract]
+        Rack Buscar(int id_rack);
     }
 }
