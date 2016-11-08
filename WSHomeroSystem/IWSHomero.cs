@@ -62,9 +62,6 @@ namespace WSHomeroSystem
         [OperationContract]
         List<Servidor> listadoServidorAplicaciones();
         [OperationContract]
-        bool agregarBaseDatosServicio(string codServicio, List<string> codBaseDatos);
-
-        [OperationContract]
         bool AgregarRack(Rack _rack);
         [OperationContract]
         List<Rack> listadoRacks();
