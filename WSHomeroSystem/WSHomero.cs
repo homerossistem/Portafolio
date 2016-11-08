@@ -14,6 +14,7 @@ namespace WSHomeroSystem
     public class WSHomero : IWSHomero
     {
         #region Clases DAO
+        RackDAO objRackDAO = new RackDAO();
         UsuarioDAO objUsuarioDAO = new UsuarioDAO();
         HashPassDAO objHashPassDAO = new HashPassDAO();
         FuncionarioDAO objFuncionarioDAO = new FuncionarioDAO();
@@ -27,8 +28,44 @@ namespace WSHomeroSystem
         EquipoTrabajoDAO objEquipoDAO = new EquipoTrabajoDAO();
         LenguajeDAO objLenguajeDAO = new LenguajeDAO();
         DocumentoDAO objDocumentoDAO = new DocumentoDAO();
+        OrganizacionesDAO objOrganizacionDAO = new OrganizacionesDAO();
+        ProveedorDAO objProveedorDAO = new ProveedorDAO();
+        SalaServidoresDAO objSalaServidoresDao = new SalaServidoresDAO();
         #endregion
         #region Metodos Web Service
+        #region Metodos Rack
+        public bool AgregarRack(Rack _rack)
+        {
+            return objRackDAO.AgregarRack(_rack);
+        }
+
+        public List<Rack> listadoRacks()
+        {
+            return objRackDAO.listadoRacks();
+        }
+
+        public List<DTO> listadoRacksSalas()
+        {
+
+            return objRackDAO.listadoRacksSalas();
+        }
+
+        public bool EliminarRack(int id_rack)
+        {
+            return objRackDAO.EliminarRack(id_rack);
+        }
+
+        public bool ModificarRack(Rack _objRack)
+        {
+            return objRackDAO.ModificarRack(_objRack);
+        }
+
+        public Rack BuscarRack(int id_rack)
+        {
+            return objRackDAO.BuscarRack(id_rack);
+        }
+
+        #endregion
         #region Agregar,Listra,Modificar,Eliminar,IniciarSession Usuarios
         public string AgregarUsuario(Usuario objusuario, HashPass objHashPass,Funcionario objFuncionario)
         {
@@ -312,12 +349,6 @@ namespace WSHomeroSystem
             return objServicioDAO.listadoTipoServicio();
         }
         #endregion
-        #endregion
-        public bool agregarBaseDatosServicio(string codServicio, List<string> codBaseDatos)
-        {
-           return objServicioDAO.agregarBaseDatosServicio(codServicio, codBaseDatos);
-        }
-
         #region Metodos equipo de trabajo
 
         public bool ExisteEquipo(string nombre)
@@ -341,5 +372,66 @@ namespace WSHomeroSystem
         }
 
         #endregion
+        #region Sala Servidores
+        public List<SalaServidores> ListadoSalaServidores()
+        {
+            return objSalaServidoresDao.ListadoSalaServidores();
+        }
+        #endregion
+        #region Agregar,Modificar,listado,Buscar, Eliminar Proveedor
+        public bool AgregarProveedor(Proveedor _prov)
+        {
+            return objProveedorDAO.AgregarProveedor(_prov);
+        }
+
+        public List<Proveedor> listadoProveedores()
+        {
+            return objProveedorDAO.listadoProveedores();
+        }
+
+        public bool EliminarProveedor(int id_prov)
+        {
+            return objProveedorDAO.EliminarProveedor(id_prov);
+        }
+
+        public bool ModificarProveedor(Proveedor _objProv)
+        {
+            return objProveedorDAO.ModificarProveedor(_objProv);
+        }
+
+        public Proveedor BuscarProveedor(int id_prov)
+        {
+            return objProveedorDAO.BuscarProveedor(id_prov);
+        }
+        #endregion
+        #region Agregar,Modificar,listado,Buscar, Eliminar Organizaciones
+        public bool AgregarOrganizacion(Organizacion _org)
+        {
+            return objOrganizacionDAO.AgregarOrganizacion(_org);
+        }
+
+        public List<Organizacion> listadoOrganizaciones()
+        {
+            return objOrganizacionDAO.listadoOrganizaciones();
+        }
+
+        public bool EliminarOrganizacion(int id_organizacion)
+        {
+            return objOrganizacionDAO.EliminarOrganizacion(id_organizacion);
+        }
+
+        public bool ModificarOrganizacion(Organizacion _objOrg)
+        {
+            return objOrganizacionDAO.ModificarOrganizacion(_objOrg);
+        }
+
+        public Organizacion BuscarOrganizacion(int id_Org)
+        {
+            return objOrganizacionDAO.BuscarOrganizacion(id_Org);
+        }
+        #endregion
+        #endregion
+
+
     }
 }
