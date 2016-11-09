@@ -148,6 +148,11 @@ namespace WSHomeroSystem
         {
             return objUsuarioDAO.ModificarUsuario(_objDTO.Usuario, _objDTO.Funcionario, _objDTO.HashPass);
         }
+
+        public List<DTO> listadoUsuariosPorEquipoDeTrabajo(int id_equipo)
+        {
+            return objUsuarioDAO.listadoUsuariosPorEquipoDeTrabajo(id_equipo);
+        }
         #endregion
         #region Agregar,Listra,Ticket
         public string AgregarTicket(Ticket objTicket, int id_equipoTrabajo,string nombre_funcionario)

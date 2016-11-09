@@ -101,6 +101,10 @@ namespace WSHomeroSystem
         EquipoTrabajo buscarEquipo(String nombre);
         [OperationContract]
         bool eliminarEquipo(EquipoTrabajo _equipoTrabajo);
+        [OperationContract]
+        List<SalaServidores> ListadoSalaServidores();
+        [OperationContract]
+        List<DTO> listadoUsuariosPorEquipoDeTrabajo(int id_equipo);
 
     }
 }

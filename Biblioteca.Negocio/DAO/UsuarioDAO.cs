@@ -197,6 +197,67 @@ namespace Biblioteca.Negocio.DAO
                 throw new ArgumentException("Error al Consultar en la base de datos");
             }
         }
+        public List<DTO> listadoUsuariosPorEquipoDeTrabajo(int id_equipo)
+        {
+            try
+            {
+                List<DTO> listadoUsuarios = new List<DTO>();
+                var query = CommonBC.HomeroSystemEntities.USUARIO.Join
+                    (
+                    CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.RUT_FUNCIONARIO, fun => fun.RUT_FUNCIONARIO, (us, fun) => new
+                    {
+                        us,
+                        fun
+                    }
+                    ).Join(
+                    CommonBC.HomeroSystemEntities.HASH_PASS, resultado => resultado.us.ID_USUARIO, hash => hash.ID_USUARIO, (resultado, hash) => new
+                    {
+                        Id_usuario = resultado.us.ID_USUARIO,
+                        NOMBRE_USUARIO = resultado.us.NOMBRE_USUARIO,
+                        ESTADO = resultado.us.ESTADO,
+                        FECHA_CREACION = resultado.us.FECHA_CREACION,
+                        ID_ROL = resultado.us.ID_ROL,
+                        ROL = resultado.us.ROL.NOMBRE_ROL,
+                        PASS = hash.HASH_PASS1,
+                        Rut = resultado.fun.RUT_FUNCIONARIO,
+                        Nombre = resultado.fun.NOMBRE,
+                        Apellido = resultado.fun.APELLIDO,
+                        Email = resultado.fun.EMAIL,
+                        Celular = resultado.fun.CELULAR,
+                        Direccion = resultado.fun.DIRECION,
+                        ID_EQUIPO = resultado.fun.ID_EQUIPO_TRABAJO
+                    }
+                    ).ToList().Where(fun=>fun.ID_EQUIPO == id_equipo);
+
+                foreach (var result in query)
+                {
+                    DTO objdto = new DTO();
+                    objdto.Usuario.Id_usuario = int.Parse(result.Id_usuario.ToString());
+                    objdto.Usuario.Nombre_usuario = result.NOMBRE_USUARIO;
+                    objdto.Usuario.Estado = int.Parse(result.ESTADO.ToString());
+                    objdto.Usuario.Fecha_creacion = DateTime.Parse(result.FECHA_CREACION.ToString());
+                    objdto.Usuario.Id_rol = int.Parse(result.ID_ROL.ToString());
+                    objdto.HashPass.Id_usuario = int.Parse(result.Id_usuario.ToString());
+                    objdto.Rol.Nombre_rol = result.ROL;
+                    objdto.HashPass.Hash_pass = result.PASS;
+                    objdto.Funcionario.Rut_funcionario = result.Rut;
+                    objdto.Funcionario.Nombre = result.Nombre;
+                    objdto.Funcionario.Apellido = result.Apellido;
+                    objdto.Funcionario.Email = result.Email;
+                    objdto.Funcionario.Celular = int.Parse(result.Celular.ToString());
+                    objdto.Funcionario.Direccion = result.Direccion;
+                    objdto.Funcionario.Id_equipo_trabajo = int.Parse(result.ID_EQUIPO.ToString());
+                    listadoUsuarios.Add(objdto);
+                }
+
+                return listadoUsuarios;
+
+            }
+            catch
+            {
+                throw new ArgumentException("Error al Consultar en la base de datos");
+            }
+        }
         public bool EliminarUsuario(int id_usuario)
         {
             USUARIO objusuario = CommonBC.HomeroSystemEntities.USUARIO.First(us => us.ID_USUARIO == id_usuario);
