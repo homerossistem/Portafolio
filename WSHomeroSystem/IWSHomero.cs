@@ -105,6 +105,8 @@ namespace WSHomeroSystem
         List<SalaServidores> ListadoSalaServidores();
         [OperationContract]
         List<DTO> listadoUsuariosPorEquipoDeTrabajo(int id_equipo);
+        [OperationContract]
+        List<Servicio> listadoServiciosByEquipoTrabajo(int id_equipoTrabajo);
 
     }
 }

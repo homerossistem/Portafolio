@@ -434,5 +434,10 @@ namespace WSHomeroSystem
         }
         #endregion
         #endregion
+
+        public List<Servicio> listadoServiciosByEquipoTrabajo(int id_equipoTrabajo)
+        {
+            return objServicioDAO.listadoServiciosByEquipoTrabajo(id_equipoTrabajo);
+        }
     }
 }

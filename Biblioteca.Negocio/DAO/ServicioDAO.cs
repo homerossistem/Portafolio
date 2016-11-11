@@ -222,5 +222,49 @@ namespace Biblioteca.Negocio.DAO
             }
             return objServicio;
         }
+
+        public List<Servicio> listadoServiciosByEquipoTrabajo(int id_equipoTrabajo)
+        {
+            List<Servicio> listadoServiciosAsociados = new List<Servicio>();
+            List<MODULO> listadoModuloDALC = new List<MODULO>();
+            try
+            {
+                List<USUARIO> listadoUsuariosDALC = CommonBC.HomeroSystemEntities.USUARIO.Where
+                     (
+                        us=> us.FUNCIONARIO.ID_EQUIPO_TRABAJO == id_equipoTrabajo && us.ID_ROL == 1
+                    ).ToList();
+
+                foreach(USUARIO u in listadoUsuariosDALC)
+                {
+                    List<MODULO> listadoModuloDALCTemp= u.FUNCIONARIO.MODULO.Where(mo => mo.COD_MODULO.Contains("SERVI")).ToList();
+                    foreach(MODULO mo in listadoModuloDALCTemp)
+                    {
+                        listadoModuloDALC.Add(mo);
+                    }
+                }
+
+                foreach(MODULO ob in listadoModuloDALC)
+                {
+                    SERVICIOS obj = CommonBC.HomeroSystemEntities.SERVICIOS.First(ser => ser.COD_SERVICIO == ob.COD_MODULO);
+                    Servicio objServicio = new Servicio();
+                    objServicio.Codigo = obj.COD_SERVICIO;
+                    objServicio.Codigo_servidor = obj.COD_SERVIDOR;
+                    objServicio.Descripcion = obj.DESCRIPCION;
+                    objServicio.Garantia = int.Parse(obj.MODULO.GARANTIA.ToString());
+                    objServicio.Id_documento = int.Parse(obj.MODULO.ID_DOCUMENTO.ToString());
+                    objServicio.Id_lenguaje = int.Parse(obj.ID_LENGUAJE.ToString());
+                    objServicio.Id_tipo = int.Parse(obj.ID_TIPO.ToString());
+                    objServicio.Nombre = obj.MODULO.NOMBRE;
+
+                    listadoServiciosAsociados.Add(objServicio);
+                }
+
+                return listadoServiciosAsociados;
+
+            }catch
+            {
+                return null;
+            }
+        }
     }
 }
