@@ -137,5 +137,29 @@ namespace Biblioteca.Negocio.DAO
             //se regresa en forma de cadena
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
+
+        public List<BaseDeDatos> ListadoBaseDeDatos()
+        {
+            List<BaseDeDatos> listadoBasesDeDatos = new List<BaseDeDatos>();
+            List<BASE_DATOS> listadoBASEDeDatosDALC = CommonBC.HomeroSystemEntities.BASE_DATOS.ToList();
+
+            foreach(BASE_DATOS bd in listadoBASEDeDatosDALC)
+            {
+                BaseDeDatos objBaseDeDatos = new BaseDeDatos();
+                objBaseDeDatos.Codigo = bd.COD_BASE_DATOS;
+                objBaseDeDatos.Codigo_servidor = bd.COD_SERVIDOR;
+                objBaseDeDatos.Garantia = int.Parse(bd.MODULO.GARANTIA.ToString());
+                objBaseDeDatos.Id_documento = int.Parse(bd.MODULO.ID_DOCUMENTO.ToString());
+                objBaseDeDatos.Id_motor = int.Parse(bd.ID_MOTOR.ToString());
+                objBaseDeDatos.Id_proveedor = int.Parse(bd.MODULO.ID_PROVEEDOR.ToString());
+                objBaseDeDatos.Nombre = bd.MODULO.NOMBRE;
+                objBaseDeDatos.NomUSer = bd.NOM_USUARIO;
+                objBaseDeDatos.Rut_administrador = bd.MODULO.RUT_FUNC_ADMIN;
+
+                listadoBasesDeDatos.Add(objBaseDeDatos);
+            }
+
+            return listadoBasesDeDatos;
+        }
     }
 }

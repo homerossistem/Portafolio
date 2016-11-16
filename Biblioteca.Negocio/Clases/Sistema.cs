@@ -14,6 +14,9 @@ namespace Biblioteca.Negocio.Clases
         private string codigo_servidor;
         private string descripcion;
         private int id_lenguaje;
+        private List<BaseDeDatos> listadoBaseDatos;
+        private List<Servicio> listadoServicios;
+        private Servidor objServidor;
 
         public int Id_sensibilidad
         {
@@ -80,9 +83,53 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public List<BaseDeDatos> ListadoBaseDatos
+        {
+            get
+            {
+                return listadoBaseDatos;
+            }
+
+            set
+            {
+                listadoBaseDatos = value;
+            }
+        }
+
+        public List<Servicio> ListadoServicios
+        {
+            get
+            {
+                return listadoServicios;
+            }
+
+            set
+            {
+                listadoServicios = value;
+            }
+        }
+
+        public Servidor ObjServidor
+        {
+            get
+            {
+                return objServidor;
+            }
+
+            set
+            {
+                objServidor = value;
+            }
+        }
+
         public Sistema()
         {
             this.Init();
+        }
+
+        public Sistema(Servidor objServidor)
+        {
+            this.ObjServidor = objServidor;
         }
 
         private void Init()
@@ -92,6 +139,9 @@ namespace Biblioteca.Negocio.Clases
             this.Codigo_servidor = string.Empty;
             this.Descripcion = string.Empty;
             this.Id_lenguaje = 0;
+            this.listadoBaseDatos = new List<BaseDeDatos>();
+            this.ListadoServicios = new List<Servicio>();
+            this.ObjServidor = new Servidor();
         }
     }
 }

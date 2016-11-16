@@ -16,6 +16,7 @@ namespace Biblioteca.Negocio.Clases
         private int id_rack;
         private int id_tipo_nivel;
         private int id_tipo;
+        private HashPassModulo objHashPass;
 
         public string Ip
         {
@@ -108,9 +109,27 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public HashPassModulo ObjHashPass
+        {
+            get
+            {
+                return objHashPass;
+            }
+
+            set
+            {
+                objHashPass = value;
+            }
+        }
+
         public Servidor()
         {
             this.Init();
+        }
+
+        public Servidor(HashPassModulo objHashPass)
+        {
+            this.ObjHashPass = objHashPass;
         }
 
         private void Init()
@@ -122,6 +141,7 @@ namespace Biblioteca.Negocio.Clases
             this.Id_rack = 0;
             this.Id_tipo_nivel = 0;
             this.Id_tipo = 0;
+            this.ObjHashPass = new HashPassModulo();
         }
     }
 }

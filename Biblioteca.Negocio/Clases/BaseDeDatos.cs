@@ -12,6 +12,7 @@ namespace Biblioteca.Negocio.Clases
         private int id_motor;
         private string nomUSer;
         private string codigo_servidor;
+        private HashPassModulo objHashPassBaseDatos;
 
         public int Id_motor
         {
@@ -52,7 +53,18 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
-     
+        public HashPassModulo ObjHashPassBaseDatos
+        {
+            get
+            {
+                return objHashPassBaseDatos;
+            }
+
+            set
+            {
+                objHashPassBaseDatos = value;
+            }
+        }
 
         public BaseDeDatos()
         {
@@ -64,6 +76,7 @@ namespace Biblioteca.Negocio.Clases
             this.Id_motor = 0;
             this.NomUSer = string.Empty;
             this.Codigo_servidor = string.Empty;
+            this.ObjHashPassBaseDatos = new HashPassModulo();
            
         }
     }

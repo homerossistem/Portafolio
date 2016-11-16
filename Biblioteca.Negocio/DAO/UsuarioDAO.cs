@@ -26,8 +26,6 @@ namespace Biblioteca.Negocio.DAO
                 usuarioDALC.ESTADO = 1;
                 usuarioDALC.FECHA_CREACION = _usuario.Fecha_creacion;
                 usuarioDALC.ID_ROL = _usuario.Id_rol;
-                usuarioDALC.RUT_FUNCIONARIO = _usuario.Rut_funcionario;
-
                 CommonBC.HomeroSystemEntities.USUARIO.Add(usuarioDALC);
                 CommonBC.HomeroSystemEntities.SaveChanges();
             }
@@ -53,7 +51,6 @@ namespace Biblioteca.Negocio.DAO
                 objusuario.Estado = int.Parse(objUsuarioDALC.ESTADO.ToString());
                 objusuario.Fecha_creacion = DateTime.Parse(objUsuarioDALC.FECHA_CREACION.ToString());
                 objusuario.Id_rol = int.Parse(objUsuarioDALC.ID_ROL.ToString());
-                objusuario.Rut_funcionario = objUsuarioDALC.RUT_FUNCIONARIO;
 
                 return objusuario;
 
@@ -87,7 +84,7 @@ namespace Biblioteca.Negocio.DAO
                 DTO objdto = null;
                 var query = CommonBC.HomeroSystemEntities.USUARIO.Join
                          (
-                         CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.RUT_FUNCIONARIO, fun => fun.RUT_FUNCIONARIO, (us, fun) => new
+                         CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.ID_USUARIO, fun => fun.ID_USUARIO, (us, fun) => new
                          {
                              us,
                              fun
@@ -143,7 +140,7 @@ namespace Biblioteca.Negocio.DAO
                     List<DTO> listadoUsuarios = new List<DTO>();
                     var query = CommonBC.HomeroSystemEntities.USUARIO.Join
                         (
-                        CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.RUT_FUNCIONARIO, fun => fun.RUT_FUNCIONARIO, (us, fun) => new
+                        CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.ID_USUARIO, fun => fun.ID_USUARIO, (us, fun) => new
                         {
                             us,
                             fun
@@ -204,7 +201,7 @@ namespace Biblioteca.Negocio.DAO
                 List<DTO> listadoUsuarios = new List<DTO>();
                 var query = CommonBC.HomeroSystemEntities.USUARIO.Join
                     (
-                    CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.RUT_FUNCIONARIO, fun => fun.RUT_FUNCIONARIO, (us, fun) => new
+                    CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.ID_USUARIO, fun => fun.ID_USUARIO, (us, fun) => new
                     {
                         us,
                         fun
@@ -260,14 +257,14 @@ namespace Biblioteca.Negocio.DAO
         }
         public bool EliminarUsuario(int id_usuario)
         {
-            USUARIO objusuario = CommonBC.HomeroSystemEntities.USUARIO.First(us => us.ID_USUARIO == id_usuario);
-            if (objusuario != null)
+            FUNCIONARIO objFuncionario = CommonBC.HomeroSystemEntities.FUNCIONARIO.First(fun => fun.ID_USUARIO == id_usuario);
+            if (objFuncionario != null)
             {
-                FUNCIONARIO objFuncionario = CommonBC.HomeroSystemEntities.FUNCIONARIO.First(fun => fun.RUT_FUNCIONARIO == objusuario.RUT_FUNCIONARIO);
+                USUARIO objusuario = CommonBC.HomeroSystemEntities.USUARIO.First(us => us.ID_USUARIO == objFuncionario.ID_USUARIO);
                 HASH_PASS objHashPass = CommonBC.HomeroSystemEntities.HASH_PASS.First(hash => hash.ID_USUARIO == id_usuario);
+                CommonBC.HomeroSystemEntities.FUNCIONARIO.Remove(objFuncionario);
                 CommonBC.HomeroSystemEntities.HASH_PASS.Remove(objHashPass);
                 CommonBC.HomeroSystemEntities.USUARIO.Remove(objusuario);
-                CommonBC.HomeroSystemEntities.FUNCIONARIO.Remove(objFuncionario);
                 bool saveFailed;
                 do
                 {
@@ -300,7 +297,7 @@ namespace Biblioteca.Negocio.DAO
                 DTO objdto = null;
                 var query = CommonBC.HomeroSystemEntities.USUARIO.Join
                          (
-                         CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.RUT_FUNCIONARIO, fun => fun.RUT_FUNCIONARIO, (us, fun) => new
+                         CommonBC.HomeroSystemEntities.FUNCIONARIO, us => us.ID_USUARIO, fun => fun.ID_USUARIO, (us, fun) => new
                          {
                              us,
                              fun

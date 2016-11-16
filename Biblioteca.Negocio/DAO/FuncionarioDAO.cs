@@ -22,7 +22,9 @@ namespace Biblioteca.Negocio.DAO
                 funcionarioDALC.EMAIL = _funcionario.Email;
                 funcionarioDALC.CELULAR = _funcionario.Celular;
                 funcionarioDALC.ID_EQUIPO_TRABAJO = int.Parse(_funcionario.Id_equipo_trabajo.ToString());
+                funcionarioDALC.ID_USUARIO = _funcionario.ObjUsuario.Id_usuario;
                 CommonBC.HomeroSystemEntities.FUNCIONARIO.Add(funcionarioDALC);
+                CommonBC.HomeroSystemEntities.SaveChanges();
 
             }
             catch
@@ -47,6 +49,28 @@ namespace Biblioteca.Negocio.DAO
                 return false;
             }
 
+        }
+
+        public List<Funcionario> listadoFuncionariosResponsables()
+        {
+            List<Funcionario> listadoFuncionario = new List<Funcionario>();
+            List<FUNCIONARIO> listadoFuncionarioDALC = CommonBC.HomeroSystemEntities.FUNCIONARIO.Where(fun => fun.USUARIO.ID_ROL == 2).ToList();
+
+            foreach(FUNCIONARIO objfuncionarioDALC in listadoFuncionarioDALC)
+            {
+                Funcionario objFuncionario = new Funcionario();
+                objFuncionario.Rut_funcionario = objfuncionarioDALC.RUT_FUNCIONARIO;
+                objFuncionario.Nombre = objfuncionarioDALC.NOMBRE;
+                objFuncionario.Apellido = objfuncionarioDALC.APELLIDO;
+                objFuncionario.Celular = int.Parse(objfuncionarioDALC.CELULAR.ToString());
+                objFuncionario.Email = objfuncionarioDALC.EMAIL;
+                objFuncionario.Id_equipo_trabajo = int.Parse(objfuncionarioDALC.ID_EQUIPO_TRABAJO.ToString());
+                objFuncionario.Direccion = objfuncionarioDALC.DIRECION;
+
+                listadoFuncionario.Add(objFuncionario);
+            }
+
+            return listadoFuncionario;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Biblioteca.Negocio.Clases
         private int estado;
         private DateTime fecha_creacion;
         private int id_rol;
-        private string rut_funcionario;
+        private HashPass objHashPass;
 
         public int Id_usuario
         {
@@ -81,21 +81,18 @@ namespace Biblioteca.Negocio.Clases
                 id_rol = value;
             }
         }
-
-        public string Rut_funcionario
+        public HashPass ObjHashPass
         {
             get
             {
-                return rut_funcionario;
+                return objHashPass;
             }
 
             set
             {
-                rut_funcionario = value;
+                objHashPass = value;
             }
         }
-
-
 
         public Usuario()
         {
@@ -108,7 +105,7 @@ namespace Biblioteca.Negocio.Clases
             this.Nombre_usuario = string.Empty;
             this.Estado = 1;
             this.Id_rol = 0;
-            this.Rut_funcionario = string.Empty;
+            this.ObjHashPass = new HashPass();
         }
     }
 }

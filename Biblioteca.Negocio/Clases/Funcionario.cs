@@ -16,6 +16,7 @@ namespace Biblioteca.Negocio.Clases
         private int celular;
         private string direccion;
         private int id_equipo_trabajo;
+        private Usuario objUsuario;
 
         public string Rut_funcionario
         {
@@ -108,6 +109,19 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public Usuario ObjUsuario
+        {
+            get
+            {
+                return objUsuario;
+            }
+
+            set
+            {
+                objUsuario = value;
+            }
+        }
+
         public Funcionario()
         {
             this.Init();
@@ -122,6 +136,7 @@ namespace Biblioteca.Negocio.Clases
             this.Celular = 0;
             this.Direccion = string.Empty;
             this.Id_equipo_trabajo = 0;
+            this.ObjUsuario = new Usuario();
         }
     }
 }

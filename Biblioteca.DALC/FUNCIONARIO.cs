@@ -18,7 +18,6 @@ namespace Biblioteca.DALC
         public FUNCIONARIO()
         {
             this.TICKET = new HashSet<TICKET>();
-            this.USUARIO = new HashSet<USUARIO>();
             this.MODULO = new HashSet<MODULO>();
         }
     
@@ -29,12 +28,12 @@ namespace Biblioteca.DALC
         public Nullable<decimal> CELULAR { get; set; }
         public string DIRECION { get; set; }
         public decimal ID_EQUIPO_TRABAJO { get; set; }
+        public decimal ID_USUARIO { get; set; }
     
         public virtual EQUIPO_TRABAJO EQUIPO_TRABAJO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TICKET> TICKET { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO> USUARIO { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MODULO> MODULO { get; set; }
     }

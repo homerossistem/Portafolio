@@ -4,15 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ADMINISTRADOR_MODULO">
-          <Key>
-            <PropertyRef Name="RUT_FUNCIONARIO" />
-            <PropertyRef Name="COD_MODULO" />
-          </Key>
-          <Property Name="RUT_FUNCIONARIO" Type="varchar2" MaxLength="10" Nullable="false" />
-          <Property Name="COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BASE_DATOS">
           <Key>
             <PropertyRef Name="COD_BASE_DATOS" />
@@ -46,14 +38,6 @@
           <Property Name="ID_ORGANIZACION" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="DETALLE_PROVEEDOR">
-          <Key>
-            <PropertyRef Name="MODULO_COD_MODULO" />
-            <PropertyRef Name="ID_PROVEEDOR" />
-          </Key>
-          <Property Name="MODULO_COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
-          <Property Name="ID_PROVEEDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
-        </EntityType>
         <EntityType Name="DOCUMENTO">
           <Key>
             <PropertyRef Name="ID_DOCUMENTO" />
@@ -79,6 +63,7 @@
           <Property Name="CELULAR" Type="number" Precision="38" Scale="0" />
           <Property Name="DIRECION" Type="varchar2" MaxLength="50" />
           <Property Name="ID_EQUIPO_TRABAJO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="HASH_PASS">
           <Key>
@@ -116,6 +101,8 @@
           <Property Name="NOMBRE" Type="varchar2" MaxLength="100" />
           <Property Name="GARANTIA" Type="number" Precision="38" Scale="0" />
           <Property Name="ID_DOCUMENTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RUT_FUNC_ADMIN" Type="varchar2" MaxLength="10" Nullable="false" />
+          <Property Name="ID_PROVEEDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="MOTOR_BASE_DATOS">
           <Key>
@@ -282,7 +269,6 @@
           <Property Name="ESTADO" Type="number" Precision="38" Scale="0" />
           <Property Name="FECHA_CREACION" Type="date" />
           <Property Name="ID_ROL" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="RUT_FUNCIONARIO" Type="varchar2" MaxLength="10" Nullable="false" />
         </EntityType>
         <Association Name="BASE_DATOS_MODULO_FK">
           <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
@@ -344,30 +330,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DETALLE_FUNCIONARIO_FK">
-          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
-          <End Role="ADMINISTRADOR_MODULO" Type="Self.ADMINISTRADOR_MODULO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FUNCIONARIO">
-              <PropertyRef Name="RUT_FUNCIONARIO" />
-            </Principal>
-            <Dependent Role="ADMINISTRADOR_MODULO">
-              <PropertyRef Name="RUT_FUNCIONARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="DETALLE_FUNCIONARIO_MODULO_FK">
-          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
-          <End Role="ADMINISTRADOR_MODULO" Type="Self.ADMINISTRADOR_MODULO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MODULO">
-              <PropertyRef Name="COD_MODULO" />
-            </Principal>
-            <Dependent Role="ADMINISTRADOR_MODULO">
-              <PropertyRef Name="COD_MODULO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="DETALLE_ORGNIZACION_FK">
           <End Role="ORGANIZACION" Type="Self.ORGANIZACION" Multiplicity="1" />
           <End Role="DETALLE_ORGNIZACION" Type="Self.DETALLE_ORGNIZACION" Multiplicity="*" />
@@ -389,30 +351,6 @@
             </Principal>
             <Dependent Role="DETALLE_ORGNIZACION">
               <PropertyRef Name="COD_MODULO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="DETALLE_PROVEEDOR_MODULO_FK">
-          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
-          <End Role="DETALLE_PROVEEDOR" Type="Self.DETALLE_PROVEEDOR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MODULO">
-              <PropertyRef Name="COD_MODULO" />
-            </Principal>
-            <Dependent Role="DETALLE_PROVEEDOR">
-              <PropertyRef Name="MODULO_COD_MODULO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="DETALLE_PROVEEDOR_PROVEEDOR_FK">
-          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
-          <End Role="DETALLE_PROVEEDOR" Type="Self.DETALLE_PROVEEDOR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PROVEEDOR">
-              <PropertyRef Name="ID_PROVEEDOR" />
-            </Principal>
-            <Dependent Role="DETALLE_PROVEEDOR">
-              <PropertyRef Name="ID_PROVEEDOR" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -449,6 +387,18 @@
             </Principal>
             <Dependent Role="FUNCIONARIO">
               <PropertyRef Name="ID_EQUIPO_TRABAJO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FUNCIONARIO_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="FUNCIONARIO">
+              <PropertyRef Name="ID_USUARIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -497,6 +447,30 @@
             </Principal>
             <Dependent Role="MODULO">
               <PropertyRef Name="ID_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_FUNCIONARIO_FK">
+          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="MODULO">
+              <PropertyRef Name="RUT_FUNC_ADMIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_PROVEEDOR_FK">
+          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+          <End Role="MODULO" Type="Self.MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Principal>
+            <Dependent Role="MODULO">
+              <PropertyRef Name="ID_PROVEEDOR" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -740,18 +714,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="USUARIO_FUNCIONARIO_FK">
-          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FUNCIONARIO">
-              <PropertyRef Name="RUT_FUNCIONARIO" />
-            </Principal>
-            <Dependent Role="USUARIO">
-              <PropertyRef Name="RUT_FUNCIONARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="USUARIO_ROL_FK">
           <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
@@ -765,12 +727,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="ADMINISTRADOR_MODULO" EntityType="Self.ADMINISTRADOR_MODULO" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="BASE_DATOS" EntityType="Self.BASE_DATOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="BASE_DE_DATOS_DE_SERVICIOS" EntityType="Self.BASE_DE_DATOS_DE_SERVICIOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="BASES_DE_DATOS_DE_SISTEMAS" EntityType="Self.BASES_DE_DATOS_DE_SISTEMAS" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="DETALLE_ORGNIZACION" EntityType="Self.DETALLE_ORGNIZACION" Schema="HOMEROSYSTEM" store:Type="Tables" />
-          <EntitySet Name="DETALLE_PROVEEDOR" EntityType="Self.DETALLE_PROVEEDOR" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="EQUIPO_TRABAJO" EntityType="Self.EQUIPO_TRABAJO" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="FUNCIONARIO" EntityType="Self.FUNCIONARIO" Schema="HOMEROSYSTEM" store:Type="Tables" />
@@ -818,14 +778,6 @@
             <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
             <End Role="BASE_DE_DATOS_DE_SERVICIOS" EntitySet="BASE_DE_DATOS_DE_SERVICIOS" />
           </AssociationSet>
-          <AssociationSet Name="DETALLE_FUNCIONARIO_FK" Association="Self.DETALLE_FUNCIONARIO_FK">
-            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
-            <End Role="ADMINISTRADOR_MODULO" EntitySet="ADMINISTRADOR_MODULO" />
-          </AssociationSet>
-          <AssociationSet Name="DETALLE_FUNCIONARIO_MODULO_FK" Association="Self.DETALLE_FUNCIONARIO_MODULO_FK">
-            <End Role="MODULO" EntitySet="MODULO" />
-            <End Role="ADMINISTRADOR_MODULO" EntitySet="ADMINISTRADOR_MODULO" />
-          </AssociationSet>
           <AssociationSet Name="DETALLE_ORGNIZACION_FK" Association="Self.DETALLE_ORGNIZACION_FK">
             <End Role="ORGANIZACION" EntitySet="ORGANIZACION" />
             <End Role="DETALLE_ORGNIZACION" EntitySet="DETALLE_ORGNIZACION" />
@@ -833,14 +785,6 @@
           <AssociationSet Name="DETALLE_ORGNIZACION_SISTEMA_FK" Association="Self.DETALLE_ORGNIZACION_SISTEMA_FK">
             <End Role="SISTEMA" EntitySet="SISTEMA" />
             <End Role="DETALLE_ORGNIZACION" EntitySet="DETALLE_ORGNIZACION" />
-          </AssociationSet>
-          <AssociationSet Name="DETALLE_PROVEEDOR_MODULO_FK" Association="Self.DETALLE_PROVEEDOR_MODULO_FK">
-            <End Role="MODULO" EntitySet="MODULO" />
-            <End Role="DETALLE_PROVEEDOR" EntitySet="DETALLE_PROVEEDOR" />
-          </AssociationSet>
-          <AssociationSet Name="DETALLE_PROVEEDOR_PROVEEDOR_FK" Association="Self.DETALLE_PROVEEDOR_PROVEEDOR_FK">
-            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
-            <End Role="DETALLE_PROVEEDOR" EntitySet="DETALLE_PROVEEDOR" />
           </AssociationSet>
           <AssociationSet Name="DETALLE_SISTEMA_SERVICIOS_FK" Association="Self.DETALLE_SISTEMA_SERVICIOS_FK">
             <End Role="SERVICIOS" EntitySet="SERVICIOS" />
@@ -852,6 +796,10 @@
           </AssociationSet>
           <AssociationSet Name="FUNCIONARIO_EQUIPO_TRABAJO_FK" Association="Self.FUNCIONARIO_EQUIPO_TRABAJO_FK">
             <End Role="EQUIPO_TRABAJO" EntitySet="EQUIPO_TRABAJO" />
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FUNCIONARIO_USUARIO_FK" Association="Self.FUNCIONARIO_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
           </AssociationSet>
           <AssociationSet Name="HASH_PASS_BASE_DATOS_FK" Association="Self.HASH_PASS_BASE_DATOS_FK">
@@ -868,6 +816,14 @@
           </AssociationSet>
           <AssociationSet Name="MODULO_DOCUMENTO_FK" Association="Self.MODULO_DOCUMENTO_FK">
             <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_FUNCIONARIO_FK" Association="Self.MODULO_FUNCIONARIO_FK">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_PROVEEDOR_FK" Association="Self.MODULO_PROVEEDOR_FK">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
             <End Role="MODULO" EntitySet="MODULO" />
           </AssociationSet>
           <AssociationSet Name="RACK_SALA_SERVIDORES_FK" Association="Self.RACK_SALA_SERVIDORES_FK">
@@ -950,17 +906,12 @@
             <End Role="MODULO" EntitySet="MODULO" />
             <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
-          <AssociationSet Name="USUARIO_FUNCIONARIO_FK" Association="Self.USUARIO_FUNCIONARIO_FK">
-            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
-            <End Role="USUARIO" EntitySet="USUARIO" />
-          </AssociationSet>
           <AssociationSet Name="USUARIO_ROL_FK" Association="Self.USUARIO_ROL_FK">
             <End Role="ROL" EntitySet="ROL" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1008,8 +959,9 @@
           <Property Name="ID_EQUIPO_TRABAJO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="EQUIPO_TRABAJO" Relationship="Self.FUNCIONARIO_EQUIPO_TRABAJO_FK" FromRole="FUNCIONARIO" ToRole="EQUIPO_TRABAJO" />
           <NavigationProperty Name="TICKET" Relationship="Self.TICKET_FUNCIONARIO_FK" FromRole="FUNCIONARIO" ToRole="TICKET" />
-          <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_FUNCIONARIO_FK" FromRole="FUNCIONARIO" ToRole="USUARIO" />
-          <NavigationProperty Name="MODULO" Relationship="Self.ADMINISTRADOR_MODULO" FromRole="FUNCIONARIO" ToRole="MODULO" />
+          <Property Name="ID_USUARIO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="USUARIO" Relationship="Model.FUNCIONARIO_USUARIO_FK" FromRole="FUNCIONARIO" ToRole="USUARIO" />
+          <NavigationProperty Name="MODULO" Relationship="Model.MODULO_FUNCIONARIO_FK" FromRole="FUNCIONARIO" ToRole="MODULO" />
         </EntityType>
         <EntityType Name="HASH_PASS">
           <Key>
@@ -1058,8 +1010,10 @@
           <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_MODULO_FK" FromRole="MODULO" ToRole="SERVIDOR" />
           <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_MODULO_FK" FromRole="MODULO" ToRole="SISTEMA" />
           <NavigationProperty Name="TICKET" Relationship="Self.TICKET_MODULO_FK" FromRole="MODULO" ToRole="TICKET" />
-          <NavigationProperty Name="FUNCIONARIO" Relationship="Self.ADMINISTRADOR_MODULO" FromRole="MODULO" ToRole="FUNCIONARIO" />
-          <NavigationProperty Name="PROVEEDOR" Relationship="Self.DETALLE_PROVEEDOR" FromRole="MODULO" ToRole="PROVEEDOR" />
+          <Property Name="RUT_FUNC_ADMIN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PROVEEDOR" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="FUNCIONARIO" Relationship="Model.MODULO_FUNCIONARIO_FK" FromRole="MODULO" ToRole="FUNCIONARIO" />
+          <NavigationProperty Name="PROVEEDOR1" Relationship="Model.MODULO_PROVEEDOR_FK" FromRole="MODULO" ToRole="PROVEEDOR" />
         </EntityType>
         <EntityType Name="MOTOR_BASE_DATOS">
           <Key>
@@ -1091,7 +1045,7 @@
           <Property Name="CELULAR" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MODULO" Relationship="Self.DETALLE_PROVEEDOR" FromRole="PROVEEDOR" ToRole="MODULO" />
+          <NavigationProperty Name="MODULO" Relationship="Model.MODULO_PROVEEDOR_FK" FromRole="PROVEEDOR" ToRole="MODULO" />
         </EntityType>
         <EntityType Name="RACK">
           <Key>
@@ -1258,10 +1212,9 @@
           <Property Name="ESTADO" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="FECHA_CREACION" Type="DateTime" />
           <Property Name="ID_ROL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="RUT_FUNCIONARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="FUNCIONARIO" Relationship="Self.USUARIO_FUNCIONARIO_FK" FromRole="USUARIO" ToRole="FUNCIONARIO" />
           <NavigationProperty Name="HASH_PASS" Relationship="Self.HASH_PASS_USUARIO_FK" FromRole="USUARIO" ToRole="HASH_PASS" />
           <NavigationProperty Name="ROL" Relationship="Self.USUARIO_ROL_FK" FromRole="USUARIO" ToRole="ROL" />
+          <NavigationProperty Name="FUNCIONARIO" Relationship="Model.FUNCIONARIO_USUARIO_FK" FromRole="USUARIO" ToRole="FUNCIONARIO" />
         </EntityType>
         <Association Name="BASE_DATOS_MODULO_FK">
           <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
@@ -1343,18 +1296,6 @@
               <PropertyRef Name="RUT_FUNCIONARIO" />
             </Principal>
             <Dependent Role="TICKET">
-              <PropertyRef Name="RUT_FUNCIONARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="USUARIO_FUNCIONARIO_FK">
-          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="1" />
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FUNCIONARIO">
-              <PropertyRef Name="RUT_FUNCIONARIO" />
-            </Principal>
-            <Dependent Role="USUARIO">
               <PropertyRef Name="RUT_FUNCIONARIO" />
             </Dependent>
           </ReferentialConstraint>
@@ -1599,10 +1540,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ADMINISTRADOR_MODULO">
-          <End Role="FUNCIONARIO" Type="Self.FUNCIONARIO" Multiplicity="*" />
-          <End Role="MODULO" Type="Self.MODULO" Multiplicity="*" />
-        </Association>
         <Association Name="BASE_DE_DATOS_DE_SERVICIOS">
           <End Role="BASE_DATOS" Type="Self.BASE_DATOS" Multiplicity="*" />
           <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
@@ -1614,10 +1551,6 @@
         <Association Name="DETALLE_ORGNIZACION">
           <End Role="ORGANIZACION" Type="Self.ORGANIZACION" Multiplicity="*" />
           <End Role="SISTEMA" Type="Self.SISTEMA" Multiplicity="*" />
-        </Association>
-        <Association Name="DETALLE_PROVEEDOR">
-          <End Role="MODULO" Type="Self.MODULO" Multiplicity="*" />
-          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="*" />
         </Association>
         <Association Name="SERVICIOS_DE_SISTEMAS">
           <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
@@ -1678,10 +1611,6 @@
           <AssociationSet Name="TICKET_FUNCIONARIO_FK" Association="Self.TICKET_FUNCIONARIO_FK">
             <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
             <End Role="TICKET" EntitySet="TICKET" />
-          </AssociationSet>
-          <AssociationSet Name="USUARIO_FUNCIONARIO_FK" Association="Self.USUARIO_FUNCIONARIO_FK">
-            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
-            <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
           <AssociationSet Name="HASH_PASS_USUARIO_FK" Association="Self.HASH_PASS_USUARIO_FK">
             <End Role="USUARIO" EntitySet="USUARIO" />
@@ -1763,10 +1692,6 @@
             <End Role="TICKET" EntitySet="TICKET" />
             <End Role="SOLUCION" EntitySet="SOLUCION" />
           </AssociationSet>
-          <AssociationSet Name="ADMINISTRADOR_MODULO" Association="Self.ADMINISTRADOR_MODULO">
-            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
-            <End Role="MODULO" EntitySet="MODULO" />
-          </AssociationSet>
           <AssociationSet Name="BASE_DE_DATOS_DE_SERVICIOS" Association="Self.BASE_DE_DATOS_DE_SERVICIOS">
             <End Role="BASE_DATOS" EntitySet="BASE_DATOS" />
             <End Role="SERVICIOS" EntitySet="SERVICIOS" />
@@ -1779,15 +1704,59 @@
             <End Role="ORGANIZACION" EntitySet="ORGANIZACION" />
             <End Role="SISTEMA" EntitySet="SISTEMA" />
           </AssociationSet>
-          <AssociationSet Name="DETALLE_PROVEEDOR" Association="Self.DETALLE_PROVEEDOR">
-            <End Role="MODULO" EntitySet="MODULO" />
-            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
-          </AssociationSet>
           <AssociationSet Name="SERVICIOS_DE_SISTEMAS" Association="Self.SERVICIOS_DE_SISTEMAS">
             <End Role="SERVICIOS" EntitySet="SERVICIOS" />
             <End Role="SISTEMA" EntitySet="SISTEMA" />
           </AssociationSet>
+          <AssociationSet Name="FUNCIONARIO_USUARIO_FK" Association="Model.FUNCIONARIO_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_FUNCIONARIO_FK" Association="Model.MODULO_FUNCIONARIO_FK">
+            <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
+          <AssociationSet Name="MODULO_PROVEEDOR_FK" Association="Model.MODULO_PROVEEDOR_FK">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+            <End Role="MODULO" EntitySet="MODULO" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FUNCIONARIO_USUARIO_FK">
+          <End Type="Model.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="Model.FUNCIONARIO" Role="FUNCIONARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="FUNCIONARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_FUNCIONARIO_FK">
+          <End Type="Model.FUNCIONARIO" Role="FUNCIONARIO" Multiplicity="1" />
+          <End Type="Model.MODULO" Role="MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUNCIONARIO">
+              <PropertyRef Name="RUT_FUNCIONARIO" />
+            </Principal>
+            <Dependent Role="MODULO">
+              <PropertyRef Name="RUT_FUNC_ADMIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MODULO_PROVEEDOR_FK">
+          <End Type="Model.PROVEEDOR" Role="PROVEEDOR" Multiplicity="1" />
+          <End Type="Model.MODULO" Role="MODULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Principal>
+            <Dependent Role="MODULO">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1823,6 +1792,7 @@
           <EntitySetMapping Name="FUNCIONARIO">
             <EntityTypeMapping TypeName="Model.FUNCIONARIO">
               <MappingFragment StoreEntitySet="FUNCIONARIO">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="RUT_FUNCIONARIO" ColumnName="RUT_FUNCIONARIO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
@@ -1868,6 +1838,8 @@
           <EntitySetMapping Name="MODULO">
             <EntityTypeMapping TypeName="Model.MODULO">
               <MappingFragment StoreEntitySet="MODULO">
+                <ScalarProperty Name="ID_PROVEEDOR" ColumnName="ID_PROVEEDOR" />
+                <ScalarProperty Name="RUT_FUNC_ADMIN" ColumnName="RUT_FUNC_ADMIN" />
                 <ScalarProperty Name="COD_MODULO" ColumnName="COD_MODULO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="GARANTIA" ColumnName="GARANTIA" />
@@ -2048,18 +2020,9 @@
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
                 <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
-                <ScalarProperty Name="RUT_FUNCIONARIO" ColumnName="RUT_FUNCIONARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ADMINISTRADOR_MODULO" TypeName="Model.ADMINISTRADOR_MODULO" StoreEntitySet="ADMINISTRADOR_MODULO">
-            <EndProperty Name="FUNCIONARIO">
-              <ScalarProperty Name="RUT_FUNCIONARIO" ColumnName="RUT_FUNCIONARIO" />
-            </EndProperty>
-            <EndProperty Name="MODULO">
-              <ScalarProperty Name="COD_MODULO" ColumnName="COD_MODULO" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="BASE_DE_DATOS_DE_SERVICIOS" TypeName="Model.BASE_DE_DATOS_DE_SERVICIOS" StoreEntitySet="BASE_DE_DATOS_DE_SERVICIOS">
             <EndProperty Name="BASE_DATOS">
               <ScalarProperty Name="COD_BASE_DATOS" ColumnName="COD_BASEDEDATOS" />
@@ -2082,14 +2045,6 @@
             </EndProperty>
             <EndProperty Name="SISTEMA">
               <ScalarProperty Name="CODIGO_SISTEMA" ColumnName="COD_MODULO" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="DETALLE_PROVEEDOR" TypeName="Model.DETALLE_PROVEEDOR" StoreEntitySet="DETALLE_PROVEEDOR">
-            <EndProperty Name="MODULO">
-              <ScalarProperty Name="COD_MODULO" ColumnName="MODULO_COD_MODULO" />
-            </EndProperty>
-            <EndProperty Name="PROVEEDOR">
-              <ScalarProperty Name="ID_PROVEEDOR" ColumnName="ID_PROVEEDOR" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="SERVICIOS_DE_SISTEMAS" TypeName="Model.SERVICIOS_DE_SISTEMAS" StoreEntitySet="SERVICIOS_DE_SISTEMAS">

@@ -22,6 +22,8 @@ namespace Biblioteca.Negocio.DAO
                 objModuloDALC.NOMBRE = _servicio.Nombre;
                 objModuloDALC.GARANTIA = _servicio.Garantia;
                 objModuloDALC.ID_DOCUMENTO = _servicio.Id_documento;
+                objModuloDALC.RUT_FUNC_ADMIN = _servicio.Rut_administrador;
+                objModuloDALC.ID_PROVEEDOR = _servicio.Id_proveedor;
                 SERVICIOS objServicioDALC = new SERVICIOS();
                 objServicioDALC.COD_SERVICIO = codigoServicio;
                 objServicioDALC.COD_SERVIDOR = _servicio.Codigo_servidor;
@@ -48,6 +50,23 @@ namespace Biblioteca.Negocio.DAO
             }catch
             {
                 throw new ArgumentException("Error Al Agregar un Servicio");
+            }
+        }
+
+        public bool EliminarServicio(string CodServicio)
+        {
+            try
+            {
+                SERVICIOS objServicioDALC = CommonBC.HomeroSystemEntities.SERVICIOS.First(servi => servi.COD_SERVICIO == CodServicio);
+                MODULO objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First(mo => mo.COD_MODULO == CodServicio);
+                CommonBC.HomeroSystemEntities.SERVICIOS.Remove(objServicioDALC);
+                CommonBC.HomeroSystemEntities.MODULO.Remove(objModuloDALC);
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -112,7 +131,7 @@ namespace Biblioteca.Negocio.DAO
                         }
                     ).Join
                     (
-                        CommonBC.HomeroSystemEntities.LENGUAJE,ser=>ser.ser.ser.ser.ID_LENGUAJE,leng=>leng.ID_LENGUAJE,(ser,leng)=>new
+                        CommonBC.HomeroSystemEntities.LENGUAJE, ser => ser.ser.ser.ser.ID_LENGUAJE, leng => leng.ID_LENGUAJE, (ser, leng) => new
                         {
                             CodigoServicio = ser.ser.ser.ser.COD_SERVICIO,
                             NombreServicio = ser.ser.ser.ser.MODULO.NOMBRE,
@@ -124,7 +143,10 @@ namespace Biblioteca.Negocio.DAO
                             IdDocumento = ser.ser.doc.ID_DOCUMENTO,
                             IDLENGUAJE = leng.ID_LENGUAJE,
                             LENGUAJE = leng.NOMBRE_LENGUAJE,
-                            UrlDocumento = ser.ser.doc.URL_DOCUMENTO
+                            UrlDocumento = ser.ser.doc.URL_DOCUMENTO,
+                            RUT_RESPONSABLE = ser.ser.ser.ser.MODULO.RUT_FUNC_ADMIN,
+                            ID_PROVEEDOR = ser.ser.ser.ser.MODULO.ID_PROVEEDOR,
+                            GARANTIA = ser.ser.ser.ser.MODULO.GARANTIA
                         }
                     );
 
@@ -142,6 +164,9 @@ namespace Biblioteca.Negocio.DAO
                     objDTO.Documento.Url_documento = result.UrlDocumento;
                     objDTO.Lenguaje.Id_lenguaje = int.Parse(result.IDLENGUAJE.ToString());
                     objDTO.Lenguaje.Nombre_lenguaje = result.LENGUAJE;
+                    objDTO.Servicio.Rut_administrador = result.RUT_RESPONSABLE;
+                    objDTO.Servicio.Id_proveedor = int.Parse(result.ID_PROVEEDOR.ToString());
+                    objDTO.Servicio.Garantia =int.Parse( result.GARANTIA.ToString());
                     listadoServicios.Add(objDTO);
             }
              
@@ -223,48 +248,6 @@ namespace Biblioteca.Negocio.DAO
             return objServicio;
         }
 
-        public List<Servicio> listadoServiciosByEquipoTrabajo(int id_equipoTrabajo)
-        {
-            List<Servicio> listadoServiciosAsociados = new List<Servicio>();
-            List<MODULO> listadoModuloDALC = new List<MODULO>();
-            try
-            {
-                List<USUARIO> listadoUsuariosDALC = CommonBC.HomeroSystemEntities.USUARIO.Where
-                     (
-                        us=> us.FUNCIONARIO.ID_EQUIPO_TRABAJO == id_equipoTrabajo && us.ID_ROL == 1
-                    ).ToList();
-
-                foreach(USUARIO u in listadoUsuariosDALC)
-                {
-                    List<MODULO> listadoModuloDALCTemp= u.FUNCIONARIO.MODULO.Where(mo => mo.COD_MODULO.Contains("SERVI")).ToList();
-                    foreach(MODULO mo in listadoModuloDALCTemp)
-                    {
-                        listadoModuloDALC.Add(mo);
-                    }
-                }
-
-                foreach(MODULO ob in listadoModuloDALC)
-                {
-                    SERVICIOS obj = CommonBC.HomeroSystemEntities.SERVICIOS.First(ser => ser.COD_SERVICIO == ob.COD_MODULO);
-                    Servicio objServicio = new Servicio();
-                    objServicio.Codigo = obj.COD_SERVICIO;
-                    objServicio.Codigo_servidor = obj.COD_SERVIDOR;
-                    objServicio.Descripcion = obj.DESCRIPCION;
-                    objServicio.Garantia = int.Parse(obj.MODULO.GARANTIA.ToString());
-                    objServicio.Id_documento = int.Parse(obj.MODULO.ID_DOCUMENTO.ToString());
-                    objServicio.Id_lenguaje = int.Parse(obj.ID_LENGUAJE.ToString());
-                    objServicio.Id_tipo = int.Parse(obj.ID_TIPO.ToString());
-                    objServicio.Nombre = obj.MODULO.NOMBRE;
-
-                    listadoServiciosAsociados.Add(objServicio);
-                }
-
-                return listadoServiciosAsociados;
-
-            }catch
-            {
-                return null;
-            }
-        }
+       
     }
 }

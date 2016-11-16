@@ -107,6 +107,31 @@ namespace WSHomeroSystem
         List<DTO> listadoUsuariosPorEquipoDeTrabajo(int id_equipo);
         [OperationContract]
         List<Servicio> listadoServiciosByEquipoTrabajo(int id_equipoTrabajo);
+        [OperationContract]
+        List<Sistema> ListadoSistemasbyEquipoTrabajo(int id_equipoTrabajo, int id_rol);
+        [OperationContract]
+        List<Funcionario> listadoFuncionariosResponsables();
+        [OperationContract]
+        bool AgregarLenguaje(Lenguaje _lenguaje);
+        [OperationContract]
+        bool AgregarSalaServidor(SalaServidores _salaServidores);
+        [OperationContract]
+        bool ModificarSalaServidor(SalaServidores _salaServidores);
+        [OperationContract]
+        List<Tipo> ListadoTipoServidor();
+        [OperationContract]
+        List<TipoNivel> ListadoTipoNivelServidor();
+        [OperationContract]
+        List<SistemaOperativo> ListadoSistemaOperativo();
+        [OperationContract]
+        bool EliminarServicio(string CodServicio);
+        [OperationContract]
+        SalaServidores BuscarSalaServidorPorId(int id);
+        [OperationContract]
+        bool ValidarSalaServidoxrNombre(string nombre_salaServidor);
+        [OperationContract]
+        List<BaseDeDatos> ListadoBaseDeDatos();
+
 
     }
 }

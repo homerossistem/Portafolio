@@ -39,7 +39,6 @@
         <AssociationConnector Association="Model.MODULO_DOCUMENTO_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FUNCIONARIO_EQUIPO_TRABAJO_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.TICKET_FUNCIONARIO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.USUARIO_FUNCIONARIO_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.HASH_PASS_USUARIO_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.HASH_PASS_SERVIDOR_SERVIDOR_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SERVICIOS_LENGUAJE_FK" ManuallyRouted="false" />
@@ -60,12 +59,13 @@
         <AssociationConnector Association="Model.SERVIDOR_TIPO_NIVEL_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SISTEMA_SERVIDOR_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SOLUCION_TICKET_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ADMINISTRADOR_MODULO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.BASE_DE_DATOS_DE_SERVICIOS" ManuallyRouted="false" />
         <AssociationConnector Association="Model.BASES_DE_DATOS_DE_SISTEMAS" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DETALLE_ORGNIZACION" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.DETALLE_PROVEEDOR" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SERVICIOS_DE_SISTEMAS" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FUNCIONARIO_USUARIO_FK" />
+        <AssociationConnector Association="Model.MODULO_FUNCIONARIO_FK" />
+        <AssociationConnector Association="Model.MODULO_PROVEEDOR_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

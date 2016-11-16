@@ -18,14 +18,14 @@ namespace Biblioteca.DALC
         public MODULO()
         {
             this.TICKET = new HashSet<TICKET>();
-            this.FUNCIONARIO = new HashSet<FUNCIONARIO>();
-            this.PROVEEDOR = new HashSet<PROVEEDOR>();
         }
     
         public string COD_MODULO { get; set; }
         public string NOMBRE { get; set; }
         public Nullable<decimal> GARANTIA { get; set; }
         public decimal ID_DOCUMENTO { get; set; }
+        public string RUT_FUNC_ADMIN { get; set; }
+        public decimal ID_PROVEEDOR { get; set; }
     
         public virtual BASE_DATOS BASE_DATOS { get; set; }
         public virtual DOCUMENTO DOCUMENTO { get; set; }
@@ -34,9 +34,7 @@ namespace Biblioteca.DALC
         public virtual SISTEMA SISTEMA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TICKET> TICKET { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FUNCIONARIO> FUNCIONARIO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PROVEEDOR> PROVEEDOR { get; set; }
+        public virtual FUNCIONARIO FUNCIONARIO { get; set; }
+        public virtual PROVEEDOR PROVEEDOR1 { get; set; }
     }
 }

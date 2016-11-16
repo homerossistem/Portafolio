@@ -79,11 +79,12 @@ namespace WSHomeroSystem
                     {
                         if (!objUsuarioDAO.ExisteNombreUsuario(objusuario.Nombre_usuario))
                         {
-                            if (objFuncionarioDAO.AgregarFuncionario(objFuncionario))
+                            if (objUsuarioDAO.AgregarUsuario(objusuario))
                             {
-                                if (objUsuarioDAO.AgregarUsuario(objusuario))
+                                objusuario = objUsuarioDAO.ObtenerUsuarioPorNombreUsuario(objusuario.Nombre_usuario);
+                                objFuncionario.ObjUsuario = objusuario;
+                                if (objFuncionarioDAO.AgregarFuncionario(objFuncionario))
                                 {
-                                    objusuario = objUsuarioDAO.ObtenerUsuarioPorNombreUsuario(objusuario.Nombre_usuario);
                                     objHashPass.Id_usuario = objusuario.Id_usuario;
                                     if (objHashPassDAO.AgregarHashPass(objHashPass))
                                     {
@@ -147,6 +148,10 @@ namespace WSHomeroSystem
         public bool ModificarUsuario(DTO _objDTO)
         {
             return objUsuarioDAO.ModificarUsuario(_objDTO.Usuario, _objDTO.Funcionario, _objDTO.HashPass);
+        }
+        public List<Funcionario> listadoFuncionariosResponsables()
+        {
+            return objFuncionarioDAO.listadoFuncionariosResponsables();
         }
 
         public List<DTO> listadoUsuariosPorEquipoDeTrabajo(int id_equipo)
@@ -325,6 +330,10 @@ namespace WSHomeroSystem
         {
             return objRolDAO.listadoRol();
         }
+        public bool AgregarLenguaje(Lenguaje _lenguaje)
+        {
+            return objLenguajeDAO.AgregarLenguaje(_lenguaje);
+        }
         public List<EquipoTrabajo> listadoEquiposTrabajo()
         {
             return objEquipoDAO.listadoEquiposDeTrabajo();
@@ -358,6 +367,15 @@ namespace WSHomeroSystem
         public List<SalaServidores> ListadoSalaServidores()
         {
             return objSalaServidoresDao.ListadoSalaServidores();
+        }
+        public bool AgregarSalaServidor(SalaServidores _salaServidores)
+        {
+            return objSalaServidoresDao.AgregarSalaServidor(_salaServidores);
+        }
+
+        public bool ModificarSalaServidor(SalaServidores _salaServidores)
+        {
+            return objSalaServidoresDao.ModificarSalaServidor(_salaServidores);
         }
         #endregion
         #region Agregar,Modificar,listado,Buscar, Eliminar Proveedor
@@ -437,7 +455,50 @@ namespace WSHomeroSystem
 
         public List<Servicio> listadoServiciosByEquipoTrabajo(int id_equipoTrabajo)
         {
-            return objServicioDAO.listadoServiciosByEquipoTrabajo(id_equipoTrabajo);
+            return null;
         }
+        public List<Sistema> ListadoSistemasbyEquipoTrabajo(int id_equipoTrabajo, int id_rol)
+        {
+            return objSistemaDAO.ListadoSistemasbyEquipoTrabajo(id_equipoTrabajo, id_rol);
+        }
+
+        public List<TipoNivel> ListadoTipoNivelServidor()
+        {
+            return objServidorDAO.ListadoTipoNivelServidor();
+        }
+        public List<Tipo> ListadoTipoServidor()
+        {
+            return objServidorDAO.ListadoTipoServidor();
+        }
+
+        public List<SistemaOperativo> ListadoSistemaOperativo()
+        {
+            return objServidorDAO.ListadoSistemaOperativo();
+        }
+
+        public bool EliminarServicio(string CodServicio)
+        {
+            return objServicioDAO.EliminarServicio(CodServicio);
+        }
+
+         public SalaServidores BuscarSalaServidorPorId(int id)
+        {
+            return objSalaServidoresDao.BuscarSalaServidorPorId(id);
+        }
+        
+        public bool ValidarSalaServidoxrNombre(string nombre_salaServidor)
+        {
+            return objSalaServidoresDao.ValidarSalaServidoxrNombre(nombre_salaServidor);
+        }
+
+        public List<BaseDeDatos> ListadoBaseDeDatos()
+        {
+            return objBaseDatosDAO.ListadoBaseDeDatos();
+        }
+
+
+
+
+
     }
 }

@@ -21,8 +21,10 @@ namespace Biblioteca.Negocio.DAO
                 MODULO objModuloDALC = new MODULO();
                 objModuloDALC.COD_MODULO = codigoGenerado;
                 objModuloDALC.NOMBRE = _servidor.Nombre;
+                objModuloDALC.ID_PROVEEDOR = _servidor.Id_proveedor;
                 objModuloDALC.GARANTIA = _servidor.Garantia;
                 objModuloDALC.ID_DOCUMENTO = _servidor.Id_documento;
+                objModuloDALC.RUT_FUNC_ADMIN = _servidor.Rut_administrador;
                 HASH_PASS_SERVIDOR objHashPassDALC = new HASH_PASS_SERVIDOR();
                 objHashPassDALC.COD_MODULO = codigoGenerado;
                 objHashPassDALC.HAS_PASS = EncriptarPasswordBaseDeDatos(_hashServidor.Hash_pass);
@@ -155,7 +157,8 @@ namespace Biblioteca.Negocio.DAO
                   { CODSERVIDOR = ser.ser.ser.ser.ser.ser.COD_SERVIDOR,NOMBRESERVIDOR = ser.ser.ser.ser.ser.ser.MODULO.NOMBRE,GARANTIA = ser.ser.ser.ser.ser.ser.MODULO.GARANTIA,
                     IP = ser.ser.ser.ser.ser.ser.IP,RAM = ser.ser.ser.ser.ser.ser.RAM,DISCODURO = ser.ser.ser.ser.ser.ser.DISCO_DURO,IdSO = ser.ser.ser.ser.ser.so.ID_SO,
                     SO = ser.ser.ser.ser.ser.so.NOMBRE_SO,idTipo = ser.ser.tp.ID_TIPO,tipo = ser.ser.tp.TIPO1,idTipoNivel = ser.ser.ser.tn.ID_TIPO_NIVEL,
-                    TipoNivel = ser.ser.ser.tn.TIPO_NIVEL1,idDocumento = doc.ID_DOCUMENTO,URL =doc.URL_DOCUMENTO});
+                    TipoNivel = ser.ser.ser.tn.TIPO_NIVEL1,idDocumento = doc.ID_DOCUMENTO,URL =doc.URL_DOCUMENTO,
+                    ID_RACK=ser.ser.ser.ser.ra.ID_RACK,SALA_SERVIDOR = ser.sala.NOMBRE_SALA,PISO_SALA=ser.sala.PISO,RUT_RESPONSABLE = ser.ser.ser.ser.ser.ser.MODULO.RUT_FUNC_ADMIN,CONTRASENA = ser.ser.ser.ser.ser.ser.HASH_PASS_SERVIDOR.HAS_PASS});
 
             foreach(var result in listadoServidorDALC)
             {
@@ -164,8 +167,9 @@ namespace Biblioteca.Negocio.DAO
                 objDTO.Servidor.Ram =int.Parse(result.RAM.ToString());objDTO.Servidor.DiscoDuro = int.Parse(result.DISCODURO.ToString()); objDTO.Servidor.Id_sistemaOperativo = int.Parse(result.IdSO.ToString());
                 objDTO.Servidor.Id_tipo = int.Parse(result.idTipo.ToString()); objDTO.Servidor.Id_tipo_nivel = int.Parse(result.idTipoNivel.ToString()); objDTO.SistemaOperativo.Id_sistemaOperativo = int.Parse(result.IdSO.ToString());
                 objDTO.SistemaOperativo.Nombre_sistema = result.SO; objDTO.Tipo.Id_tipo = int.Parse(result.idTipo.ToString()); objDTO.Tipo._Tipo = result.tipo; objDTO.TipoNivel.Id_tipoNivel = int.Parse(result.idTipoNivel.ToString());
-                objDTO.TipoNivel.Tipo_nivel = result.TipoNivel;objDTO.Documento.Id_documento = int.Parse(result.idDocumento.ToString());objDTO.Documento.Url_documento = result.URL;
-
+                objDTO.TipoNivel.Tipo_nivel = result.TipoNivel;objDTO.Documento.Id_documento = int.Parse(result.idDocumento.ToString());objDTO.Documento.Url_documento = result.URL;objDTO.Rack.Id_rack = int.Parse(result.ID_RACK.ToString());
+                objDTO.SalaServidores.Nombre_sala = result.SALA_SERVIDOR;objDTO.SalaServidores.Piso = int.Parse(result.PISO_SALA.ToString());objDTO.Servidor.Rut_administrador = result.RUT_RESPONSABLE;
+                objDTO.HashPassModulo.Hash_pass = DesencriptarPasswordBaseDeDatos(result.CONTRASENA);
                 listadoServidores.Add(objDTO);
             }
 
@@ -190,6 +194,79 @@ namespace Biblioteca.Negocio.DAO
             }
 
             return listServidorApp;
+        }
+
+        public Servidor BuscarServidorPorCod(string codigo_servidor)
+        {
+            SERVIDOR objServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.First(serv => serv.COD_SERVIDOR == codigo_servidor);
+            Servidor objServidor = new Servidor();
+            objServidor.Codigo = objServidorDALC.COD_SERVIDOR;
+            objServidor.Ip = objServidorDALC.IP;
+            objServidor.DiscoDuro = int.Parse(objServidorDALC.DISCO_DURO.ToString());
+            objServidor.Ram = int.Parse(objServidorDALC.RAM.ToString());
+            objServidor.Id_sistemaOperativo = int.Parse(objServidorDALC.ID_SO.ToString());
+            objServidor.Id_rack = int.Parse(objServidorDALC.ID_RACK.ToString());
+            objServidor.Id_tipo_nivel = int.Parse(objServidorDALC.ID_TIPO_NIVEL.ToString());
+            objServidor.Id_tipo = int.Parse(objServidorDALC.ID_TIPO.ToString());
+            objServidor.Nombre = objServidorDALC.MODULO.NOMBRE;
+            objServidor.Id_documento = int.Parse(objServidorDALC.MODULO.ID_DOCUMENTO.ToString());
+            objServidor.Garantia = int.Parse(objServidorDALC.MODULO.ID_PROVEEDOR.ToString());
+            objServidor.ObjHashPass.Cod_modulo = objServidorDALC.HASH_PASS_SERVIDOR.COD_MODULO;
+            objServidor.ObjHashPass.Hash_pass = objServidorDALC.HASH_PASS_SERVIDOR.HAS_PASS;
+
+            return objServidor;
+        }
+
+        public List<TipoNivel> ListadoTipoNivelServidor()
+        {
+            List<TipoNivel> listadoTipoNivel = new List<TipoNivel>();
+
+            List<TIPO_NIVEL> listadoTipoNivelDALC = CommonBC.HomeroSystemEntities.TIPO_NIVEL.ToList();
+
+            foreach(TIPO_NIVEL tipoNivel in listadoTipoNivelDALC)
+            {
+                TipoNivel objTipoNivel = new TipoNivel();
+                objTipoNivel.Id_tipoNivel = int.Parse(tipoNivel.ID_TIPO_NIVEL.ToString());
+                objTipoNivel.Tipo_nivel = tipoNivel.TIPO_NIVEL1;
+
+                listadoTipoNivel.Add(objTipoNivel);
+            }
+
+            return listadoTipoNivel;
+        }
+
+        public List<Tipo> ListadoTipoServidor()
+        {
+            List<Tipo> listadoTipo = new List<Tipo>();
+
+            List<TIPO> listadoTipoDALC = CommonBC.HomeroSystemEntities.TIPO.ToList();
+
+            foreach(TIPO tipo in listadoTipoDALC)
+            {
+                Tipo objtipo = new Tipo();
+                objtipo.Id_tipo = int.Parse(tipo.ID_TIPO.ToString());
+                objtipo._Tipo = tipo.TIPO1;
+                listadoTipo.Add(objtipo);
+            }
+
+            return listadoTipo;
+        }
+
+        public List<SistemaOperativo> ListadoSistemaOperativo()
+        {
+            List<SistemaOperativo> listadoSistemaOperativo = new List<SistemaOperativo>();
+            List<SISTEMA_OPERATIVO> listadoSistemaOperativoDALC = CommonBC.HomeroSystemEntities.SISTEMA_OPERATIVO.ToList();
+            
+            foreach(SISTEMA_OPERATIVO so in listadoSistemaOperativoDALC)
+            {
+                SistemaOperativo objsistemaoperativo = new SistemaOperativo();
+                objsistemaoperativo.Id_sistemaOperativo = int.Parse(so.ID_SO.ToString());
+                objsistemaoperativo.Nombre_sistema = so.NOMBRE_SO;
+
+                listadoSistemaOperativo.Add(objsistemaoperativo);
+            }
+
+            return listadoSistemaOperativo;
         }
     }
 }

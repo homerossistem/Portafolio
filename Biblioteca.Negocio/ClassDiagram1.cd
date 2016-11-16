@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Biblioteca.Negocio.Clases.AdministradorModulos" Collapsed="true">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAQAAAAAAAAAAgAAAAAAAAAAAAAAAACAAAAIAA=</HashCode>
+      <FileName>Clases\AdministradorModulos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.BaseDeDatos">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAIACAAIAAAAAAAAAAAAAAAICBAAAgAQ=</HashCode>
+      <FileName>Clases\BaseDeDatos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Correo">
+    <Position X="5.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Clases\Correo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.DetalleOrganizacion">
+    <Position X="14.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAAQA=</HashCode>
+      <FileName>Clases\DetalleOrganizacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.DetalleProveedor">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAgAAAQIAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Clases\DetalleProveedor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Documento">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAABAAAAAQAAAACAAAAAAQ=</HashCode>
+      <FileName>Clases\Documento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.EquipoTrabajo">
+    <Position X="2.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAQAAAAAAAAAAAAEAAAABAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Clases\EquipoTrabajo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Funcionario" Collapsed="true">
+    <Position X="7.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAACQAoACkAKgAgACAAAAAgAAAAAACAAgAIAA=</HashCode>
+      <FileName>Clases\Funcionario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.HashPass">
+    <Position X="11" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAIAAAACAAAAAAAAAAAAAAAACAAAAEAA=</HashCode>
+      <FileName>Clases\HashPass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.HashPassModulo">
+    <Position X="11" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAQAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAEAA=</HashCode>
+      <FileName>Clases\HashPassModulo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Lenguaje" Collapsed="true">
+    <Position X="7.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAACEAAAABAAAAAACAAAAAAA=</HashCode>
+      <FileName>Clases\Lenguaje.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Modulo" Collapsed="true">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAChBAAAIQAAAACAAAAAgAACAAAAAAAAAAACgAAAAIQ=</HashCode>
+      <FileName>Clases\Modulo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Organizacion">
+    <Position X="10.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAIAAgACAAAAAAAAAAAAAAAAAHAgAABQI=</HashCode>
+      <FileName>Clases\Organizacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Proveedor" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAgAABAICAAAAAgAAAAACAAAAIgAAACAAACAggABAI=</HashCode>
+      <FileName>Clases\Proveedor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Rack">
+    <Position X="9.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAgCAAQIAAA=</HashCode>
+      <FileName>Clases\Rack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Rol" Collapsed="true">
+    <Position X="7.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAQAAACEAAAAAA=</HashCode>
+      <FileName>Clases\Rol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.SalaServidores">
+    <Position X="5.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAQQAAAEAIAQAAAAEAAAAA=</HashCode>
+      <FileName>Clases\SalaServidores.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Seguridad">
+    <Position X="11" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAAgAAAAIA=</HashCode>
+      <FileName>Clases\Seguridad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Sensibilidad">
+    <Position X="0.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAIAAAACAAAAAAAAAAAAAAAAAAAACAgAAAAA=</HashCode>
+      <FileName>Clases\Sensibilidad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Servicio">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAIAAAIEAAACDgAAAAAAAAAAAAAIAgAA=</HashCode>
+      <FileName>Clases\Servicio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Servidor">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAABIAAAASAAAAAAAAAAAgAAAAIAAABgiAAIYIgA=</HashCode>
+      <FileName>Clases\Servidor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Sistema">
+    <Position X="0.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAIAAAICACIEAAAiDgAAAAAAAAAgCgAAAgIA=</HashCode>
+      <FileName>Clases\Sistema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.SistemaOperativo">
+    <Position X="9.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAACAAAAAgA=</HashCode>
+      <FileName>Clases\SistemaOperativo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.SolucionTicket">
+    <Position X="2.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAQACAQAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACAEAg=</HashCode>
+      <FileName>Clases\SolucionTicket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Ticket">
+    <Position X="12.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAEAAQABAAAAAAEAgAAAAAAAAACAAAEAgCAAAAIAA=</HashCode>
+      <FileName>Clases\Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Tipo">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAACAAIAAAA=</HashCode>
+      <FileName>Clases\Tipo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.TipoNivel">
+    <Position X="7.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAQAAAAAAAAAAEAAAADAAAAAAA=</HashCode>
+      <FileName>Clases\TipoNivel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.TipoServicio">
+    <Position X="4" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAQAAAAgAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Clases\TipoServicio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.Clases.Usuario">
+    <Position X="7.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAAIAQIACAACAEAAAABAAAAAQAAACEAAAAAg=</HashCode>
+      <FileName>Clases\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.DAO.OrganizacionesDAO">
+    <Position X="12.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAgEAAAAAEAAAAAAAQAAAAAAAQAAAAA=</HashCode>
+      <FileName>DAO\OrganizacionesDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biblioteca.Negocio.DAO.SalaServidoresDAO">
+    <Position X="9" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACBAAAAAEAAAAgAABAAAAAIAAAABBAAAAA=</HashCode>
+      <FileName>DAO\SalaServidoresDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

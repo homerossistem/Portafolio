@@ -14,15 +14,21 @@ namespace Biblioteca.DALC
     
     public partial class USUARIO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public USUARIO()
+        {
+            this.FUNCIONARIO = new HashSet<FUNCIONARIO>();
+        }
+    
         public decimal ID_USUARIO { get; set; }
         public string NOMBRE_USUARIO { get; set; }
         public Nullable<decimal> ESTADO { get; set; }
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public decimal ID_ROL { get; set; }
-        public string RUT_FUNCIONARIO { get; set; }
     
-        public virtual FUNCIONARIO FUNCIONARIO { get; set; }
         public virtual HASH_PASS HASH_PASS { get; set; }
         public virtual ROL ROL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FUNCIONARIO> FUNCIONARIO { get; set; }
     }
 }

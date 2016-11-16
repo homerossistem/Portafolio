@@ -13,6 +13,8 @@ namespace Biblioteca.Negocio.Clases
         private string nombre;
         private int garantia;
         private int id_documento;
+        private string rut_administrador;
+        private int id_proveedor;
 
         public string Codigo
         {
@@ -66,6 +68,32 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public string Rut_administrador
+        {
+            get
+            {
+                return rut_administrador;
+            }
+
+            set
+            {
+                rut_administrador = value;
+            }
+        }
+
+        public int Id_proveedor
+        {
+            get
+            {
+                return id_proveedor;
+            }
+
+            set
+            {
+                id_proveedor = value;
+            }
+        }
+
         public Modulo()
         {
             this.Init();
@@ -77,6 +105,8 @@ namespace Biblioteca.Negocio.Clases
             this.Nombre = string.Empty;
             this.Garantia = 1;
             this.Id_documento = 1;
+            this.Rut_administrador = string.Empty;
+            this.Id_proveedor = 0;
         }
     }
 }
