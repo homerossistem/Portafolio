@@ -439,9 +439,9 @@ namespace WSHomeroSystem
         }
         #endregion
         #region Agregar,Modificar,listado,Buscar, Eliminar Organizaciones
-        public bool AgregarOrganizacion(Organizacion _org)
+        public bool AgregarOrganizacion(Organizacion _org, List<string> codSistema)
         {
-            return objOrganizacionDAO.AgregarOrganizacion(_org);
+            return objOrganizacionDAO.AgregarOrganizacion(_org,codSistema);
         }
 
         public List<Organizacion> listadoOrganizaciones()
@@ -454,9 +454,9 @@ namespace WSHomeroSystem
             return objOrganizacionDAO.EliminarOrganizacion(id_organizacion);
         }
 
-        public bool ModificarOrganizacion(Organizacion _objOrg)
+        public bool ModificarOrganizacion(Organizacion _objOrg, List<string> codSistema)
         {
-            return objOrganizacionDAO.ModificarOrganizacion(_objOrg);
+            return objOrganizacionDAO.ModificarOrganizacion(_objOrg,codSistema);
         }
 
         public Organizacion BuscarOrganizacion(int id_Org)

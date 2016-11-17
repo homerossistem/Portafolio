@@ -84,13 +84,13 @@ namespace WSHomeroSystem
         [OperationContract]
         Proveedor BuscarProveedor(int id_prov);
         [OperationContract]
-        bool AgregarOrganizacion(Organizacion _org);
+        bool AgregarOrganizacion(Organizacion _org,List<string>codSistema);
         [OperationContract]
         List<Organizacion> listadoOrganizaciones();
         [OperationContract]
         bool EliminarOrganizacion(int id_organizacion);
         [OperationContract]
-        bool ModificarOrganizacion(Organizacion _objOrg);
+        bool ModificarOrganizacion(Organizacion _objOrg, List<string> codSistema);
         [OperationContract]
         Organizacion BuscarOrganizacion(int id_Org);
         [OperationContract]

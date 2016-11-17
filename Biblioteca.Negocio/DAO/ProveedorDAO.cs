@@ -60,32 +60,38 @@ namespace Biblioteca.Negocio.DAO
         public bool EliminarProveedor(int id_prov)
         {
             PROVEEDOR objProv = CommonBC.HomeroSystemEntities.PROVEEDOR.First(prov => prov.ID_PROVEEDOR == id_prov);
+            int resultado = 0;
             if (objProv != null)
             {
-                CommonBC.HomeroSystemEntities.PROVEEDOR.Remove(objProv);
-                bool saveFailed;
-                do
+                if (objProv.MODULO.Count == 0 )
                 {
-                    saveFailed = false;
-                    try
+                    CommonBC.HomeroSystemEntities.PROVEEDOR.Remove(objProv);
+                    bool saveFailed;
+                    do
                     {
-                        CommonBC.HomeroSystemEntities.SaveChanges();
-                    }
-                    catch (DbUpdateConcurrencyException ex)
-                    {
-                        saveFailed = true;
-                        ex.Entries.Single().Reload();
-                    }
-                    catch (DbUpdateException exx)
-                    {
-                        saveFailed = true;
-                        exx.Entries.Single().Reload();
-                    }
+                        saveFailed = false;
+                        try
+                        {
+                            CommonBC.HomeroSystemEntities.SaveChanges();
+                        }
+                        catch (DbUpdateException exx)
+                        {
+                            saveFailed = true;
+                            exx.Entries.Single().Reload();
+                            resultado = 1;
+                        }
 
-                } while (saveFailed);
-                return true;
+                    } while (saveFailed);
+                }
+               
             }
-            return false;
+            if(resultado == 0)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
         }
 
         public bool ModificarProveedor(Proveedor _objProv)
