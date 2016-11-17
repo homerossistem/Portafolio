@@ -12,14 +12,11 @@ namespace Biblioteca.Negocio.DAO
 {
     public class ProveedorDAO
     {
-        private static int idTemporal = 0;
         public bool AgregarProveedor(Proveedor _prov)
         {
             try
             {
-                idTemporal++;
                 PROVEEDOR provDALC = new PROVEEDOR();
-                provDALC.ID_PROVEEDOR = idTemporal;
                 provDALC.NOMBRE_EMPRESA = _prov.Nombre_empresa;
                 provDALC.NOMBRE_ENCARGADO = _prov.Nombre_encargado;
                 provDALC.TELEFONO = _prov.Telefono;

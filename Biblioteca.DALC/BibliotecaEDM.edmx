@@ -42,14 +42,14 @@
           <Key>
             <PropertyRef Name="ID_DOCUMENTO" />
           </Key>
-          <Property Name="ID_DOCUMENTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_DOCUMENTO" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="URL_DOCUMENTO" Type="varchar2" MaxLength="100" />
         </EntityType>
         <EntityType Name="EQUIPO_TRABAJO">
           <Key>
             <PropertyRef Name="ID_EQUIPO_TRABAJO" />
           </Key>
-          <Property Name="ID_EQUIPO_TRABAJO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_EQUIPO_TRABAJO" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_EQUIPO" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="FUNCIONARIO">
@@ -90,7 +90,7 @@
           <Key>
             <PropertyRef Name="ID_LENGUAJE" />
           </Key>
-          <Property Name="ID_LENGUAJE" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_LENGUAJE" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_LENGUAJE" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="MODULO">
@@ -108,14 +108,14 @@
           <Key>
             <PropertyRef Name="ID_MOTOR" />
           </Key>
-          <Property Name="ID_MOTOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_MOTOR" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_MOTOR" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="ORGANIZACION">
           <Key>
             <PropertyRef Name="ID_ORGANIZACION" />
           </Key>
-          <Property Name="ID_ORGANIZACION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_ORGANIZACION" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_ORGANIZACION" Type="varchar2" MaxLength="100" />
           <Property Name="DIRECCION" Type="varchar2" MaxLength="50" />
           <Property Name="TELEFONO" Type="number" Precision="38" Scale="0" />
@@ -125,7 +125,7 @@
           <Key>
             <PropertyRef Name="ID_PROVEEDOR" />
           </Key>
-          <Property Name="ID_PROVEEDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PROVEEDOR" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_EMPRESA" Type="varchar2" MaxLength="50" />
           <Property Name="NOMBRE_ENCARGADO" Type="varchar2" MaxLength="50" />
           <Property Name="TELEFONO" Type="number" Precision="38" Scale="0" />
@@ -137,7 +137,7 @@
           <Key>
             <PropertyRef Name="ID_RACK" />
           </Key>
-          <Property Name="ID_RACK" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_RACK" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UNIDAD_RACK" Type="number" Precision="38" Scale="0" />
           <Property Name="ID_SALA_SERVIDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
@@ -145,14 +145,14 @@
           <Key>
             <PropertyRef Name="ID_ROL" />
           </Key>
-          <Property Name="ID_ROL" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_ROL" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_ROL" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="SALA_SERVIDORES">
           <Key>
             <PropertyRef Name="ID_SALA_SERVIDOR" />
           </Key>
-          <Property Name="ID_SALA_SERVIDOR" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SALA_SERVIDOR" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_SALA" Type="varchar2" MaxLength="50" />
           <Property Name="PISO" Type="number" Precision="38" Scale="0" />
         </EntityType>
@@ -160,14 +160,14 @@
           <Key>
             <PropertyRef Name="ID_SEGURIDAD" />
           </Key>
-          <Property Name="ID_SEGURIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SEGURIDAD" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TIPO_SEGURIDAD" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="SENSIBILIDAD">
           <Key>
             <PropertyRef Name="ID_SENSIBILIDAD" />
           </Key>
-          <Property Name="ID_SENSIBILIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SENSIBILIDAD" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TIPO_SENSIBILIDAD" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="SERVICIOS">
@@ -224,7 +224,7 @@
           <Key>
             <PropertyRef Name="ID_SOLUCION" />
           </Key>
-          <Property Name="ID_SOLUCION" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SOLUCION" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DESCRIPCION_SOLUCION" Type="varchar2" MaxLength="500" />
           <Property Name="FECHA_SOLUCION" Type="date" />
           <Property Name="ID_TICKET" Type="number" Precision="38" Scale="0" Nullable="false" />
@@ -233,7 +233,7 @@
           <Key>
             <PropertyRef Name="ID_TICKET" />
           </Key>
-          <Property Name="ID_TICKET" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TICKET" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="FECHA_PROBLEMA" Type="date" Nullable="false" />
           <Property Name="PROBLEMA" Type="varchar2" MaxLength="500" Nullable="false" />
           <Property Name="RUT_FUNCIONARIO" Type="varchar2" MaxLength="10" Nullable="false" />
@@ -243,28 +243,28 @@
           <Key>
             <PropertyRef Name="ID_TIPO" />
           </Key>
-          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TIPO" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="TIPO_NIVEL">
           <Key>
             <PropertyRef Name="ID_TIPO_NIVEL" />
           </Key>
-          <Property Name="ID_TIPO_NIVEL" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_NIVEL" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TIPO_NIVEL" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="TIPO_SERVICIO">
           <Key>
             <PropertyRef Name="ID_TIPO" />
           </Key>
-          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TIPO" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
             <PropertyRef Name="ID_USUARIO" />
           </Key>
-          <Property Name="ID_USUARIO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_USUARIO" Type="varchar2" MaxLength="100" />
           <Property Name="ESTADO" Type="number" Precision="38" Scale="0" />
           <Property Name="FECHA_CREACION" Type="date" />
@@ -934,7 +934,7 @@
           <Key>
             <PropertyRef Name="ID_DOCUMENTO" />
           </Key>
-          <Property Name="ID_DOCUMENTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_DOCUMENTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="URL_DOCUMENTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MODULO" Relationship="Self.MODULO_DOCUMENTO_FK" FromRole="DOCUMENTO" ToRole="MODULO" />
         </EntityType>
@@ -942,7 +942,7 @@
           <Key>
             <PropertyRef Name="ID_EQUIPO_TRABAJO" />
           </Key>
-          <Property Name="ID_EQUIPO_TRABAJO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_EQUIPO_TRABAJO" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_EQUIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="FUNCIONARIO" Relationship="Self.FUNCIONARIO_EQUIPO_TRABAJO_FK" FromRole="EQUIPO_TRABAJO" ToRole="FUNCIONARIO" />
         </EntityType>
@@ -991,7 +991,7 @@
           <Key>
             <PropertyRef Name="ID_LENGUAJE" />
           </Key>
-          <Property Name="ID_LENGUAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_LENGUAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_LENGUAJE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SERVICIOS" Relationship="Self.SERVICIOS_LENGUAJE_FK" FromRole="LENGUAJE" ToRole="SERVICIOS" />
           <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_LENGUAJE_FK" FromRole="LENGUAJE" ToRole="SISTEMA" />
@@ -1019,7 +1019,7 @@
           <Key>
             <PropertyRef Name="ID_MOTOR" />
           </Key>
-          <Property Name="ID_MOTOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_MOTOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_MOTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BASE_DATOS" Relationship="Self.BASE_DATOS_MOTOR_BASE_DATOS_FK" FromRole="MOTOR_BASE_DATOS" ToRole="BASE_DATOS" />
         </EntityType>
@@ -1027,7 +1027,7 @@
           <Key>
             <PropertyRef Name="ID_ORGANIZACION" />
           </Key>
-          <Property Name="ID_ORGANIZACION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_ORGANIZACION" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_ORGANIZACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TELEFONO" Type="Decimal" Precision="38" Scale="0" />
@@ -1038,7 +1038,7 @@
           <Key>
             <PropertyRef Name="ID_PROVEEDOR" />
           </Key>
-          <Property Name="ID_PROVEEDOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PROVEEDOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_EMPRESA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NOMBRE_ENCARGADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TELEFONO" Type="Decimal" Precision="38" Scale="0" />
@@ -1051,7 +1051,7 @@
           <Key>
             <PropertyRef Name="ID_RACK" />
           </Key>
-          <Property Name="ID_RACK" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_RACK" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UNIDAD_RACK" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="ID_SALA_SERVIDOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="SALA_SERVIDORES" Relationship="Self.RACK_SALA_SERVIDORES_FK" FromRole="RACK" ToRole="SALA_SERVIDORES" />
@@ -1061,7 +1061,7 @@
           <Key>
             <PropertyRef Name="ID_ROL" />
           </Key>
-          <Property Name="ID_ROL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_ROL" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_ROL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_ROL_FK" FromRole="ROL" ToRole="USUARIO" />
         </EntityType>
@@ -1069,7 +1069,7 @@
           <Key>
             <PropertyRef Name="ID_SALA_SERVIDOR" />
           </Key>
-          <Property Name="ID_SALA_SERVIDOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SALA_SERVIDOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_SALA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PISO" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="RACK" Relationship="Self.RACK_SALA_SERVIDORES_FK" FromRole="SALA_SERVIDORES" ToRole="RACK" />
@@ -1078,7 +1078,7 @@
           <Key>
             <PropertyRef Name="ID_SEGURIDAD" />
           </Key>
-          <Property Name="ID_SEGURIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SEGURIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TIPO_SEGURIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_SEGURIDAD_FK" FromRole="SEGURIDAD" ToRole="SISTEMA" />
         </EntityType>
@@ -1086,7 +1086,7 @@
           <Key>
             <PropertyRef Name="ID_SENSIBILIDAD" />
           </Key>
-          <Property Name="ID_SENSIBILIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SENSIBILIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TIPO_SENSIBILIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_SENSIBILIDAD_FK" FromRole="SENSIBILIDAD" ToRole="SISTEMA" />
         </EntityType>
@@ -1160,7 +1160,7 @@
           <Key>
             <PropertyRef Name="ID_SOLUCION" />
           </Key>
-          <Property Name="ID_SOLUCION" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SOLUCION" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DESCRIPCION_SOLUCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="FECHA_SOLUCION" Type="DateTime" />
           <Property Name="ID_TICKET" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
@@ -1170,7 +1170,7 @@
           <Key>
             <PropertyRef Name="ID_TICKET" />
           </Key>
-          <Property Name="ID_TICKET" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TICKET" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FECHA_PROBLEMA" Type="DateTime" Nullable="false" />
           <Property Name="PROBLEMA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RUT_FUNCIONARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1183,7 +1183,7 @@
           <Key>
             <PropertyRef Name="ID_TIPO" />
           </Key>
-          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TIPO1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_TIPO_FK" FromRole="TIPO" ToRole="SERVIDOR" />
         </EntityType>
@@ -1191,7 +1191,7 @@
           <Key>
             <PropertyRef Name="ID_TIPO_NIVEL" />
           </Key>
-          <Property Name="ID_TIPO_NIVEL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO_NIVEL" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TIPO_NIVEL1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_TIPO_NIVEL_FK" FromRole="TIPO_NIVEL" ToRole="SERVIDOR" />
         </EntityType>
@@ -1199,7 +1199,7 @@
           <Key>
             <PropertyRef Name="ID_TIPO" />
           </Key>
-          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SERVICIOS" Relationship="Self.SERVICIOS_TIPO_SERVICIO_FK" FromRole="TIPO_SERVICIO" ToRole="SERVICIOS" />
         </EntityType>
@@ -1207,7 +1207,7 @@
           <Key>
             <PropertyRef Name="ID_USUARIO" />
           </Key>
-          <Property Name="ID_USUARIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ESTADO" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="FECHA_CREACION" Type="DateTime" />

@@ -10,14 +10,11 @@ namespace Biblioteca.Negocio.DAO
 {
     public class DocumentoDAO
     {
-        private static int idTemporal = 0;
         public bool AgregarDocumento(Documento _documento)
         {
             try
             {
-                idTemporal++;
                 DOCUMENTO objDocumentoDALC = new DOCUMENTO();
-                objDocumentoDALC.ID_DOCUMENTO = idTemporal;
                 objDocumentoDALC.URL_DOCUMENTO = _documento.Url_documento;
 
 

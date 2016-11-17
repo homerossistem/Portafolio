@@ -14,14 +14,11 @@ namespace Biblioteca.Negocio.DAO
 {
    public class UsuarioDAO
    {
-        private static int idTemporal = 0;
         public bool AgregarUsuario(Usuario _usuario)
         {
             try
             {
-                idTemporal++;
                 USUARIO usuarioDALC = new USUARIO();
-                usuarioDALC.ID_USUARIO = idTemporal;
                 usuarioDALC.NOMBRE_USUARIO = _usuario.Nombre_usuario.ToUpper();
                 usuarioDALC.ESTADO = 1;
                 usuarioDALC.FECHA_CREACION = _usuario.Fecha_creacion;
@@ -257,13 +254,16 @@ namespace Biblioteca.Negocio.DAO
         }
         public bool EliminarUsuario(int id_usuario)
         {
-            FUNCIONARIO objFuncionario = CommonBC.HomeroSystemEntities.FUNCIONARIO.First(fun => fun.ID_USUARIO == id_usuario);
-            if (objFuncionario != null)
+            USUARIO objusuario = CommonBC.HomeroSystemEntities.USUARIO.First(us => us.ID_USUARIO == id_usuario);
+            FUNCIONARIO objFuncionario = null;
+            HASH_PASS objHashPass = null;
+            int resultado = 0;
+            if (objusuario != null)
             {
-                USUARIO objusuario = CommonBC.HomeroSystemEntities.USUARIO.First(us => us.ID_USUARIO == objFuncionario.ID_USUARIO);
-                HASH_PASS objHashPass = CommonBC.HomeroSystemEntities.HASH_PASS.First(hash => hash.ID_USUARIO == id_usuario);
-                CommonBC.HomeroSystemEntities.FUNCIONARIO.Remove(objFuncionario);
+                objFuncionario = CommonBC.HomeroSystemEntities.FUNCIONARIO.First(fun => fun.ID_USUARIO == id_usuario);
+                 objHashPass = CommonBC.HomeroSystemEntities.HASH_PASS.First(hash => hash.ID_USUARIO == id_usuario);
                 CommonBC.HomeroSystemEntities.HASH_PASS.Remove(objHashPass);
+                CommonBC.HomeroSystemEntities.FUNCIONARIO.Remove(objFuncionario);
                 CommonBC.HomeroSystemEntities.USUARIO.Remove(objusuario);
                 bool saveFailed;
                 do
@@ -274,21 +274,25 @@ namespace Biblioteca.Negocio.DAO
                     {
                         CommonBC.HomeroSystemEntities.SaveChanges();
                     }
-                    catch (DbUpdateConcurrencyException ex)
-                    {
-                        saveFailed = true;
-                        ex.Entries.Single().Reload();
-                    }
                     catch (DbUpdateException exx)
                     {
                         saveFailed = true;
+                        CommonBC.HomeroSystemEntities.Entry(objHashPass).Reload();
                         exx.Entries.Single().Reload();
+                        resultado = 1;
                     }
 
                 } while (saveFailed);
-                return true;
+               
             }
-            return false;
+            if(resultado== 0)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+         
         }
         public DTO BuscarUsuarioPorId(int id_usuario)
         {

@@ -12,14 +12,11 @@ namespace Biblioteca.Negocio.DAO
 {
     public class RackDAO
     {
-        private static int idTemporal = 0;
         public bool AgregarRack(Rack _rack)
         {
             try
             {
-                idTemporal++;
                 RACK rackDALC = new RACK();
-                rackDALC.ID_RACK = idTemporal;
                 rackDALC.UNIDAD_RACK = _rack.Unidad_rack;
                 rackDALC.ID_SALA_SERVIDOR = _rack.Id_sala;                
 
@@ -78,33 +75,43 @@ namespace Biblioteca.Negocio.DAO
 
         public bool EliminarRack(int id_rack)
         {
+            int resultado = 0;
             RACK objrack = CommonBC.HomeroSystemEntities.RACK.First(rack => rack.ID_RACK == id_rack);
-            if (objrack != null)
+            if (objrack.SERVIDOR.Count() == 0)
             {
-                CommonBC.HomeroSystemEntities.RACK.Remove(objrack);
-                bool saveFailed;
-                do
+                if (objrack != null)
                 {
-                    saveFailed = false;
-                    try
+                    CommonBC.HomeroSystemEntities.RACK.Remove(objrack);
+                    bool saveFailed;
+                    do
                     {
-                        CommonBC.HomeroSystemEntities.SaveChanges();
-                    }
-                    catch (DbUpdateConcurrencyException ex)
-                    {
-                        saveFailed = true;
-                        ex.Entries.Single().Reload();
-                    }
-                    catch (DbUpdateException exx)
-                    {
-                        saveFailed = true;
-                        exx.Entries.Single().Reload();
-                    }
+                        saveFailed = false;
+                        try
+                        {
+                            CommonBC.HomeroSystemEntities.SaveChanges();
+                        }
+                        catch (DbUpdateException exx)
+                        {
+                            saveFailed = true;
+                            exx.Entries.Single().Reload();
+                            resultado = 1;
+                        }
 
-                } while (saveFailed);
-                return true;
+                    } while (saveFailed);
+
+                }
+            }else
+            {
+                resultado = 1;
             }
-            return false;
+            if(resultado==0)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+            
         }
 
         public bool ModificarRack(Rack _objRack)

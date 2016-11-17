@@ -225,6 +225,10 @@ namespace WSHomeroSystem
             }
             return mensaje;
         }
+        public List<BaseDeDatos> ListadoBaseDeDatos()
+        {
+            return objBaseDatosDAO.ListadoBaseDeDatos();
+        }
         #endregion
         #region Agregar,Modificar,listado Servicio
         public string AgregarServicio(Servicio objServicio,List<string>listadoCodBaseDatos)
@@ -271,6 +275,11 @@ namespace WSHomeroSystem
         {
             return objServicioDAO.listadoServicios();
         }
+
+        public bool EliminarServicio(string CodServicio)
+        {
+            return objServicioDAO.EliminarServicio(CodServicio);
+        }
         #endregion
         #region Agregar,Modificar,listado Servidor
         public string AgregarServidor(Servidor objServidor,HashPassModulo hashServidor)
@@ -300,6 +309,23 @@ namespace WSHomeroSystem
         public List<Servidor> listadoServidorAplicaciones()
         {
             return objServidorDAO.listadoServidorAplicaciones();
+        }
+        public List<TipoNivel> ListadoTipoNivelServidor()
+        {
+            return objServidorDAO.ListadoTipoNivelServidor();
+        }
+        public List<Tipo> ListadoTipoServidor()
+        {
+            return objServidorDAO.ListadoTipoServidor();
+        }
+
+        public List<SistemaOperativo> ListadoSistemaOperativo()
+        {
+            return objServidorDAO.ListadoSistemaOperativo();
+        }
+        public bool EliminarServidorPorCodigo(string codigoServidor)
+        {
+            return objServidorDAO.EliminarServidorPorCodigo(codigoServidor);
         }
         #endregion
         #region Agregar,Modificar,listado Sistema
@@ -376,6 +402,14 @@ namespace WSHomeroSystem
         public bool ModificarSalaServidor(SalaServidores _salaServidores)
         {
             return objSalaServidoresDao.ModificarSalaServidor(_salaServidores);
+        }
+        public SalaServidores BuscarSalaServidorPorId(int id)
+        {
+            return objSalaServidoresDao.BuscarSalaServidorPorId(id);
+        }
+        public bool ValidarSalaServidoxrNombre(string nombre_salaServidor)
+        {
+            return objSalaServidoresDao.ValidarSalaServidoxrNombre(nombre_salaServidor);
         }
         #endregion
         #region Agregar,Modificar,listado,Buscar, Eliminar Proveedor
@@ -462,39 +496,13 @@ namespace WSHomeroSystem
             return objSistemaDAO.ListadoSistemasbyEquipoTrabajo(id_equipoTrabajo, id_rol);
         }
 
-        public List<TipoNivel> ListadoTipoNivelServidor()
-        {
-            return objServidorDAO.ListadoTipoNivelServidor();
-        }
-        public List<Tipo> ListadoTipoServidor()
-        {
-            return objServidorDAO.ListadoTipoServidor();
-        }
+   
 
-        public List<SistemaOperativo> ListadoSistemaOperativo()
-        {
-            return objServidorDAO.ListadoSistemaOperativo();
-        }
-
-        public bool EliminarServicio(string CodServicio)
-        {
-            return objServicioDAO.EliminarServicio(CodServicio);
-        }
-
-         public SalaServidores BuscarSalaServidorPorId(int id)
-        {
-            return objSalaServidoresDao.BuscarSalaServidorPorId(id);
-        }
+     
         
-        public bool ValidarSalaServidoxrNombre(string nombre_salaServidor)
-        {
-            return objSalaServidoresDao.ValidarSalaServidoxrNombre(nombre_salaServidor);
-        }
+       
 
-        public List<BaseDeDatos> ListadoBaseDeDatos()
-        {
-            return objBaseDatosDAO.ListadoBaseDeDatos();
-        }
+      
 
 
 

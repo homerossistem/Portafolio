@@ -13,14 +13,11 @@ namespace Biblioteca.Negocio.DAO
 {
     public class OrganizacionesDAO
     {
-        private static int idTemporal = 0;
         public bool AgregarOrganizacion(Organizacion _org)
         {
             try
             {
-                idTemporal++;
                 ORGANIZACION orgDALC = new ORGANIZACION();
-                orgDALC.ID_ORGANIZACION = idTemporal;
                 orgDALC.NOMBRE_ORGANIZACION = _org.Nombre_organizacion;
                 orgDALC.DIRECCION = _org.Direccion;
                 orgDALC.TELEFONO = _org.Telefono;

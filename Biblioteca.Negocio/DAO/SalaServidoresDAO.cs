@@ -10,14 +10,11 @@ namespace Biblioteca.Negocio.DAO
 {
     public class SalaServidoresDAO
     {
-        private static int idtemporal = 100000000;
         public bool AgregarSalaServidor(SalaServidores _salaServidores)
         {
             try
             {
-                idtemporal++;
                 SALA_SERVIDORES sala = new Biblioteca.DALC.SALA_SERVIDORES();
-                sala.ID_SALA_SERVIDOR = idtemporal;
                 sala.NOMBRE_SALA = _salaServidores.Nombre_sala;
                 sala.PISO = _salaServidores.Piso;
                 CommonBC.HomeroSystemEntities.SALA_SERVIDORES.Add(sala);

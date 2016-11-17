@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Biblioteca.DALC;
 using Biblioteca.Negocio.Clases;
 using Biblioteca.Negocio.DTOs;
+using System.Data.Entity.Infrastructure;
 
 namespace Biblioteca.Negocio.DAO
 {
@@ -55,16 +56,36 @@ namespace Biblioteca.Negocio.DAO
 
         public bool EliminarServicio(string CodServicio)
         {
-            try
+            int resultado = 0;
+            SERVICIOS objServiciorDALC = objServiciorDALC = CommonBC.HomeroSystemEntities.SERVICIOS.First(servi => servi.COD_SERVICIO == CodServicio);
+            MODULO objModuloDALC = objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First(ser => ser.COD_MODULO == CodServicio);
+            CommonBC.HomeroSystemEntities.SERVICIOS.Remove(objServiciorDALC);
+            CommonBC.HomeroSystemEntities.MODULO.Remove(objModuloDALC);
+            bool saveFailed;
+            do
             {
-                SERVICIOS objServicioDALC = CommonBC.HomeroSystemEntities.SERVICIOS.First(servi => servi.COD_SERVICIO == CodServicio);
-                MODULO objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First(mo => mo.COD_MODULO == CodServicio);
-                CommonBC.HomeroSystemEntities.SERVICIOS.Remove(objServicioDALC);
-                CommonBC.HomeroSystemEntities.MODULO.Remove(objModuloDALC);
-                CommonBC.HomeroSystemEntities.SaveChanges();
+                saveFailed = false;
+
+                try
+                {
+                    CommonBC.HomeroSystemEntities.SaveChanges();
+                }
+                catch (DbUpdateException exx)
+                {
+                    saveFailed = true;
+                    CommonBC.HomeroSystemEntities.Entry(objModuloDALC).Reload();
+                    CommonBC.HomeroSystemEntities.Entry(objServiciorDALC).Reload();
+                    resultado = 1;
+                    exx.Entries.Single().Reload();
+                }
+
+            } while (saveFailed);
+
+            if (resultado == 0)
+            {
                 return true;
             }
-            catch
+            else
             {
                 return false;
             }

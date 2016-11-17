@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Biblioteca.Negocio.Clases;
 using System.Security.Cryptography;
 using Biblioteca.Negocio.DTOs;
+using System.Data.Entity.Infrastructure;
 
 namespace Biblioteca.Negocio.DAO
 {
@@ -268,5 +269,61 @@ namespace Biblioteca.Negocio.DAO
 
             return listadoSistemaOperativo;
         }
+
+        public bool EliminarServidorPorCodigo(string codigoServidor)
+        {
+            int resultado = 0;
+            SERVIDOR objServidorDALC = objServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.First
+                    (ser => ser.COD_SERVIDOR == codigoServidor); ;
+            MODULO objModuloDALC = null;
+            HASH_PASS_SERVIDOR objHashPassDALC = null;
+            if (objServidorDALC.SISTEMA.Count == 0 && objServidorDALC.SERVICIOS.Count() == 0 && objServidorDALC.BASE_DATOS.Count() == 0)
+            {
+
+
+                objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First
+                    (
+                    ser => ser.COD_MODULO == codigoServidor
+                    );
+                objHashPassDALC = CommonBC.HomeroSystemEntities.HASH_PASS_SERVIDOR.First(hash => hash.COD_MODULO == codigoServidor);
+                CommonBC.HomeroSystemEntities.HASH_PASS_SERVIDOR.Remove(objHashPassDALC);
+                CommonBC.HomeroSystemEntities.SERVIDOR.Remove(objServidorDALC);
+                CommonBC.HomeroSystemEntities.MODULO.Remove(objModuloDALC);
+                bool saveFailed;
+                do
+                {
+                    saveFailed = false;
+
+                    try
+                    {
+                        CommonBC.HomeroSystemEntities.SaveChanges();
+                    }
+                    catch (DbUpdateException exx)
+                    {
+                        saveFailed = true;
+                        CommonBC.HomeroSystemEntities.Entry(objModuloDALC).Reload();
+                        CommonBC.HomeroSystemEntities.Entry(objServidorDALC).Reload();
+                        CommonBC.HomeroSystemEntities.Entry(objHashPassDALC).Reload();
+                        resultado = 1;
+                        exx.Entries.Single().Reload();
+                    }
+
+                } while (saveFailed);
+            }else
+            {
+                resultado = 1;
+            }
+
+            if(resultado == 0)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+
+            }
+         
+        
     }
 }

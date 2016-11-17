@@ -33,14 +33,11 @@ namespace Biblioteca.Negocio.DAO
 
 
 
-        private static int idTemporal = 0;
         public bool AgregarEquipoTrabajo(EquipoTrabajo _equipo )
         {
             try
             {
-                idTemporal++;
                 EQUIPO_TRABAJO equipoDALC = new EQUIPO_TRABAJO();
-                equipoDALC.ID_EQUIPO_TRABAJO = idTemporal;
                 equipoDALC.NOMBRE_EQUIPO = _equipo.Nombre_equipo;
 
                 CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.Add(equipoDALC);
