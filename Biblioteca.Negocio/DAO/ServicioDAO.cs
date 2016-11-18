@@ -54,6 +54,45 @@ namespace Biblioteca.Negocio.DAO
             }
         }
 
+        public bool ModificarServicio(Servicio objservicio,List<string>codBaseDatos)
+        {
+            List<BASE_DATOS> listadoBaseDatos = new List<BASE_DATOS>();
+            try {
+                SERVICIOS objServicioDALC = CommonBC.HomeroSystemEntities.SERVICIOS.First
+                    (
+                       servi => servi.COD_SERVICIO == objservicio.Codigo
+                    );
+                foreach (string cod in codBaseDatos)
+                {
+                    BASE_DATOS objBaseDatos = CommonBC.HomeroSystemEntities.BASE_DATOS.First
+                        (
+                          bd => bd.COD_BASE_DATOS == cod
+                        );
+                    listadoBaseDatos.Add(objBaseDatos);
+                }
+                MODULO objModuloDALC = new MODULO();
+                objModuloDALC.COD_MODULO = objservicio.Codigo;
+                objModuloDALC.NOMBRE = objservicio.Nombre;
+                objModuloDALC.GARANTIA = objservicio.Garantia;
+                objModuloDALC.ID_DOCUMENTO = objservicio.Garantia;
+                objModuloDALC.RUT_FUNC_ADMIN = objservicio.Rut_administrador;
+                objModuloDALC.ID_PROVEEDOR = objservicio.Id_proveedor;
+                objServicioDALC.COD_SERVICIO = objservicio.Codigo;
+                objServicioDALC.COD_SERVIDOR = objservicio.Codigo_servidor;
+                objServicioDALC.DESCRIPCION = objservicio.Descripcion;
+                objServicioDALC.ID_TIPO = objservicio.Id_tipo;
+                objServicioDALC.ID_LENGUAJE = objservicio.Id_lenguaje;
+                objServicioDALC.MODULO = objModuloDALC;
+                objServicioDALC.BASE_DATOS = listadoBaseDatos;
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }catch
+            {
+                return false;
+            }
+            
+        }
+
         public bool EliminarServicio(string CodServicio)
         {
             int resultado = 0;
@@ -167,7 +206,10 @@ namespace Biblioteca.Negocio.DAO
                             UrlDocumento = ser.ser.doc.URL_DOCUMENTO,
                             RUT_RESPONSABLE = ser.ser.ser.ser.MODULO.RUT_FUNC_ADMIN,
                             ID_PROVEEDOR = ser.ser.ser.ser.MODULO.ID_PROVEEDOR,
-                            GARANTIA = ser.ser.ser.ser.MODULO.GARANTIA
+                            GARANTIA = ser.ser.ser.ser.MODULO.GARANTIA,
+                            FUNCIONARIO_NOMBRE = ser.ser.ser.ser.MODULO.FUNCIONARIO.NOMBRE,
+                            FUNCIONARIO_APELLIDO = ser.ser.ser.ser.MODULO.FUNCIONARIO.APELLIDO,
+
                         }
                     );
 
@@ -188,6 +230,8 @@ namespace Biblioteca.Negocio.DAO
                     objDTO.Servicio.Rut_administrador = result.RUT_RESPONSABLE;
                     objDTO.Servicio.Id_proveedor = int.Parse(result.ID_PROVEEDOR.ToString());
                     objDTO.Servicio.Garantia =int.Parse( result.GARANTIA.ToString());
+                    objDTO.Funcionario.Nombre = result.FUNCIONARIO_NOMBRE;
+                    objDTO.Funcionario.Apellido = result.FUNCIONARIO_APELLIDO;
                     listadoServicios.Add(objDTO);
             }
              
@@ -213,28 +257,7 @@ namespace Biblioteca.Negocio.DAO
             return listadoTipoServicio;
         }
 
-        public bool agregarBaseDatosServicio(string codServicio,List<string>codBaseDatos)
-        {
-            List<BASE_DATOS> listadoBaseDatos = new List<BASE_DATOS>();
-            SERVICIOS objServicio = CommonBC.HomeroSystemEntities.SERVICIOS.First
-                (
-                   servi=>servi.COD_SERVICIO == codServicio
-                );
-            foreach(string cod in codBaseDatos)
-            {
-                BASE_DATOS objBaseDatos = CommonBC.HomeroSystemEntities.BASE_DATOS.First
-                    (
-                      bd=>bd.COD_BASE_DATOS == cod
-                    );
-                listadoBaseDatos.Add(objBaseDatos);
-            }
-
-            objServicio.BASE_DATOS = listadoBaseDatos;
-
-
-            CommonBC.HomeroSystemEntities.SaveChanges();
-            return true;
-        }
+   
 
         public Servicio BuscarServicio(string codigoServicio)
         {

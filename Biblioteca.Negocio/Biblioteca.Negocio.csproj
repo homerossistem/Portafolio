@@ -69,6 +69,7 @@
     <Compile Include="Clases\HashPassModulo.cs" />
     <Compile Include="Clases\Lenguaje.cs" />
     <Compile Include="Clases\Modulo.cs" />
+    <Compile Include="Clases\MotorBD.cs" />
     <Compile Include="Clases\Organizacion.cs" />
     <Compile Include="Clases\Proveedor.cs" />
     <Compile Include="Clases\Rack.cs" />

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Biblioteca.DALC;
 using Biblioteca.Negocio.Clases;
 using System.Security.Cryptography;
+using Biblioteca.Negocio.DTOs;
 
 namespace Biblioteca.Negocio.DAO
 {
@@ -57,7 +58,7 @@ namespace Biblioteca.Negocio.DAO
             else
             {
                 Codigo = ultimoCodigo.Substring(3);
-                int digitoCodigo = int.Parse(Codigo)+1;
+                int digitoCodigo = int.Parse(Codigo) + 1;
                 Codigo = string.Format("BD-{0:000000}", digitoCodigo);
             }
             return Codigo;
@@ -91,7 +92,7 @@ namespace Biblioteca.Negocio.DAO
 
 
             byte[] ArrayResultado =
-            cTransform.TransformFinalBlock(Arreglo_a_Cifrar,0
+            cTransform.TransformFinalBlock(Arreglo_a_Cifrar, 0
             , Arreglo_a_Cifrar.Length);
 
             tdes.Clear();
@@ -143,7 +144,7 @@ namespace Biblioteca.Negocio.DAO
             List<BaseDeDatos> listadoBasesDeDatos = new List<BaseDeDatos>();
             List<BASE_DATOS> listadoBASEDeDatosDALC = CommonBC.HomeroSystemEntities.BASE_DATOS.ToList();
 
-            foreach(BASE_DATOS bd in listadoBASEDeDatosDALC)
+            foreach (BASE_DATOS bd in listadoBASEDeDatosDALC)
             {
                 BaseDeDatos objBaseDeDatos = new BaseDeDatos();
                 objBaseDeDatos.Codigo = bd.COD_BASE_DATOS;
@@ -157,6 +158,39 @@ namespace Biblioteca.Negocio.DAO
                 objBaseDeDatos.Rut_administrador = bd.MODULO.RUT_FUNC_ADMIN;
 
                 listadoBasesDeDatos.Add(objBaseDeDatos);
+            }
+
+            return listadoBasesDeDatos;
+        }
+
+
+        public List<DTO> ListBaseDeDatos()
+        {
+            List<DTO> listadoBasesDeDatos = new List<DTO>();
+            List<BASE_DATOS> listadoBASEDeDatosDALC = CommonBC.HomeroSystemEntities.BASE_DATOS.ToList();
+
+            foreach (BASE_DATOS bd in listadoBASEDeDatosDALC)
+            {
+                DTO objBaseDeDatosDTO = new DTO();
+                objBaseDeDatosDTO.BaseDeDatos.Codigo = bd.COD_BASE_DATOS;
+                objBaseDeDatosDTO.BaseDeDatos.Codigo_servidor = bd.COD_SERVIDOR;
+                objBaseDeDatosDTO.BaseDeDatos.Garantia = int.Parse(bd.MODULO.GARANTIA.ToString());
+                objBaseDeDatosDTO.BaseDeDatos.Id_documento = int.Parse(bd.MODULO.ID_DOCUMENTO.ToString());
+                objBaseDeDatosDTO.BaseDeDatos.Id_motor = int.Parse(bd.ID_MOTOR.ToString());
+                objBaseDeDatosDTO.BaseDeDatos.Id_proveedor = int.Parse(bd.MODULO.ID_PROVEEDOR.ToString());
+                objBaseDeDatosDTO.BaseDeDatos.Nombre = bd.MODULO.NOMBRE;
+                objBaseDeDatosDTO.BaseDeDatos.NomUSer = bd.NOM_USUARIO;
+                objBaseDeDatosDTO.BaseDeDatos.Rut_administrador = bd.MODULO.RUT_FUNC_ADMIN;
+                objBaseDeDatosDTO.Documento.Url_documento = bd.MODULO.DOCUMENTO.URL_DOCUMENTO;
+                objBaseDeDatosDTO.HashPassModulo.Hash_pass = DesencriptarPasswordBaseDeDatos(bd.HASH_PASS_BASE_DATOS.HASH_PASS);
+                objBaseDeDatosDTO.Funcionario.Nombre = bd.MODULO.FUNCIONARIO.NOMBRE;
+                objBaseDeDatosDTO.Funcionario.Apellido = bd.MODULO.FUNCIONARIO.APELLIDO;
+                objBaseDeDatosDTO.MotorBD.Motor = bd.MOTOR_BASE_DATOS.NOMBRE_MOTOR;
+                objBaseDeDatosDTO.Servidor.Nombre = bd.SERVIDOR.MODULO.NOMBRE;
+                objBaseDeDatosDTO.Proveedor.Nombre_empresa = bd.MODULO.PROVEEDOR1.NOMBRE_EMPRESA;
+
+
+                listadoBasesDeDatos.Add(objBaseDeDatosDTO);
             }
 
             return listadoBasesDeDatos;

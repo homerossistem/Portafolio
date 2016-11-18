@@ -150,16 +150,16 @@ namespace Biblioteca.Negocio.DAO
         {
             List<DTO> listadoServidores = new List<DTO>();
             var listadoServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.Join(CommonBC.HomeroSystemEntities.SISTEMA_OPERATIVO, ser => ser.ID_SO, so => so.ID_SO, (ser, so) => new
-                   {ser,so}).Join(CommonBC.HomeroSystemEntities.RACK, ser => ser.ser.ID_RACK, ra => ra.ID_RACK, (ser, ra) => new
-                   {ser,ra}).Join(CommonBC.HomeroSystemEntities.TIPO_NIVEL, ser => ser.ser.ser.ID_TIPO_NIVEL, tn => tn.ID_TIPO_NIVEL, (ser, tn) => new
-                 {ser,tn}).Join(CommonBC.HomeroSystemEntities.TIPO, ser => ser.ser.ser.ser.ID_TIPO, tp => tp.ID_TIPO, (ser, tp) => new
-                { ser,tp}).Join(CommonBC.HomeroSystemEntities.SALA_SERVIDORES, ser => ser.ser.ser.ra.ID_SALA_SERVIDOR, sala => sala.ID_SALA_SERVIDOR, (ser, sala) => new
-                   { ser,sala}).Join(CommonBC.HomeroSystemEntities.DOCUMENTO, ser => ser.ser.ser.ser.ser.ser.MODULO.ID_DOCUMENTO, doc => doc.ID_DOCUMENTO, (ser, doc) => new
-                  { CODSERVIDOR = ser.ser.ser.ser.ser.ser.COD_SERVIDOR,NOMBRESERVIDOR = ser.ser.ser.ser.ser.ser.MODULO.NOMBRE,GARANTIA = ser.ser.ser.ser.ser.ser.MODULO.GARANTIA,
-                    IP = ser.ser.ser.ser.ser.ser.IP,RAM = ser.ser.ser.ser.ser.ser.RAM,DISCODURO = ser.ser.ser.ser.ser.ser.DISCO_DURO,IdSO = ser.ser.ser.ser.ser.so.ID_SO,
-                    SO = ser.ser.ser.ser.ser.so.NOMBRE_SO,idTipo = ser.ser.tp.ID_TIPO,tipo = ser.ser.tp.TIPO1,idTipoNivel = ser.ser.ser.tn.ID_TIPO_NIVEL,
-                    TipoNivel = ser.ser.ser.tn.TIPO_NIVEL1,idDocumento = doc.ID_DOCUMENTO,URL =doc.URL_DOCUMENTO,
-                    ID_RACK=ser.ser.ser.ser.ra.ID_RACK,SALA_SERVIDOR = ser.sala.NOMBRE_SALA,PISO_SALA=ser.sala.PISO,RUT_RESPONSABLE = ser.ser.ser.ser.ser.ser.MODULO.RUT_FUNC_ADMIN,CONTRASENA = ser.ser.ser.ser.ser.ser.HASH_PASS_SERVIDOR.HAS_PASS});
+            { ser, so }).Join(CommonBC.HomeroSystemEntities.RACK, ser => ser.ser.ID_RACK, ra => ra.ID_RACK, (ser, ra) => new
+            { ser, ra }).Join(CommonBC.HomeroSystemEntities.TIPO_NIVEL, ser => ser.ser.ser.ID_TIPO_NIVEL, tn => tn.ID_TIPO_NIVEL, (ser, tn) => new
+            { ser, tn }).Join(CommonBC.HomeroSystemEntities.TIPO, ser => ser.ser.ser.ser.ID_TIPO, tp => tp.ID_TIPO, (ser, tp) => new
+            { ser, tp }).Join(CommonBC.HomeroSystemEntities.SALA_SERVIDORES, ser => ser.ser.ser.ra.ID_SALA_SERVIDOR, sala => sala.ID_SALA_SERVIDOR, (ser, sala) => new
+            { ser, sala }).Join(CommonBC.HomeroSystemEntities.DOCUMENTO, ser => ser.ser.ser.ser.ser.ser.MODULO.ID_DOCUMENTO, doc => doc.ID_DOCUMENTO, (ser, doc) => new
+            { CODSERVIDOR = ser.ser.ser.ser.ser.ser.COD_SERVIDOR, NOMBRESERVIDOR = ser.ser.ser.ser.ser.ser.MODULO.NOMBRE, GARANTIA = ser.ser.ser.ser.ser.ser.MODULO.GARANTIA,
+                IP = ser.ser.ser.ser.ser.ser.IP, RAM = ser.ser.ser.ser.ser.ser.RAM, DISCODURO = ser.ser.ser.ser.ser.ser.DISCO_DURO, IdSO = ser.ser.ser.ser.ser.so.ID_SO,
+                SO = ser.ser.ser.ser.ser.so.NOMBRE_SO, idTipo = ser.ser.tp.ID_TIPO, tipo = ser.ser.tp.TIPO1, idTipoNivel = ser.ser.ser.tn.ID_TIPO_NIVEL,
+                TipoNivel = ser.ser.ser.tn.TIPO_NIVEL1, idDocumento = doc.ID_DOCUMENTO, URL = doc.URL_DOCUMENTO, FUNCIONARIO_NOMBRE = ser.ser.ser.ser.ser.ser.MODULO.FUNCIONARIO.NOMBRE,FUNCIONARIO_APELLIDO = ser.ser.ser.ser.ser.ser.MODULO.FUNCIONARIO.APELLIDO,
+                    ID_RACK =ser.ser.ser.ser.ra.ID_RACK,SALA_SERVIDOR = ser.sala.NOMBRE_SALA,PISO_SALA=ser.sala.PISO,RUT_RESPONSABLE = ser.ser.ser.ser.ser.ser.MODULO.RUT_FUNC_ADMIN,CONTRASENA = ser.ser.ser.ser.ser.ser.HASH_PASS_SERVIDOR.HAS_PASS});
 
             foreach(var result in listadoServidorDALC)
             {
@@ -170,7 +170,7 @@ namespace Biblioteca.Negocio.DAO
                 objDTO.SistemaOperativo.Nombre_sistema = result.SO; objDTO.Tipo.Id_tipo = int.Parse(result.idTipo.ToString()); objDTO.Tipo._Tipo = result.tipo; objDTO.TipoNivel.Id_tipoNivel = int.Parse(result.idTipoNivel.ToString());
                 objDTO.TipoNivel.Tipo_nivel = result.TipoNivel;objDTO.Documento.Id_documento = int.Parse(result.idDocumento.ToString());objDTO.Documento.Url_documento = result.URL;objDTO.Rack.Id_rack = int.Parse(result.ID_RACK.ToString());
                 objDTO.SalaServidores.Nombre_sala = result.SALA_SERVIDOR;objDTO.SalaServidores.Piso = int.Parse(result.PISO_SALA.ToString());objDTO.Servidor.Rut_administrador = result.RUT_RESPONSABLE;
-                objDTO.HashPassModulo.Hash_pass = DesencriptarPasswordBaseDeDatos(result.CONTRASENA);
+                objDTO.HashPassModulo.Hash_pass = DesencriptarPasswordBaseDeDatos(result.CONTRASENA); objDTO.Funcionario.Nombre = result.FUNCIONARIO_NOMBRE;objDTO.Funcionario.Apellido = result.FUNCIONARIO_APELLIDO;
                 listadoServidores.Add(objDTO);
             }
 
@@ -183,7 +183,7 @@ namespace Biblioteca.Negocio.DAO
             List<Servidor> listServidorApp = new List<Servidor>();
             List<SERVIDOR> listadoServidorAplicacionesDALC = CommonBC.HomeroSystemEntities.SERVIDOR.Where
                 (
-                  ser => ser.ID_TIPO == 1
+                  ser => ser.ID_TIPO == 1 || ser.ID_TIPO == 3
                 ).ToList();
 
             foreach(SERVIDOR servidor in listadoServidorAplicacionesDALC)
@@ -191,6 +191,8 @@ namespace Biblioteca.Negocio.DAO
                 Servidor objservidor = new Servidor();
                 objservidor.Codigo = servidor.COD_SERVIDOR;
                 objservidor.Nombre = servidor.MODULO.NOMBRE;
+                objservidor.Id_tipo =int.Parse(servidor.ID_TIPO.ToString());
+                objservidor.Id_tipo_nivel = int.Parse(servidor.ID_TIPO_NIVEL.ToString());
                 listServidorApp.Add(objservidor);
             }
 

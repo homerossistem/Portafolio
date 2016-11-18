@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteca.Negocio.Clases;
 using Biblioteca.DALC;
+using System.Data.Entity.Infrastructure;
 
 namespace Biblioteca.Negocio.DAO
 {
@@ -50,20 +51,40 @@ namespace Biblioteca.Negocio.DAO
             }
         }
 
-        public bool EliminarSalaServidor(SalaServidores _salaServidores)
+        public bool EliminarSalaServidor(int idSalaServidor)
         {
-            try
-            {
-                SALA_SERVIDORES sala = CommonBC.HomeroSystemEntities.SALA_SERVIDORES.First
-                    (
-                        sa => sa.ID_SALA_SERVIDOR == _salaServidores.Id_salaServidor
-                    );
+            int resultado = 0;
+            SALA_SERVIDORES sala = CommonBC.HomeroSystemEntities.SALA_SERVIDORES.First
+                   (
+                       sa => sa.ID_SALA_SERVIDOR == idSalaServidor
+                   );
 
-                CommonBC.HomeroSystemEntities.SALA_SERVIDORES.Remove(sala);
-                CommonBC.HomeroSystemEntities.SaveChanges();
-                return true;
+            CommonBC.HomeroSystemEntities.SALA_SERVIDORES.Remove(sala);
+            bool saveFailed;
+            if (sala.RACK.Count==0) { 
+            do
+            {
+                saveFailed = false;
+                try
+                {
+                    CommonBC.HomeroSystemEntities.SaveChanges();
+                }
+                catch (DbUpdateException exx)
+                {
+                    saveFailed = true;
+                    exx.Entries.Single().Reload();
+                    resultado = 1;
+                }
+
+            } while (saveFailed);
+        }else
+            {
+                resultado = 1;
             }
-            catch
+            if(resultado == 0)
+            {
+                return true;
+            } else
             {
                 return false;
             }

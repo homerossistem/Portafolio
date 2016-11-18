@@ -229,8 +229,17 @@ namespace WSHomeroSystem
         {
             return objBaseDatosDAO.ListadoBaseDeDatos();
         }
+        public List<DTO> ListBaseDeDatos()
+        {
+            return objBaseDatosDAO.ListBaseDeDatos();
+        }
         #endregion
         #region Agregar,Modificar,listado Servicio
+
+        public bool ModificarServicio(Servicio objservicio, List<string> codBaseDatos)
+        {
+            return objServicioDAO.ModificarServicio(objservicio, codBaseDatos);
+        }
         public string AgregarServicio(Servicio objServicio,List<string>listadoCodBaseDatos)
         {
             string mensaje = "";
@@ -350,6 +359,10 @@ namespace WSHomeroSystem
 
             return mensaje;
         }
+        public List<Sistema> listadoSistemas()
+        {
+            return objSistemaDAO.listadoSistemas();
+        }
         #endregion
         #region listadoRol,listado equipo,listado Lenguajes,metodos Documento
         public List<Rol> listadoRol()
@@ -388,6 +401,11 @@ namespace WSHomeroSystem
         {
             return objServicioDAO.listadoTipoServicio();
         }
+
+        public bool EliminarLenguaje(int idLenguaje)
+        {
+            return objLenguajeDAO.EliminarLenguaje(idLenguaje);
+        }
         #endregion
         #region Sala Servidores
         public List<SalaServidores> ListadoSalaServidores()
@@ -410,6 +428,10 @@ namespace WSHomeroSystem
         public bool ValidarSalaServidoxrNombre(string nombre_salaServidor)
         {
             return objSalaServidoresDao.ValidarSalaServidoxrNombre(nombre_salaServidor);
+        }
+        public bool EliminarSalaServidor(int idSalaServidor)
+        {
+            return objSalaServidoresDao.EliminarSalaServidor(idSalaServidor);
         }
         #endregion
         #region Agregar,Modificar,listado,Buscar, Eliminar Proveedor
@@ -496,11 +518,12 @@ namespace WSHomeroSystem
             return objSistemaDAO.ListadoSistemasbyEquipoTrabajo(id_equipoTrabajo, id_rol);
         }
 
+       
 
-        public List<Sistema> listadoSistemas()
-        {
-            return objSistemaDAO.listadoSistemas();
-        }
+
+
+
+
 
 
 

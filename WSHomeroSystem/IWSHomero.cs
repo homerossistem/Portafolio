@@ -136,6 +136,14 @@ namespace WSHomeroSystem
         bool EliminarServidorPorCodigo(string codigoServidor);
         [OperationContract]
         List<Sistema> listadoSistemas();
+        [OperationContract]
+        bool ModificarServicio(Servicio objservicio, List<string> codBaseDatos);
+        [OperationContract]
+       bool EliminarLenguaje(int idLenguaje);
+        [OperationContract]
+        bool EliminarSalaServidor(int idSalaServidor);
+        [OperationContract]
+        List<DTO> ListBaseDeDatos();
 
     }
 }

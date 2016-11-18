@@ -38,6 +38,7 @@ namespace Biblioteca.Negocio.DTOs
         private TipoServicio _tipoServicio;
         private Usuario _usuario;
         private Modulo modulo;
+        private MotorBD motorBD;
 
         public AdministradorModulos AdministrarModulo
         {
@@ -402,6 +403,19 @@ namespace Biblioteca.Negocio.DTOs
             }
         }
 
+        public MotorBD MotorBD
+        {
+            get
+            {
+                return motorBD;
+            }
+
+            set
+            {
+                motorBD = value;
+            }
+        }
+
         public DTO()
         {
             this.Init();
@@ -437,6 +451,7 @@ namespace Biblioteca.Negocio.DTOs
             this.Usuario = new Usuario();
             this.Modulo = new Modulo();
             this.Usuario = new Usuario();
+            this.MotorBD = new MotorBD();
     }
         
     }

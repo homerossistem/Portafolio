@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteca.Negocio.Clases;
 using Biblioteca.DALC;
+using System.Data.Entity.Infrastructure;
+
 namespace Biblioteca.Negocio.DAO
 {
     public class LenguajeDAO
@@ -18,12 +20,12 @@ namespace Biblioteca.Negocio.DAO
                 CommonBC.HomeroSystemEntities.SaveChanges();
 
                 return true;
-            }catch
+            } catch
             {
                 return false;
             }
 
-            
+
         }
         public List<Lenguaje> listadoLenguajes()
         {
@@ -45,6 +47,46 @@ namespace Biblioteca.Negocio.DAO
             }
 
             return listadoLenguaje;
+        }
+
+        public bool EliminarLenguaje(int idLenguaje)
+        {
+            int resultado = 0;
+            LENGUAJE objLenguajeDALC = CommonBC.HomeroSystemEntities.LENGUAJE.First
+                (
+                   lengu => lengu.ID_LENGUAJE == idLenguaje
+                );
+            if (objLenguajeDALC.SERVICIOS.Count == 0 && objLenguajeDALC.SISTEMA.Count == 0)
+            {
+                CommonBC.HomeroSystemEntities.LENGUAJE.Remove(objLenguajeDALC);
+                bool saveFailed;
+                do
+                {
+                    saveFailed = false;
+                    try
+                    {
+                        CommonBC.HomeroSystemEntities.SaveChanges();
+                    }
+                    catch (DbUpdateException exx)
+                    {
+                        saveFailed = true;
+                        exx.Entries.Single().Reload();
+                        resultado = 1;
+                    }
+
+                } while (saveFailed);
+            }else
+            {
+                resultado = 1;
+            }
+            if(resultado == 0)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+
         }
     }
 }
