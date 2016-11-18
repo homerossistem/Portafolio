@@ -70,9 +70,7 @@ namespace Biblioteca.Negocio.DAO
             ORGANIZACION objOrg = CommonBC.HomeroSystemEntities.ORGANIZACION.First(org => org.ID_ORGANIZACION == id_organizacion);
             int resultado = 0;
             if (objOrg != null)
-            {
-                if (objOrg.SISTEMA.Count == 0)
-                {
+            {         
                     CommonBC.HomeroSystemEntities.ORGANIZACION.Remove(objOrg);
                     bool saveFailed;
                     do
@@ -91,7 +89,6 @@ namespace Biblioteca.Negocio.DAO
 
                     } while (saveFailed);
                 }
-            }
             if(resultado == 0)
             {
                 return true;

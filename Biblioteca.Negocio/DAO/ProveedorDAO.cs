@@ -83,7 +83,11 @@ namespace Biblioteca.Negocio.DAO
 
                     } while (saveFailed);
                 }
-               
+                else
+                {
+                    resultado = 1;
+                }
+
             }
             if(resultado == 0)
             {

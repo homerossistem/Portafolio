@@ -134,7 +134,8 @@ namespace WSHomeroSystem
 
         [OperationContract]
         bool EliminarServidorPorCodigo(string codigoServidor);
-
+        [OperationContract]
+        List<Sistema> listadoSistemas();
 
     }
 }

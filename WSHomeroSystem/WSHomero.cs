@@ -496,13 +496,16 @@ namespace WSHomeroSystem
             return objSistemaDAO.ListadoSistemasbyEquipoTrabajo(id_equipoTrabajo, id_rol);
         }
 
-   
 
-     
-        
-       
+        public List<Sistema> listadoSistemas()
+        {
+            return objSistemaDAO.listadoSistemas();
+        }
 
-      
+
+
+
+
 
 
 

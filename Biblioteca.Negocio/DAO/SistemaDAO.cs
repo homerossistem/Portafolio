@@ -106,6 +106,37 @@ namespace Biblioteca.Negocio.DAO
             return listadoSistema;
         }
 
+        public List<Sistema> listadoSistemas()
+        {
+            List<Sistema> listadoSistemas = new List<Sistema>();
+            try
+            {
+                
+                List<SISTEMA> listadoSistemasDALC = CommonBC.HomeroSystemEntities.SISTEMA.ToList();
+                foreach(SISTEMA sistema in listadoSistemasDALC)
+                {
+                    Sistema objSistema = new Sistema();
+                    objSistema.Codigo = sistema.CODIGO_SISTEMA;
+                    objSistema.Codigo_servidor = sistema.COD_SERVIDOR;
+                    objSistema.Descripcion = sistema.DESCRIPCION;
+                    objSistema.Nombre = sistema.MODULO.NOMBRE;
+                    objSistema.Garantia = int.Parse(sistema.MODULO.GARANTIA.ToString());
+                    objSistema.Id_documento = int.Parse(sistema.MODULO.ID_DOCUMENTO.ToString());
+                    objSistema.Id_lenguaje = int.Parse(sistema.ID_LENGUAJE.ToString());
+                    objSistema.Id_proveedor = int.Parse(sistema.MODULO.ID_PROVEEDOR.ToString());
+                    objSistema.Id_seguridad = int.Parse(sistema.ID_SEGURIDAD.ToString());
+                    objSistema.Id_sensibilidad = int.Parse(sistema.ID_SENSIBILIDAD.ToString());
+                    objSistema.Rut_administrador = sistema.MODULO.RUT_FUNC_ADMIN;
+                    listadoSistemas.Add(objSistema);
+                }
+            }catch
+            {
+                return null;
+            }
+
+            return listadoSistemas;
+        }
+
 
 
         string key = "homerosystem";
