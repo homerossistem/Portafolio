@@ -67,17 +67,40 @@ namespace Biblioteca.Negocio.DAO
 
         }
 
-        public EquipoTrabajo buscarEquipo(String nombre)
+        public bool ModificarEquipoTrabajo(EquipoTrabajo eqt)
+        {
+            try {
+                EQUIPO_TRABAJO equipoDALC = CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.First
+                       (
+                           equ => equ.ID_EQUIPO_TRABAJO == eqt.Id_equipo
+                       );
+                equipoDALC.NOMBRE_EQUIPO = eqt.Nombre_equipo;
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }catch
+            {
+                return false;
+            }
+        }
+
+        public EquipoTrabajo BuscarEquipo(int id)
         {
             EquipoTrabajo equipo = new EquipoTrabajo();
-            EQUIPO_TRABAJO equipoDALC = CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.First
-                (
-                    equ => equ.NOMBRE_EQUIPO == nombre
-                );
-            equipo.Id_equipo = int.Parse(equipoDALC.ID_EQUIPO_TRABAJO.ToString());
-            equipo.Nombre_equipo = equipoDALC.NOMBRE_EQUIPO;
+            try
+            {
+                EQUIPO_TRABAJO equipoDALC = CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.First
+                    (
+                        equ => equ.ID_EQUIPO_TRABAJO == id
+                    );
+                equipo.Id_equipo = int.Parse(equipoDALC.ID_EQUIPO_TRABAJO.ToString());
+                equipo.Nombre_equipo = equipoDALC.NOMBRE_EQUIPO;
+                return equipo;
+            }
+            catch
+            {
+                return null;
+            }
 
-            return equipo;
         }
 
 
@@ -89,10 +112,15 @@ namespace Biblioteca.Negocio.DAO
                     (
                         equ => equ.ID_EQUIPO_TRABAJO == _equipoTrabajo.Id_equipo
                     );
-
-                CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.Remove(equipo);
-                CommonBC.HomeroSystemEntities.SaveChanges();
-                return true;
+                if (equipo.FUNCIONARIO.Count == 0)
+                {
+                    CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.Remove(equipo);
+                    CommonBC.HomeroSystemEntities.SaveChanges();
+                    return true;
+                }else
+                {
+                    return false;
+                }
             }
             catch
             {

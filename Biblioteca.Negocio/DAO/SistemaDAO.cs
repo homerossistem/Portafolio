@@ -236,5 +236,33 @@ namespace Biblioteca.Negocio.DAO
 
             return objSistema;
         }
+
+        public Sistema BuscarSistema(string CodigoSistema)
+        {
+            Sistema objSistema = new Sistema();
+            try
+            {
+                SISTEMA objSistemaDALC = CommonBC.HomeroSystemEntities.SISTEMA.First
+                    (
+                       sis => sis.CODIGO_SISTEMA == CodigoSistema
+                    );
+                objSistema.Codigo = objSistemaDALC.CODIGO_SISTEMA;
+                objSistema.Codigo_servidor = objSistemaDALC.COD_SERVIDOR;
+                objSistema.Descripcion = objSistemaDALC.DESCRIPCION;
+                objSistema.Garantia = int.Parse(objSistemaDALC.MODULO.GARANTIA.ToString());
+                objSistema.Id_documento = int.Parse(objSistemaDALC.MODULO.ID_DOCUMENTO.ToString());
+                objSistema.Id_lenguaje = int.Parse(objSistemaDALC.ID_LENGUAJE.ToString());
+                objSistema.Id_proveedor = int.Parse(objSistemaDALC.MODULO.ID_PROVEEDOR.ToString());
+                objSistema.Id_seguridad = int.Parse(objSistemaDALC.ID_SEGURIDAD.ToString());
+                objSistema.Id_sensibilidad = int.Parse(objSistemaDALC.ID_SENSIBILIDAD.ToString());
+                objSistema.Nombre = objSistemaDALC.MODULO.NOMBRE;
+                objSistema.Rut_administrador = objSistemaDALC.MODULO.RUT_FUNC_ADMIN;
+
+                return objSistema;
+            }catch
+            {
+                return null;
+            }
+        }
     }
 }

@@ -159,7 +159,7 @@ namespace Biblioteca.Negocio.DAO
                 IP = ser.ser.ser.ser.ser.ser.IP, RAM = ser.ser.ser.ser.ser.ser.RAM, DISCODURO = ser.ser.ser.ser.ser.ser.DISCO_DURO, IdSO = ser.ser.ser.ser.ser.so.ID_SO,
                 SO = ser.ser.ser.ser.ser.so.NOMBRE_SO, idTipo = ser.ser.tp.ID_TIPO, tipo = ser.ser.tp.TIPO1, idTipoNivel = ser.ser.ser.tn.ID_TIPO_NIVEL,
                 TipoNivel = ser.ser.ser.tn.TIPO_NIVEL1, idDocumento = doc.ID_DOCUMENTO, URL = doc.URL_DOCUMENTO, FUNCIONARIO_NOMBRE = ser.ser.ser.ser.ser.ser.MODULO.FUNCIONARIO.NOMBRE,FUNCIONARIO_APELLIDO = ser.ser.ser.ser.ser.ser.MODULO.FUNCIONARIO.APELLIDO,
-                    ID_RACK =ser.ser.ser.ser.ra.ID_RACK,SALA_SERVIDOR = ser.sala.NOMBRE_SALA,PISO_SALA=ser.sala.PISO,RUT_RESPONSABLE = ser.ser.ser.ser.ser.ser.MODULO.RUT_FUNC_ADMIN,CONTRASENA = ser.ser.ser.ser.ser.ser.HASH_PASS_SERVIDOR.HAS_PASS});
+                    ID_RACK =ser.ser.ser.ser.ra.ID_RACK,SALA_SERVIDOR = ser.sala.NOMBRE_SALA,PISO_SALA=ser.sala.PISO,RUT_RESPONSABLE = ser.ser.ser.ser.ser.ser.MODULO.RUT_FUNC_ADMIN,CONTRASENA = ser.ser.ser.ser.ser.ser.HASH_PASS_SERVIDOR.HAS_PASS,PROVEEDOR = ser.ser.ser.ser.ser.ser.MODULO.ID_PROVEEDOR});
 
             foreach(var result in listadoServidorDALC)
             {
@@ -171,6 +171,7 @@ namespace Biblioteca.Negocio.DAO
                 objDTO.TipoNivel.Tipo_nivel = result.TipoNivel;objDTO.Documento.Id_documento = int.Parse(result.idDocumento.ToString());objDTO.Documento.Url_documento = result.URL;objDTO.Rack.Id_rack = int.Parse(result.ID_RACK.ToString());
                 objDTO.SalaServidores.Nombre_sala = result.SALA_SERVIDOR;objDTO.SalaServidores.Piso = int.Parse(result.PISO_SALA.ToString());objDTO.Servidor.Rut_administrador = result.RUT_RESPONSABLE;
                 objDTO.HashPassModulo.Hash_pass = DesencriptarPasswordBaseDeDatos(result.CONTRASENA); objDTO.Funcionario.Nombre = result.FUNCIONARIO_NOMBRE;objDTO.Funcionario.Apellido = result.FUNCIONARIO_APELLIDO;
+                objDTO.Servidor.Id_proveedor = int.Parse(result.PROVEEDOR.ToString());
                 listadoServidores.Add(objDTO);
             }
 
@@ -198,7 +199,26 @@ namespace Biblioteca.Negocio.DAO
 
             return listServidorApp;
         }
+        public List<Servidor> listadoServidorBaseDeDatos()
+        {
+            List<Servidor> listServidorApp = new List<Servidor>();
+            List<SERVIDOR> listadoServidorAplicacionesDALC = CommonBC.HomeroSystemEntities.SERVIDOR.Where
+                (
+                  ser => ser.ID_TIPO == 2 || ser.ID_TIPO == 4
+                ).ToList();
 
+            foreach (SERVIDOR servidor in listadoServidorAplicacionesDALC)
+            {
+                Servidor objservidor = new Servidor();
+                objservidor.Codigo = servidor.COD_SERVIDOR;
+                objservidor.Nombre = servidor.MODULO.NOMBRE;
+                objservidor.Id_tipo = int.Parse(servidor.ID_TIPO.ToString());
+                objservidor.Id_tipo_nivel = int.Parse(servidor.ID_TIPO_NIVEL.ToString());
+                listServidorApp.Add(objservidor);
+            }
+
+            return listServidorApp;
+        }
         public Servidor BuscarServidorPorCod(string codigo_servidor)
         {
             SERVIDOR objServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.First(serv => serv.COD_SERVIDOR == codigo_servidor);

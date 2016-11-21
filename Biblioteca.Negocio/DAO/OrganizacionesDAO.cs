@@ -129,6 +129,7 @@ namespace Biblioteca.Negocio.DAO
         }
         public Organizacion BuscarOrganizacion(int id_Org)
         {
+            SistemaDAO objSistemaDAO = new SistemaDAO();
             Organizacion _objOrg = null;
             ORGANIZACION objOrg= CommonBC.HomeroSystemEntities.ORGANIZACION.First(org => org.ID_ORGANIZACION == id_Org);
             if (objOrg != null)
@@ -139,6 +140,13 @@ namespace Biblioteca.Negocio.DAO
                 _objOrg.Direccion = objOrg.DIRECCION;
                 _objOrg.Telefono = int.Parse(objOrg.TELEFONO.ToString());
                 _objOrg.Email = objOrg.EMAIL;
+                if (objOrg.SISTEMA.Count > 0)
+                {
+                    foreach (SISTEMA sr in objOrg.SISTEMA)
+                    {
+                        _objOrg.ListadoSistemas.Add(objSistemaDAO.BuscarSistema(sr.CODIGO_SISTEMA));
+                    }
+                }
 
             }
             return _objOrg;

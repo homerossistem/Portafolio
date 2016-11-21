@@ -7,6 +7,7 @@ using Biblioteca.DALC;
 using Biblioteca.Negocio.Clases;
 using System.Security.Cryptography;
 using Biblioteca.Negocio.DTOs;
+using System.Data.Entity.Infrastructure;
 
 namespace Biblioteca.Negocio.DAO
 {
@@ -22,7 +23,9 @@ namespace Biblioteca.Negocio.DAO
                 objModuloDALC.COD_MODULO = codigoGenerado;
                 objModuloDALC.NOMBRE = _objBaseDatos.Nombre;
                 objModuloDALC.GARANTIA = _objBaseDatos.Garantia;
+                objModuloDALC.ID_PROVEEDOR = _objBaseDatos.Id_proveedor;
                 objModuloDALC.ID_DOCUMENTO = _objBaseDatos.Id_documento;
+                objModuloDALC.RUT_FUNC_ADMIN = _objBaseDatos.Rut_administrador;
                 HASH_PASS_BASE_DATOS objHashPassDALC = new HASH_PASS_BASE_DATOS();
                 objHashPassDALC.COD_MODULO = codigoGenerado;
                 objHashPassDALC.HASH_PASS = EncriptarPasswordBaseDeDatos(_hashBaseDatos.Hash_pass);
@@ -195,5 +198,86 @@ namespace Biblioteca.Negocio.DAO
 
             return listadoBasesDeDatos;
         }
+        public bool EliminarBaseDeDatosPorCodigo(string codigobd)
+        {
+            int resultado = 0;
+            BASE_DATOS objBaseDatosDALC = CommonBC.HomeroSystemEntities.BASE_DATOS.First
+                    (bd => bd.COD_BASE_DATOS == codigobd); ;
+            MODULO objModuloDALC = null;
+            HASH_PASS_BASE_DATOS objHashPassDALC = null;
+            objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First
+                (
+                bd => bd.COD_MODULO == codigobd
+                );
+            objHashPassDALC = CommonBC.HomeroSystemEntities.HASH_PASS_BASE_DATOS.First(hash => hash.COD_MODULO == codigobd);
+            CommonBC.HomeroSystemEntities.HASH_PASS_BASE_DATOS.Remove(objHashPassDALC);
+            CommonBC.HomeroSystemEntities.BASE_DATOS.Remove(objBaseDatosDALC);
+            CommonBC.HomeroSystemEntities.MODULO.Remove(objModuloDALC);
+            bool saveFailed;
+            do
+            {
+                saveFailed = false;
+
+                try
+                {
+                    CommonBC.HomeroSystemEntities.SaveChanges();
+                }
+                catch (DbUpdateException exx)
+                {
+                    saveFailed = true;
+                    CommonBC.HomeroSystemEntities.Entry(objModuloDALC).Reload();
+                    CommonBC.HomeroSystemEntities.Entry(objBaseDatosDALC).Reload();
+                    CommonBC.HomeroSystemEntities.Entry(objHashPassDALC).Reload();
+                    resultado = 1;
+                    exx.Entries.Single().Reload();
+                }
+
+            } while (saveFailed);
+
+            if (resultado == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        //metodos para agrear,modificar,listar y eliminar para el mantenedor de MotorBD
+
+        public bool AgregarMotorBaseDeDatos(MotorBD objMotorBD)
+        {
+            try {
+                MOTOR_BASE_DATOS objMotorBDDALC = new MOTOR_BASE_DATOS();
+                objMotorBDDALC.NOMBRE_MOTOR = objMotorBD.Motor;
+                CommonBC.HomeroSystemEntities.MOTOR_BASE_DATOS.Add(objMotorBDDALC);
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }catch
+            {
+                return false;
+            }
+
+        }
+        
+        
+        public List<MotorBD> ListadoMotorBaseDeDatos()
+        {
+            List<MotorBD> listadoMotorBD = new List<MotorBD>();
+            List<MOTOR_BASE_DATOS> listadoMotorBDDACL = CommonBC.HomeroSystemEntities.MOTOR_BASE_DATOS.ToList();
+            foreach(MOTOR_BASE_DATOS mbd in listadoMotorBDDACL)
+            {
+                MotorBD objMotorBD = new MotorBD();
+                objMotorBD.Id_motor = int.Parse(mbd.ID_MOTOR.ToString());
+                objMotorBD.Motor = mbd.NOMBRE_MOTOR;
+
+                listadoMotorBD.Add(objMotorBD);
+            }
+
+            return listadoMotorBD;
+        }
+
+       
     }
 }

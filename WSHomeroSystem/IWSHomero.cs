@@ -98,7 +98,7 @@ namespace WSHomeroSystem
         [OperationContract]
         bool ExisteEquipo(String nombre);
         [OperationContract]
-        EquipoTrabajo buscarEquipo(String nombre);
+        EquipoTrabajo BuscarEquipo(int id);
         [OperationContract]
         bool eliminarEquipo(EquipoTrabajo _equipoTrabajo);
         [OperationContract]
@@ -144,6 +144,15 @@ namespace WSHomeroSystem
         bool EliminarSalaServidor(int idSalaServidor);
         [OperationContract]
         List<DTO> ListBaseDeDatos();
+        [OperationContract]
+        List<MotorBD> ListadoMotorBaseDeDatos();
+        [OperationContract]
+        List<Servidor> listadoServidorBaseDeDatos();
+        [OperationContract]
+        bool EliminarBaseDeDatosPorCodigo(string codigobd);
+        [OperationContract]
+        bool ModificarEquipoTrabajo(EquipoTrabajo eqt);
+
 
     }
 }

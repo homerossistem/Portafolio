@@ -35,7 +35,7 @@ namespace WSHomeroSystem
         #region Metodos Web Service
         #region Metodos Rack
         public bool AgregarRack(Rack _rack)
-        {            
+        {
             return objRackDAO.AgregarRack(_rack);
         }
 
@@ -67,9 +67,9 @@ namespace WSHomeroSystem
 
         #endregion
         #region Agregar,Listra,Modificar,Eliminar,IniciarSession Usuarios
-        public string AgregarUsuario(Usuario objusuario, HashPass objHashPass,Funcionario objFuncionario)
+        public string AgregarUsuario(Usuario objusuario, HashPass objHashPass, Funcionario objFuncionario)
         {
-            
+
             string msj = "";
             try
             {
@@ -107,13 +107,13 @@ namespace WSHomeroSystem
                 {
                     msj = string.Format("El Rut {0} No es valido", objFuncionario.Rut_funcionario);
                 }
-            }catch(ArgumentException arge)
+            } catch (ArgumentException arge)
             {
                 msj = arge.Message;
             }
 
             return msj;
-            
+
         }
         public bool EliminarUsuario(int id_usuario)
         {
@@ -122,8 +122,8 @@ namespace WSHomeroSystem
         public DTO IniciarSession(string usuario, string pass)
         {
             string hash_pass = objHashPassDAO.GeneradorPasswordsMD5(pass);
-            DTO objDto = objUsuarioDAO.BuscarUsuarioLogin(usuario,hash_pass);
-           
+            DTO objDto = objUsuarioDAO.BuscarUsuarioLogin(usuario, hash_pass);
+
             if (objDto != null)
             {
                 return objDto;
@@ -137,10 +137,10 @@ namespace WSHomeroSystem
         public DTO BuscarUsuarioPorId(int id_usuario)
         {
             DTO objDto = objUsuarioDAO.BuscarUsuarioPorId(id_usuario);
-            if(objDto != null)
+            if (objDto != null)
             {
                 return objDto;
-            }else
+            } else
             {
                 return null;
             }
@@ -160,11 +160,11 @@ namespace WSHomeroSystem
         }
         #endregion
         #region Agregar,Listra,Ticket
-        public string AgregarTicket(Ticket objTicket, int id_equipoTrabajo,string nombre_funcionario)
+        public string AgregarTicket(Ticket objTicket, int id_equipoTrabajo, string nombre_funcionario)
         {
             string mensaje = "";
             try {
-                if(objTicketDAO.AgregarTicket(objTicket,id_equipoTrabajo,nombre_funcionario))
+                if (objTicketDAO.AgregarTicket(objTicket, id_equipoTrabajo, nombre_funcionario))
                 {
                     mensaje = "Ticket ingresado exitosamente";
                 }
@@ -172,11 +172,11 @@ namespace WSHomeroSystem
                 {
                     mensaje = "Error al ingresar el ticket";
                 }
-            }catch(ArgumentException argn)
+            } catch (ArgumentException argn)
             {
                 mensaje = argn.Message;
             }
-            
+
             return mensaje;
         }
         public string AgregarSolucionTicket(SolucionTicket _solucionTicket)
@@ -207,7 +207,7 @@ namespace WSHomeroSystem
         }
         #endregion
         #region Agregar,Modificar,listado Base Datos
-        public string AgregarBaseDatos(BaseDeDatos _objBaseDatos,HashPassModulo _hashPass)
+        public string AgregarBaseDatos(BaseDeDatos _objBaseDatos, HashPassModulo _hashPass)
         {
             string mensaje = "";
             try
@@ -215,11 +215,11 @@ namespace WSHomeroSystem
                 if (objBaseDatosDAO.AgregarBaseDeDatos(_objBaseDatos, _hashPass))
                 {
                     mensaje = "Base De Datos Ingresada exitosamente";
-                }else
+                } else
                 {
                     mensaje = "Error al agregar una base de datos";
                 }
-            }catch(ArgumentException ae)
+            } catch (ArgumentException ae)
             {
                 mensaje = ae.Message;
             }
@@ -233,6 +233,15 @@ namespace WSHomeroSystem
         {
             return objBaseDatosDAO.ListBaseDeDatos();
         }
+        public List<MotorBD> ListadoMotorBaseDeDatos()
+        {
+            return objBaseDatosDAO.ListadoMotorBaseDeDatos();
+        }
+
+        public bool EliminarBaseDeDatosPorCodigo(string codigobd)
+        {
+            return objBaseDatosDAO.EliminarBaseDeDatosPorCodigo(codigobd);
+        }
         #endregion
         #region Agregar,Modificar,listado Servicio
 
@@ -240,18 +249,18 @@ namespace WSHomeroSystem
         {
             return objServicioDAO.ModificarServicio(objservicio, codBaseDatos);
         }
-        public string AgregarServicio(Servicio objServicio,List<string>listadoCodBaseDatos)
+        public string AgregarServicio(Servicio objServicio, List<string> listadoCodBaseDatos)
         {
             string mensaje = "";
             try {
-                if (objServicioDAO.agregarServicio(objServicio,listadoCodBaseDatos))
+                if (objServicioDAO.agregarServicio(objServicio, listadoCodBaseDatos))
                 {
                     mensaje = "Servicio Agregado Con Exito";
                 } else
                 {
                     mensaje = "Error Al Agregar Un Servicio";
                 }
-            }catch(ArgumentException ae)
+            } catch (ArgumentException ae)
             {
                 mensaje = ae.Message;
             }
@@ -291,7 +300,7 @@ namespace WSHomeroSystem
         }
         #endregion
         #region Agregar,Modificar,listado Servidor
-        public string AgregarServidor(Servidor objServidor,HashPassModulo hashServidor)
+        public string AgregarServidor(Servidor objServidor, HashPassModulo hashServidor)
         {
             string mensaje = "";
             try
@@ -304,7 +313,7 @@ namespace WSHomeroSystem
                 {
                     mensaje = "Error Al Agregar Un Servidor";
                 }
-            }catch(ArgumentException ae)
+            } catch (ArgumentException ae)
             {
                 mensaje = ae.Message;
             }
@@ -335,6 +344,11 @@ namespace WSHomeroSystem
         public bool EliminarServidorPorCodigo(string codigoServidor)
         {
             return objServidorDAO.EliminarServidorPorCodigo(codigoServidor);
+        }
+
+        public List<Servidor> listadoServidorBaseDeDatos()
+        {
+            return objServidorDAO.listadoServidorBaseDeDatos();
         }
         #endregion
         #region Agregar,Modificar,listado Sistema
@@ -463,7 +477,7 @@ namespace WSHomeroSystem
         #region Agregar,Modificar,listado,Buscar, Eliminar Organizaciones
         public bool AgregarOrganizacion(Organizacion _org, List<string> codSistema)
         {
-            return objOrganizacionDAO.AgregarOrganizacion(_org,codSistema);
+            return objOrganizacionDAO.AgregarOrganizacion(_org, codSistema);
         }
 
         public List<Organizacion> listadoOrganizaciones()
@@ -478,7 +492,7 @@ namespace WSHomeroSystem
 
         public bool ModificarOrganizacion(Organizacion _objOrg, List<string> codSistema)
         {
-            return objOrganizacionDAO.ModificarOrganizacion(_objOrg,codSistema);
+            return objOrganizacionDAO.ModificarOrganizacion(_objOrg, codSistema);
         }
 
         public Organizacion BuscarOrganizacion(int id_Org)
@@ -497,14 +511,18 @@ namespace WSHomeroSystem
             return objEquipoDAO.ExisteEquipo(nombre);
         }
 
-        public EquipoTrabajo buscarEquipo(string nombre)
+        public EquipoTrabajo BuscarEquipo(int id)
         {
-            return objEquipoDAO.buscarEquipo(nombre);
+            return objEquipoDAO.BuscarEquipo(id);
         }
 
         public bool eliminarEquipo(EquipoTrabajo _equipoTrabajo)
         {
             return objEquipoDAO.eliminarEquipo(_equipoTrabajo);
+        }
+        public bool ModificarEquipoTrabajo(EquipoTrabajo eqt)
+        {
+            return objEquipoDAO.ModificarEquipoTrabajo(eqt);
         }
         #endregion
         #endregion
@@ -518,21 +536,23 @@ namespace WSHomeroSystem
             return objSistemaDAO.ListadoSistemasbyEquipoTrabajo(id_equipoTrabajo, id_rol);
         }
 
-       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
+        }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

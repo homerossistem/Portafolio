@@ -14,6 +14,7 @@ namespace Biblioteca.Negocio.Clases
         private string direccion;
         private int telefono;
         private string email;
+        private List<Sistema> listadoSistemas;
 
 
 
@@ -82,6 +83,19 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public List<Sistema> ListadoSistemas
+        {
+            get
+            {
+                return listadoSistemas;
+            }
+
+            set
+            {
+                listadoSistemas = value;
+            }
+        }
+
         public Organizacion()
         {
             this.Init();
@@ -94,6 +108,7 @@ namespace Biblioteca.Negocio.Clases
             this.direccion = string.Empty;
             this.telefono = 0;
             this.email = string.Empty;
+            this.ListadoSistemas = new List<Sistema>();
         }
     }
 }
