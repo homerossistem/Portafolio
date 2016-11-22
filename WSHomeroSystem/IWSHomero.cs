@@ -152,7 +152,20 @@ namespace WSHomeroSystem
         bool EliminarBaseDeDatosPorCodigo(string codigobd);
         [OperationContract]
         bool ModificarEquipoTrabajo(EquipoTrabajo eqt);
-
+        [OperationContract]
+        bool AgregarMotorBaseDeDatos(MotorBD objMotorBD);
+        [OperationContract]
+        bool EliminarMotorBaseDatos(int id);
+        [OperationContract]
+        bool ModificarMotorBD(MotorBD objMotorBD);
+        [OperationContract]
+        MotorBD buscarMotorBDPorId(int id);
+        [OperationContract]
+        List<Sensibilidad> listadoSensibilidadSistema();
+        [OperationContract]
+        List<Seguridad> listadoSeguridadSistema();
+        [OperationContract]
+        List<Servicio> listadoDeServicios();
 
     }
 }

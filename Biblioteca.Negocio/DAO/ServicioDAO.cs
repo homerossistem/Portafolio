@@ -292,6 +292,35 @@ namespace Biblioteca.Negocio.DAO
             return objServicio;
         }
 
+        public List<Servicio> listadoDeServicios()
+        {
+            List<Servicio> listadoServicios = new List<Servicio>();
+            try
+            {
+                List<SERVICIOS> listadoServicioDALC = CommonBC.HomeroSystemEntities.SERVICIOS.ToList();
+                foreach(SERVICIOS servi in listadoServicioDALC)
+                {
+                    Servicio objServicio = new Servicio();
+                    objServicio.Codigo = servi.COD_SERVICIO;
+                    objServicio.Codigo_servidor = servi.COD_SERVIDOR;
+                    objServicio.Descripcion = servi.DESCRIPCION;
+                    objServicio.Nombre = servi.MODULO.NOMBRE;
+                    objServicio.Garantia = int.Parse(servi.MODULO.GARANTIA.ToString());
+                    objServicio.Id_documento = int.Parse(servi.MODULO.ID_DOCUMENTO.ToString());
+                    objServicio.Id_lenguaje = int.Parse(servi.ID_LENGUAJE.ToString());
+                    objServicio.Id_proveedor = int.Parse(servi.MODULO.ID_PROVEEDOR.ToString());
+                    objServicio.Id_tipo = int.Parse(servi.ID_TIPO.ToString());
+                    objServicio.Rut_administrador = servi.MODULO.RUT_FUNC_ADMIN;
+                    listadoServicios.Add(objServicio);
+                }
+            }catch
+            {
+                return null;
+            }
+
+            return listadoServicios;
+        }
+
        
     }
 }

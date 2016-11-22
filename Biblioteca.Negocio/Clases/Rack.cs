@@ -63,5 +63,15 @@ namespace Biblioteca.Negocio.Clases
             this.Unidad_rack = 0;
             this.Id_sala = 0;
         }
+
+        public string informacion()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("id : {0 }",Id_rack));
+            sb.Append(string.Format("unidad_rack:{0}", Unidad_rack));
+            sb.Append(string.Format("id_sala:{0}",Id_sala));
+
+            return sb.ToString();
+        }
     }
 }

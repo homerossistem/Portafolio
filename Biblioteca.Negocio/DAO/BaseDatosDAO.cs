@@ -260,6 +260,51 @@ namespace Biblioteca.Negocio.DAO
             }
 
         }
+
+        public bool EliminarMotorBaseDatos(int id)
+        {
+            try
+            {
+                MOTOR_BASE_DATOS objMotorBDDALC = CommonBC.HomeroSystemEntities.MOTOR_BASE_DATOS.First
+                    (
+                      mbd=>mbd.ID_MOTOR == id
+                    );
+
+                if(objMotorBDDALC.BASE_DATOS.Count == 0)
+                {
+                    CommonBC.HomeroSystemEntities.MOTOR_BASE_DATOS.Remove(objMotorBDDALC);
+                    CommonBC.HomeroSystemEntities.SaveChanges();
+                    return true;
+                }else
+                {
+                    return false;
+                }
+
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool ModificarMotorBD(MotorBD objMotorBD)
+        {
+            try
+            {
+                MOTOR_BASE_DATOS objMotorBDDALC = CommonBC.HomeroSystemEntities.MOTOR_BASE_DATOS.First
+                   (
+                     mbd => mbd.ID_MOTOR == objMotorBD.Id_motor
+                   );
+                objMotorBDDALC.NOMBRE_MOTOR = objMotorBD.Motor;
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+
+            }
+            catch
+            {
+                return false;
+            }
+        }
         
         
         public List<MotorBD> ListadoMotorBaseDeDatos()
@@ -276,6 +321,25 @@ namespace Biblioteca.Negocio.DAO
             }
 
             return listadoMotorBD;
+        }
+
+        public MotorBD buscarMotorBDPorId(int id)
+        {
+            try
+            {
+                MotorBD objMotor = new MotorBD();
+                MOTOR_BASE_DATOS objMotorDALC = CommonBC.HomeroSystemEntities.MOTOR_BASE_DATOS.First
+                    (
+                    mbd=>mbd.ID_MOTOR == id
+                    );
+                objMotor.Id_motor = int.Parse(objMotorDALC.ID_MOTOR.ToString());
+                objMotor.Motor = objMotorDALC.NOMBRE_MOTOR;
+                return objMotor;
+
+            }catch
+            {
+                return null;
+            }
         }
 
        

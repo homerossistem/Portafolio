@@ -298,6 +298,11 @@ namespace WSHomeroSystem
         {
             return objServicioDAO.EliminarServicio(CodServicio);
         }
+
+        public List<Servicio> listadoDeServicios()
+        {
+            return objServicioDAO.listadoDeServicios();
+        }
         #endregion
         #region Agregar,Modificar,listado Servidor
         public string AgregarServidor(Servidor objServidor, HashPassModulo hashServidor)
@@ -376,6 +381,14 @@ namespace WSHomeroSystem
         public List<Sistema> listadoSistemas()
         {
             return objSistemaDAO.listadoSistemas();
+        }
+        public List<Sensibilidad> listadoSensibilidadSistema()
+        {
+            return objSistemaDAO.listadoSensibilidadSistema();
+        }
+        public List<Seguridad> listadoSeguridadSistema()
+        {
+            return objSistemaDAO.listadoSeguridadSistema();
         }
         #endregion
         #region listadoRol,listado equipo,listado Lenguajes,metodos Documento
@@ -523,6 +536,24 @@ namespace WSHomeroSystem
         public bool ModificarEquipoTrabajo(EquipoTrabajo eqt)
         {
             return objEquipoDAO.ModificarEquipoTrabajo(eqt);
+        }
+        #endregion
+        #region motorBD
+        public bool AgregarMotorBaseDeDatos(MotorBD objMotorBD)
+        {
+            return objBaseDatosDAO.AgregarMotorBaseDeDatos(objMotorBD);
+        }
+        public bool EliminarMotorBaseDatos(int id)
+        {
+            return objBaseDatosDAO.EliminarMotorBaseDatos(id);
+        }
+        public bool ModificarMotorBD(MotorBD objMotorBD)
+        {
+            return objBaseDatosDAO.ModificarMotorBD(objMotorBD);
+        }
+        public MotorBD buscarMotorBDPorId(int id)
+        {
+            return objBaseDatosDAO.buscarMotorBDPorId(id);
         }
         #endregion
         #endregion

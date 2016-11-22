@@ -264,5 +264,47 @@ namespace Biblioteca.Negocio.DAO
                 return null;
             }
         }
+
+        public List<Sensibilidad> listadoSensibilidadSistema()
+        {
+            List<Sensibilidad> listadoSensibilidad = new List<Sensibilidad>();
+            try
+            {
+                List<SENSIBILIDAD> listadoSensibilidadDALC = CommonBC.HomeroSystemEntities.SENSIBILIDAD.ToList();
+                foreach(SENSIBILIDAD sen in listadoSensibilidadDALC)
+                {
+                    Sensibilidad objSensibilidad = new Sensibilidad();
+                    objSensibilidad.Id_sensibilidad = int.Parse(sen.ID_SENSIBILIDAD.ToString());
+                    objSensibilidad.Tipo_sensibilidad = sen.TIPO_SENSIBILIDAD;
+                    listadoSensibilidad.Add(objSensibilidad);
+                }
+            }catch
+            {
+                return null;
+            }
+            return listadoSensibilidad;
+        }
+
+        public List<Seguridad> listadoSeguridadSistema()
+        {
+            List<Seguridad> listadoSeguridad = new List<Seguridad>();
+            try
+            {
+                List<SEGURIDAD> listadoSeguridadDALC = CommonBC.HomeroSystemEntities.SEGURIDAD.ToList();
+                foreach (SEGURIDAD seg in listadoSeguridadDALC)
+                {
+                    Seguridad objSeguridad = new Seguridad();
+                    objSeguridad.Id_seguridad = int.Parse(seg.ID_SEGURIDAD.ToString());
+                    objSeguridad.Tipo_seguridad = seg.TIPO_SEGURIDAD;
+                    listadoSeguridad.Add(objSeguridad);
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            return listadoSeguridad;
+        }
     }
 }
