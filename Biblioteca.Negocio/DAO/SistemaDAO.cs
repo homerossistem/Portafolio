@@ -306,5 +306,43 @@ namespace Biblioteca.Negocio.DAO
 
             return listadoSeguridad;
         }
+
+        public Seguridad buscarSeguridad(int idSeguridad)
+        {
+            try
+            {
+                Seguridad objSeguridad = new Seguridad();
+                SEGURIDAD objSeguridadDALC = CommonBC.HomeroSystemEntities.SEGURIDAD.First
+                    (
+                       seg =>seg.ID_SEGURIDAD == idSeguridad
+                    );
+                objSeguridad.Id_seguridad = int.Parse(objSeguridadDALC.ID_SEGURIDAD.ToString());
+                objSeguridad.Tipo_seguridad = objSeguridadDALC.TIPO_SEGURIDAD;
+                return objSeguridad;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Sensibilidad buscarSensibilidad(int idsensibilidad)
+        {
+            try
+            {
+                Sensibilidad objSensibilidad = new Sensibilidad();
+                SENSIBILIDAD objsensibilidadDALC = CommonBC.HomeroSystemEntities.SENSIBILIDAD.First
+                    (
+                      sen=>sen.ID_SENSIBILIDAD == idsensibilidad
+                    );
+                objSensibilidad.Id_sensibilidad = int.Parse(objsensibilidadDALC.ID_SENSIBILIDAD.ToString());
+                objSensibilidad.Tipo_sensibilidad = objsensibilidadDALC.TIPO_SENSIBILIDAD;
+                return objSensibilidad;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

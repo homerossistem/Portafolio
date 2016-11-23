@@ -188,6 +188,8 @@ namespace WSHomeroSystem
         bool ModificarServidor(Servidor _servidor);
         [OperationContract]
         Lenguaje BuscarLenguaje(int idLenguaje);
+        [OperationContract]
+        MotorBD buscarMotorBDPorNombreMBD(string nombre);
 
     }
 }

@@ -388,7 +388,26 @@ namespace Biblioteca.Negocio.DAO
                 return null;
             }
         }
+        public MotorBD buscarMotorBDPorNombreMBD(string nombre)
+        {
+            try
+            {
+                MotorBD objMotor = new MotorBD();
+                MOTOR_BASE_DATOS objMotorDALC = CommonBC.HomeroSystemEntities.MOTOR_BASE_DATOS.First
+                    (
+                    mbd => mbd.NOMBRE_MOTOR == nombre
+                    );
+                objMotor.Id_motor = int.Parse(objMotorDALC.ID_MOTOR.ToString());
+                objMotor.Motor = objMotorDALC.NOMBRE_MOTOR;
+                return objMotor;
 
-       
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
     }
 }

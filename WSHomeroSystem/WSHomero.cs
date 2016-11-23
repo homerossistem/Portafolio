@@ -254,6 +254,10 @@ namespace WSHomeroSystem
         {
             return objBaseDatosDAO.ModificarBaseDeDatos(_objBaseDatos);
         }
+        public MotorBD buscarMotorBDPorNombreMBD(string nombre)
+        {
+            return objBaseDatosDAO.buscarMotorBDPorNombreMBD(nombre);
+        }
 
 
         #endregion
