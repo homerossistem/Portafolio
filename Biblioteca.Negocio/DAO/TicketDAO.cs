@@ -51,7 +51,10 @@ namespace Biblioteca.Negocio.DAO
                        fun => fun.ID_EQUIPO_TRABAJO == id_equipo_trabajo
 
                     ).ToList();
-
+                MODULO objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First
+                    (
+                      mo=>mo.COD_MODULO == objticket.Codigo_modulo
+                    );
                 Correo Correo = new Correo();
                 MailMessage mnsj = new MailMessage();
 
@@ -62,7 +65,12 @@ namespace Biblioteca.Negocio.DAO
                     mnsj.To.Add(objfuncionarioDALC.EMAIL);
                 }
                 mnsj.From = new MailAddress("homerossystem@gmail.com",string.Format("Homero System"));
-                mnsj.Body = string.Format("{0} - {1}\n\n {2}\n\n {3}\n\n\n  ATTE. {4} - {5} ",objticket.Codigo_modulo,objticket.Problema,objticket.FechaProblema,nombre_funcionario,objticket.Rut_funcionario);
+                mnsj.Body = string.Format("Codigo Modulo : {0}\n\r" +
+                                          "Nombre Modulo : {1}\n\r" +
+                                          "Problema      : {2}\n\r" +
+                                          "Fecha y Hora  : {3}\n\r" +
+                                          "Enviado Por   : {4} - {5}\n\r" +
+                                          "ATTE\n\r HOMERO SYSTEM", objticket.Codigo_modulo,objModuloDALC.NOMBRE,objticket.Problema,objticket.FechaProblema,nombre_funcionario, objticket.Rut_funcionario);
                 mnsj.IsBodyHtml = false;
                 Correo.EnviarCorreo(mnsj);
                 return true;

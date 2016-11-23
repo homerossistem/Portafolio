@@ -272,6 +272,8 @@ namespace Biblioteca.Negocio.DAO
             objServicio.Codigo_servidor = objServicioDALC.COD_SERVIDOR;
             objServicio.Id_lenguaje = int.Parse(objServicioDALC.ID_LENGUAJE.ToString());
             objServicio.Id_tipo = int.Parse(objServicioDALC.ID_TIPO.ToString());
+            objServicio.Id_proveedor = int.Parse(objServicioDALC.MODULO.ID_PROVEEDOR.ToString());
+            objServicio.Rut_administrador = objServicioDALC.MODULO.RUT_FUNC_ADMIN;
             if (objServicioDALC.BASE_DATOS.Count >= 0)
             {
                 foreach (BASE_DATOS baseDatos in objServicioDALC.BASE_DATOS)

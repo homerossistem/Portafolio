@@ -72,5 +72,29 @@ namespace Biblioteca.Negocio.DAO
 
             return listadoFuncionario;
         }
+
+        public Funcionario buscarFuncionarioPorRut(string rut)
+        {
+            try {
+                FUNCIONARIO objfuncionarioDALC = CommonBC.HomeroSystemEntities.FUNCIONARIO.First
+                    (
+                       fun => fun.RUT_FUNCIONARIO == rut
+                    );
+                Funcionario objFuncionario = new Funcionario();
+                objFuncionario.Rut_funcionario = objfuncionarioDALC.RUT_FUNCIONARIO;
+                objFuncionario.Nombre = objfuncionarioDALC.NOMBRE;
+                objFuncionario.Apellido = objfuncionarioDALC.APELLIDO;
+                objFuncionario.Celular = int.Parse(objfuncionarioDALC.CELULAR.ToString());
+                objFuncionario.Email = objfuncionarioDALC.EMAIL;
+                objFuncionario.Id_equipo_trabajo = int.Parse(objfuncionarioDALC.ID_EQUIPO_TRABAJO.ToString());
+                objFuncionario.Direccion = objfuncionarioDALC.DIRECION;
+                return objFuncionario;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
     }
 }

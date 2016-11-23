@@ -158,6 +158,10 @@ namespace WSHomeroSystem
         {
             return objUsuarioDAO.listadoUsuariosPorEquipoDeTrabajo(id_equipo);
         }
+        public Funcionario buscarFuncionarioPorRut(string rut)
+        {
+            return objFuncionarioDAO.buscarFuncionarioPorRut(rut);
+        }
         #endregion
         #region Agregar,Listra,Ticket
         public string AgregarTicket(Ticket objTicket, int id_equipoTrabajo, string nombre_funcionario)
@@ -242,6 +246,10 @@ namespace WSHomeroSystem
         {
             return objBaseDatosDAO.EliminarBaseDeDatosPorCodigo(codigobd);
         }
+        public BaseDeDatos BuscarBaseDeDatosPorCodigo(string codigo)
+        {
+            return objBaseDatosDAO.BuscarBaseDeDatosPorCodigo(codigo);
+        }
         #endregion
         #region Agregar,Modificar,listado Servicio
 
@@ -303,6 +311,10 @@ namespace WSHomeroSystem
         {
             return objServicioDAO.listadoDeServicios();
         }
+        public Servicio BuscarServicio(string codigoServicio)
+        {
+            return objServicioDAO.BuscarServicio(codigoServicio);
+        }
         #endregion
         #region Agregar,Modificar,listado Servidor
         public string AgregarServidor(Servidor objServidor, HashPassModulo hashServidor)
@@ -355,6 +367,22 @@ namespace WSHomeroSystem
         {
             return objServidorDAO.listadoServidorBaseDeDatos();
         }
+        public List<Servidor> ListDeServidor()
+        {
+            return objServidorDAO.ListDeServidor();
+        }
+        public Servidor BuscarServidorPorCod(string codigo_servidor)
+        {
+            return objServidorDAO.BuscarServidorPorCod(codigo_servidor);
+        }
+        public Tipo BuscarTipoServidor(int id)
+        {
+            return objServidorDAO.BuscarTipoServidor(id);
+        }
+        public SistemaOperativo BuscarSistemaOperativoPorId(int id)
+        {
+            return objServidorDAO.BuscarSistemaOperativoPorId(id);
+        }
         #endregion
         #region Agregar,Modificar,listado Sistema
         public string AgregarSistema(Sistema objSistema)
@@ -389,6 +417,10 @@ namespace WSHomeroSystem
         public List<Seguridad> listadoSeguridadSistema()
         {
             return objSistemaDAO.listadoSeguridadSistema();
+        }
+        public Sistema BuscarSistema(string CodigoSistema)
+        {
+            return objSistemaDAO.BuscarSistema(CodigoSistema);
         }
         #endregion
         #region listadoRol,listado equipo,listado Lenguajes,metodos Documento

@@ -17,6 +17,9 @@ namespace Biblioteca.Negocio.Clases
         private int id_tipo_nivel;
         private int id_tipo;
         private HashPassModulo objHashPass;
+        private List<Sistema> listadoSistemas;
+        private List<Servicio> listadoServicios;
+        private List<BaseDeDatos> listadoBaseDatos;
 
         public string Ip
         {
@@ -122,6 +125,45 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public List<Sistema> ListadoSistemas
+        {
+            get
+            {
+                return listadoSistemas;
+            }
+
+            set
+            {
+                listadoSistemas = value;
+            }
+        }
+
+        public List<Servicio> ListadoServicios
+        {
+            get
+            {
+                return listadoServicios;
+            }
+
+            set
+            {
+                listadoServicios = value;
+            }
+        }
+
+        public List<BaseDeDatos> ListadoBaseDatos
+        {
+            get
+            {
+                return listadoBaseDatos;
+            }
+
+            set
+            {
+                listadoBaseDatos = value;
+            }
+        }
+
         public Servidor()
         {
             this.Init();
@@ -142,6 +184,9 @@ namespace Biblioteca.Negocio.Clases
             this.Id_tipo_nivel = 0;
             this.Id_tipo = 0;
             this.ObjHashPass = new HashPassModulo();
+            this.ListadoSistemas = new List<Sistema>();
+            this.ListadoServicios = new List<Servicio>();
+            this.ListadoBaseDatos = new List<BaseDeDatos>();
         }
     }
 }

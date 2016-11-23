@@ -166,6 +166,22 @@ namespace WSHomeroSystem
         List<Seguridad> listadoSeguridadSistema();
         [OperationContract]
         List<Servicio> listadoDeServicios();
+        [OperationContract]
+        List<Servidor> ListDeServidor();
+        [OperationContract]
+        BaseDeDatos BuscarBaseDeDatosPorCodigo(string codigo);
+        [OperationContract]
+        Servidor BuscarServidorPorCod(string codigo_servidor);
+        [OperationContract]
+        Sistema BuscarSistema(string CodigoSistema);
+        [OperationContract]
+        Funcionario buscarFuncionarioPorRut(string rut);
+        [OperationContract]
+        Tipo BuscarTipoServidor(int id);
+        [OperationContract]
+        SistemaOperativo BuscarSistemaOperativoPorId(int id);
+        [OperationContract]
+        Servicio BuscarServicio(string codigoServicio);
 
     }
 }
