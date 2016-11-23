@@ -436,6 +436,14 @@ namespace WSHomeroSystem
         {
             return objSistemaDAO.BuscarSistema(CodigoSistema);
         }
+        public Sensibilidad buscarSensibilidad(int idsensibilidad)
+        {
+            return objSistemaDAO.buscarSensibilidad(idsensibilidad);
+        }
+        public Seguridad buscarSeguridad(int idSeguridad)
+        {
+            return objSistemaDAO.buscarSeguridad(idSeguridad);
+        }
         #endregion
         #region listadoRol,listado equipo,listado Lenguajes,metodos Documento
         public List<Rol> listadoRol()

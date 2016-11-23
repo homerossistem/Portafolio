@@ -190,6 +190,10 @@ namespace WSHomeroSystem
         Lenguaje BuscarLenguaje(int idLenguaje);
         [OperationContract]
         MotorBD buscarMotorBDPorNombreMBD(string nombre);
+        [OperationContract]
+        Sensibilidad buscarSensibilidad(int idsensibilidad);
+        [OperationContract]
+        Seguridad buscarSeguridad(int idSeguridad);
 
     }
 }
