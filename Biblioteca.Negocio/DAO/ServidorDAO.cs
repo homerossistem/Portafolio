@@ -14,7 +14,7 @@ namespace Biblioteca.Negocio.DAO
     public class ServidorDAO
     {
         string key = "homerosystem";
-        public bool AgregarServidor(Servidor _servidor, HashPassModulo _hashServidor)
+        public bool AgregarServidor(Servidor _servidor)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace Biblioteca.Negocio.DAO
                 objModuloDALC.RUT_FUNC_ADMIN = _servidor.Rut_administrador;
                 HASH_PASS_SERVIDOR objHashPassDALC = new HASH_PASS_SERVIDOR();
                 objHashPassDALC.COD_MODULO = codigoGenerado;
-                objHashPassDALC.HAS_PASS = EncriptarPasswordBaseDeDatos(_hashServidor.Hash_pass);
+                objHashPassDALC.HAS_PASS = EncriptarPasswordBaseDeDatos(_servidor.ObjHashPass.Hash_pass);
                 SERVIDOR objServidorDALC = new SERVIDOR();
                 objServidorDALC.COD_SERVIDOR = objModuloDALC.COD_MODULO;
                 objServidorDALC.IP = _servidor.Ip;
@@ -47,7 +47,7 @@ namespace Biblioteca.Negocio.DAO
             }
             catch
             {
-                throw new ArgumentException("Error al intentar agregar un Servidor");
+                return false;
             }
 
             return true;
@@ -221,53 +221,59 @@ namespace Biblioteca.Negocio.DAO
         }
         public Servidor BuscarServidorPorCod(string codigo_servidor)
         {
-            SistemaDAO objSistemaDAO = new SistemaDAO();
-            ServicioDAO objServicioDAO = new ServicioDAO();
-            BaseDatosDAO objBDDAO = new BaseDatosDAO();
-            SERVIDOR objServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.First(serv => serv.COD_SERVIDOR == codigo_servidor);
-            Servidor objServidor = new Servidor();
-            objServidor.Codigo = objServidorDALC.COD_SERVIDOR;
-            objServidor.Ip = objServidorDALC.IP;
-            objServidor.DiscoDuro = int.Parse(objServidorDALC.DISCO_DURO.ToString());
-            objServidor.Ram = int.Parse(objServidorDALC.RAM.ToString());
-            objServidor.Id_sistemaOperativo = int.Parse(objServidorDALC.ID_SO.ToString());
-            objServidor.Id_rack = int.Parse(objServidorDALC.ID_RACK.ToString());
-            objServidor.Id_tipo_nivel = int.Parse(objServidorDALC.ID_TIPO_NIVEL.ToString());
-            objServidor.Id_tipo = int.Parse(objServidorDALC.ID_TIPO.ToString());
-            objServidor.Nombre = objServidorDALC.MODULO.NOMBRE;
-            objServidor.Id_proveedor = int.Parse(objServidorDALC.MODULO.ID_PROVEEDOR.ToString());
-            objServidor.Id_documento = int.Parse(objServidorDALC.MODULO.ID_DOCUMENTO.ToString());
-            objServidor.Garantia = int.Parse(objServidorDALC.MODULO.ID_PROVEEDOR.ToString());
-            objServidor.ObjHashPass.Cod_modulo = objServidorDALC.HASH_PASS_SERVIDOR.COD_MODULO;
-            objServidor.ObjHashPass.Hash_pass = DesencriptarPasswordBaseDeDatos(objServidorDALC.HASH_PASS_SERVIDOR.HAS_PASS);
-            objServidor.Rut_administrador = objServidorDALC.MODULO.RUT_FUNC_ADMIN;
+            try {
+                SistemaDAO objSistemaDAO = new SistemaDAO();
+                ServicioDAO objServicioDAO = new ServicioDAO();
+                BaseDatosDAO objBDDAO = new BaseDatosDAO();
+                SERVIDOR objServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.First(serv => serv.COD_SERVIDOR == codigo_servidor);
+                Servidor objServidor = new Servidor();
+                objServidor.Codigo = objServidorDALC.COD_SERVIDOR;
+                objServidor.Ip = objServidorDALC.IP;
+                objServidor.DiscoDuro = int.Parse(objServidorDALC.DISCO_DURO.ToString());
+                objServidor.Ram = int.Parse(objServidorDALC.RAM.ToString());
+                objServidor.Id_sistemaOperativo = int.Parse(objServidorDALC.ID_SO.ToString());
+                objServidor.Id_rack = int.Parse(objServidorDALC.ID_RACK.ToString());
+                objServidor.Id_tipo_nivel = int.Parse(objServidorDALC.ID_TIPO_NIVEL.ToString());
+                objServidor.Id_tipo = int.Parse(objServidorDALC.ID_TIPO.ToString());
+                objServidor.Nombre = objServidorDALC.MODULO.NOMBRE;
+                objServidor.Id_proveedor = int.Parse(objServidorDALC.MODULO.ID_PROVEEDOR.ToString());
+                objServidor.Id_documento = int.Parse(objServidorDALC.MODULO.ID_DOCUMENTO.ToString());
+                objServidor.Garantia = int.Parse(objServidorDALC.MODULO.ID_PROVEEDOR.ToString());
+                objServidor.ObjHashPass.Cod_modulo = objServidorDALC.HASH_PASS_SERVIDOR.COD_MODULO;
+                objServidor.ObjHashPass.Hash_pass = DesencriptarPasswordBaseDeDatos(objServidorDALC.HASH_PASS_SERVIDOR.HAS_PASS);
+                objServidor.Rut_administrador = objServidorDALC.MODULO.RUT_FUNC_ADMIN;
 
-            if (objServidorDALC.SISTEMA.Count > 0)
-            {
-                foreach (SISTEMA objSistemaDALC in objServidorDALC.SISTEMA)
+                if (objServidorDALC.SISTEMA.Count > 0)
                 {
-                    Sistema objSistema = objSistemaDAO.BuscarSistema(objSistemaDALC.CODIGO_SISTEMA);
-                    objServidor.ListadoSistemas.Add(objSistema);
+                    foreach (SISTEMA objSistemaDALC in objServidorDALC.SISTEMA)
+                    {
+                        Sistema objSistema = objSistemaDAO.BuscarSistema(objSistemaDALC.CODIGO_SISTEMA);
+                        objServidor.ListadoSistemas.Add(objSistema);
+                    }
                 }
-            }
-            if (objServidorDALC.SERVICIOS.Count > 0)
-            {
-                foreach (SERVICIOS objServicioDALC in objServidorDALC.SERVICIOS)
+                if (objServidorDALC.SERVICIOS.Count > 0)
                 {
-                    Servicio objServicio = objServicioDAO.BuscarServicio(objServicioDALC.COD_SERVICIO);
-                    objServidor.ListadoServicios.Add(objServicio);
+                    foreach (SERVICIOS objServicioDALC in objServidorDALC.SERVICIOS)
+                    {
+                        Servicio objServicio = objServicioDAO.BuscarServicio(objServicioDALC.COD_SERVICIO);
+                        objServidor.ListadoServicios.Add(objServicio);
+                    }
                 }
-            }
-            if (objServidorDALC.BASE_DATOS.Count > 0)
-            {
-                foreach (BASE_DATOS objBaseDatosDALC in objServidorDALC.BASE_DATOS)
+                if (objServidorDALC.BASE_DATOS.Count > 0)
                 {
-                    BaseDeDatos objBD = objBDDAO.BuscarBaseDeDatosPorCodigo(objBaseDatosDALC.COD_BASE_DATOS);
-                    objServidor.ListadoBaseDatos.Add(objBD);
+                    foreach (BASE_DATOS objBaseDatosDALC in objServidorDALC.BASE_DATOS)
+                    {
+                        BaseDeDatos objBD = objBDDAO.BuscarBaseDeDatosPorCodigo(objBaseDatosDALC.COD_BASE_DATOS);
+                        objServidor.ListadoBaseDatos.Add(objBD);
+                    }
                 }
-            }
 
-            return objServidor;
+                return objServidor;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public List<TipoNivel> ListadoTipoNivelServidor()
@@ -446,6 +452,35 @@ namespace Biblioteca.Negocio.DAO
             }
         }
          
+        public bool ModificarServidor(Servidor _servidor)
+        {
+            try
+            {
+                SERVIDOR objServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.First
+                    (
+                     server => server.COD_SERVIDOR == _servidor.Codigo
+                    );
+                objServidorDALC.MODULO.NOMBRE = _servidor.Nombre;
+                objServidorDALC.MODULO.ID_PROVEEDOR = _servidor.Id_proveedor;
+                objServidorDALC.MODULO.GARANTIA = _servidor.Garantia;
+                objServidorDALC.MODULO.ID_DOCUMENTO = _servidor.Id_documento;
+                objServidorDALC.MODULO.RUT_FUNC_ADMIN = _servidor.Rut_administrador;
+                objServidorDALC.HASH_PASS_SERVIDOR.HAS_PASS = EncriptarPasswordBaseDeDatos(_servidor.ObjHashPass.Hash_pass);
+                objServidorDALC.IP = _servidor.Ip;
+                objServidorDALC.DISCO_DURO = _servidor.DiscoDuro;
+                objServidorDALC.RAM = _servidor.Ram;
+                objServidorDALC.ID_SO = _servidor.Id_sistemaOperativo;
+                objServidorDALC.ID_RACK = _servidor.Id_rack;
+                objServidorDALC.ID_TIPO_NIVEL = _servidor.Id_tipo_nivel;
+                objServidorDALC.ID_TIPO = _servidor.Id_tipo;
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         
     }
 }

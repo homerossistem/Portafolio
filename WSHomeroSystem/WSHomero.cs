@@ -211,12 +211,12 @@ namespace WSHomeroSystem
         }
         #endregion
         #region Agregar,Modificar,listado Base Datos
-        public string AgregarBaseDatos(BaseDeDatos _objBaseDatos, HashPassModulo _hashPass)
+        public string AgregarBaseDatos(BaseDeDatos _objBaseDatos)
         {
             string mensaje = "";
             try
             {
-                if (objBaseDatosDAO.AgregarBaseDeDatos(_objBaseDatos, _hashPass))
+                if (objBaseDatosDAO.AgregarBaseDeDatos(_objBaseDatos))
                 {
                     mensaje = "Base De Datos Ingresada exitosamente";
                 } else
@@ -250,6 +250,12 @@ namespace WSHomeroSystem
         {
             return objBaseDatosDAO.BuscarBaseDeDatosPorCodigo(codigo);
         }
+        public bool ModificarBaseDeDatos(BaseDeDatos _objBaseDatos)
+        {
+            return objBaseDatosDAO.ModificarBaseDeDatos(_objBaseDatos);
+        }
+
+
         #endregion
         #region Agregar,Modificar,listado Servicio
 
@@ -317,12 +323,12 @@ namespace WSHomeroSystem
         }
         #endregion
         #region Agregar,Modificar,listado Servidor
-        public string AgregarServidor(Servidor objServidor, HashPassModulo hashServidor)
+        public string AgregarServidor(Servidor objServidor)
         {
             string mensaje = "";
             try
             {
-                if (objServidorDAO.AgregarServidor(objServidor, hashServidor))
+                if (objServidorDAO.AgregarServidor(objServidor))
                 {
                     mensaje = "Servidor Agregado Con Exito";
                 }
@@ -382,6 +388,10 @@ namespace WSHomeroSystem
         public SistemaOperativo BuscarSistemaOperativoPorId(int id)
         {
             return objServidorDAO.BuscarSistemaOperativoPorId(id);
+        }
+        public bool ModificarServidor(Servidor _servidor)
+        {
+            return objServidorDAO.ModificarServidor(_servidor);
         }
         #endregion
         #region Agregar,Modificar,listado Sistema
@@ -464,6 +474,10 @@ namespace WSHomeroSystem
         public bool EliminarLenguaje(int idLenguaje)
         {
             return objLenguajeDAO.EliminarLenguaje(idLenguaje);
+        }
+        public Lenguaje BuscarLenguaje(int idLenguaje)
+        {
+            return objLenguajeDAO.BuscarLenguaje(idLenguaje);
         }
         #endregion
         #region Sala Servidores

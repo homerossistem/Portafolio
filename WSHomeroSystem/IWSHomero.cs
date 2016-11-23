@@ -20,13 +20,13 @@ namespace WSHomeroSystem
         [OperationContract]
         string AgregarTicket(Ticket objFuncionario,int id_equipoTrabajo,string nombre_funcionario);
         [OperationContract]
-        string AgregarBaseDatos(BaseDeDatos _objBaseDatos,HashPassModulo _hashpass);
+        string AgregarBaseDatos(BaseDeDatos _objBaseDatos);
         [OperationContract]
         string AgregarServicio(Servicio objServicio, List<string> listadoCodBaseDatos);
         [OperationContract]
         string AgregarTipoServicio(TipoServicio objTipoServicio);
         [OperationContract]
-        string AgregarServidor(Servidor objServidor, HashPassModulo hashServidor);
+        string AgregarServidor(Servidor objServidor);
         [OperationContract]
         string AgregarSistema(Sistema objSistema);
         [OperationContract]
@@ -182,6 +182,12 @@ namespace WSHomeroSystem
         SistemaOperativo BuscarSistemaOperativoPorId(int id);
         [OperationContract]
         Servicio BuscarServicio(string codigoServicio);
+        [OperationContract]
+        bool ModificarBaseDeDatos(BaseDeDatos _objBaseDatos);
+        [OperationContract]
+        bool ModificarServidor(Servidor _servidor);
+        [OperationContract]
+        Lenguaje BuscarLenguaje(int idLenguaje);
 
     }
 }

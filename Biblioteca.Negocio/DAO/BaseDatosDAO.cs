@@ -14,7 +14,7 @@ namespace Biblioteca.Negocio.DAO
     public class BaseDatosDAO
     {
         string key = "homerosystem";
-        public bool AgregarBaseDeDatos(BaseDeDatos _objBaseDatos, HashPassModulo _hashBaseDatos)
+        public bool AgregarBaseDeDatos(BaseDeDatos _objBaseDatos)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace Biblioteca.Negocio.DAO
                 objModuloDALC.RUT_FUNC_ADMIN = _objBaseDatos.Rut_administrador;
                 HASH_PASS_BASE_DATOS objHashPassDALC = new HASH_PASS_BASE_DATOS();
                 objHashPassDALC.COD_MODULO = codigoGenerado;
-                objHashPassDALC.HASH_PASS = EncriptarPasswordBaseDeDatos(_hashBaseDatos.Hash_pass);
+                objHashPassDALC.HASH_PASS = EncriptarPasswordBaseDeDatos(_objBaseDatos.ObjHashPassBaseDatos.Hash_pass);
                 BASE_DATOS objBaseDatosDALC = new BASE_DATOS();
                 objBaseDatosDALC.COD_BASE_DATOS = codigoGenerado;
                 objBaseDatosDALC.ID_MOTOR = _objBaseDatos.Id_motor;
@@ -49,6 +49,31 @@ namespace Biblioteca.Negocio.DAO
 
 
         }
+        public bool ModificarBaseDeDatos(BaseDeDatos _objBaseDatos)
+        {
+            try {
+                BASE_DATOS objBaseDatosDALC = CommonBC.HomeroSystemEntities.BASE_DATOS.First
+                    (
+                      bd => bd.COD_BASE_DATOS == _objBaseDatos.Codigo
+                    );
+                objBaseDatosDALC.MODULO.NOMBRE = _objBaseDatos.Nombre;
+                objBaseDatosDALC.MODULO.ID_PROVEEDOR = _objBaseDatos.Id_proveedor;
+                objBaseDatosDALC.MODULO.ID_DOCUMENTO = _objBaseDatos.Id_documento;
+                objBaseDatosDALC.MODULO.RUT_FUNC_ADMIN = _objBaseDatos.Rut_administrador;
+                objBaseDatosDALC.HASH_PASS_BASE_DATOS.HASH_PASS = EncriptarPasswordBaseDeDatos(_objBaseDatos.ObjHashPassBaseDatos.Hash_pass);
+                objBaseDatosDALC.COD_BASE_DATOS = _objBaseDatos.Codigo;
+                objBaseDatosDALC.ID_MOTOR = _objBaseDatos.Id_motor;
+                objBaseDatosDALC.COD_SERVIDOR = _objBaseDatos.Codigo_servidor;
+                objBaseDatosDALC.NOM_USUARIO = _objBaseDatos.NomUSer;
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
 
         public BaseDeDatos BuscarBaseDeDatosPorCodigo(string codigo)
         {
