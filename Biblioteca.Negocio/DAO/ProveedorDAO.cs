@@ -121,21 +121,29 @@ namespace Biblioteca.Negocio.DAO
         }
         public Proveedor BuscarProveedor(int id_prov)
         {
-            Proveedor _objProv = null;
-            PROVEEDOR objProv = CommonBC.HomeroSystemEntities.PROVEEDOR.First(prov => prov.ID_PROVEEDOR == id_prov);
-            if (objProv != null)
+            try
             {
-                _objProv = new Proveedor();
-                _objProv.Id_proveedor = int.Parse(objProv.ID_PROVEEDOR.ToString());
-                _objProv.Nombre_empresa = objProv.NOMBRE_EMPRESA;
-                _objProv.Nombre_encargado = objProv.NOMBRE_ENCARGADO;
-                _objProv.Telefono = int.Parse(objProv.TELEFONO.ToString());
-                _objProv.Celular = int.Parse(objProv.CELULAR.ToString());
-                _objProv.Direcccion = objProv.DIRECCION;
-                _objProv.Email = objProv.EMAIL;
+                Proveedor _objProv = null;
+                PROVEEDOR objProv = CommonBC.HomeroSystemEntities.PROVEEDOR.First(prov => prov.ID_PROVEEDOR == id_prov);
+                if (objProv != null)
+                {
+                    _objProv = new Proveedor();
+                    _objProv.Id_proveedor = int.Parse(objProv.ID_PROVEEDOR.ToString());
+                    _objProv.Nombre_empresa = objProv.NOMBRE_EMPRESA;
+                    _objProv.Nombre_encargado = objProv.NOMBRE_ENCARGADO;
+                    _objProv.Telefono = int.Parse(objProv.TELEFONO.ToString());
+                    _objProv.Celular = int.Parse(objProv.CELULAR.ToString());
+                    _objProv.Direcccion = objProv.DIRECCION;
+                    _objProv.Email = objProv.EMAIL;
 
+                }
+                return _objProv;
             }
-            return _objProv;
+            catch
+            {
+                return null;
+            } 
+            
         }
     }
 }
