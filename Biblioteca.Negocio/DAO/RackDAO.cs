@@ -133,16 +133,24 @@ namespace Biblioteca.Negocio.DAO
         }
         public Rack BuscarRack(int id_rack)
         {
-            Rack _objRack = null;            
-            RACK objrack = CommonBC.HomeroSystemEntities.RACK.First(rack => rack.ID_RACK == id_rack);
-            if (objrack != null)
+            try
             {
-                _objRack = new Rack();
-                _objRack.Id_rack = int.Parse(objrack.ID_RACK.ToString());
-                _objRack.Id_sala = int.Parse(objrack.ID_SALA_SERVIDOR.ToString());
-                _objRack.Unidad_rack = int.Parse(objrack.UNIDAD_RACK.ToString());
+                Rack _objRack = null;
+                RACK objrack = CommonBC.HomeroSystemEntities.RACK.First(rack => rack.ID_RACK == id_rack);
+                if (objrack != null)
+                {
+                    _objRack = new Rack();
+                    _objRack.Id_rack = int.Parse(objrack.ID_RACK.ToString());
+                    _objRack.Id_sala = int.Parse(objrack.ID_SALA_SERVIDOR.ToString());
+                    _objRack.Unidad_rack = int.Parse(objrack.UNIDAD_RACK.ToString());
+                }
+                return _objRack;
             }
-            return _objRack;
+            catch
+            {
+                return null;
+            }
+            
         }
 
     }
