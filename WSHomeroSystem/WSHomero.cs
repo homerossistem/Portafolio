@@ -420,9 +420,9 @@ namespace WSHomeroSystem
 
             return mensaje;
         }
-        public List<Sistema> listadoSistemas()
+        public List<Sistema> listSistemas()
         {
-            return objSistemaDAO.listadoSistemas();
+            return objSistemaDAO.listSistemas();
         }
         public List<Sensibilidad> listadoSensibilidadSistema()
         {
@@ -443,6 +443,10 @@ namespace WSHomeroSystem
         public Seguridad buscarSeguridad(int idSeguridad)
         {
             return objSistemaDAO.buscarSeguridad(idSeguridad);
+        }
+        public List<DTO> listadoSistemas()
+        {
+            return objSistemaDAO.listadoSistemas();
         }
         #endregion
         #region listadoRol,listado equipo,listado Lenguajes,metodos Documento

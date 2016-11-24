@@ -135,7 +135,7 @@ namespace WSHomeroSystem
         [OperationContract]
         bool EliminarServidorPorCodigo(string codigoServidor);
         [OperationContract]
-        List<Sistema> listadoSistemas();
+        List<Sistema> listSistemas();
         [OperationContract]
         bool ModificarServicio(Servicio objservicio, List<string> codBaseDatos);
         [OperationContract]
@@ -194,6 +194,8 @@ namespace WSHomeroSystem
         Sensibilidad buscarSensibilidad(int idsensibilidad);
         [OperationContract]
         Seguridad buscarSeguridad(int idSeguridad);
+        [OperationContract]
+        List<DTO> listadoSistemas();
 
     }
 }

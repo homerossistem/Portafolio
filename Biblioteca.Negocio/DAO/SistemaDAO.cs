@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Biblioteca.DALC;
 using Biblioteca.Negocio.Clases;
 using System.Security.Cryptography;
+using Biblioteca.Negocio.DTOs;
 
 
 namespace Biblioteca.Negocio.DAO
@@ -106,7 +107,7 @@ namespace Biblioteca.Negocio.DAO
             return listadoSistema;
         }
 
-        public List<Sistema> listadoSistemas()
+        public List<Sistema> listSistemas()
         {
             List<Sistema> listadoSistemas = new List<Sistema>();
             try
@@ -338,6 +339,46 @@ namespace Biblioteca.Negocio.DAO
                 objSensibilidad.Id_sensibilidad = int.Parse(objsensibilidadDALC.ID_SENSIBILIDAD.ToString());
                 objSensibilidad.Tipo_sensibilidad = objsensibilidadDALC.TIPO_SENSIBILIDAD;
                 return objSensibilidad;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<DTO> listadoSistemas()
+        {
+            try
+            {
+                List<DTO> listadoSistemas = new List<DTO>();
+                List<SISTEMA> listadoSistemaDALC = CommonBC.HomeroSystemEntities.SISTEMA.ToList();
+
+                foreach(SISTEMA objSistemaDALC in listadoSistemaDALC )
+                {
+                    DTO objDTO = new DTO();
+                    objDTO.Sistema.Codigo = objSistemaDALC.CODIGO_SISTEMA;
+                    objDTO.Sistema.Codigo_servidor = objSistemaDALC.COD_SERVIDOR;
+                    objDTO.Sistema.Descripcion = objSistemaDALC.DESCRIPCION;
+                    objDTO.Sistema.Garantia = int.Parse(objSistemaDALC.MODULO.GARANTIA.ToString());
+                    objDTO.Sistema.Id_documento = int.Parse(objSistemaDALC.MODULO.ID_DOCUMENTO.ToString());
+                    objDTO.Sistema.Id_lenguaje = int.Parse(objSistemaDALC.ID_LENGUAJE.ToString());
+                    objDTO.Sistema.Id_proveedor = int.Parse(objSistemaDALC.MODULO.ID_PROVEEDOR.ToString());
+                    objDTO.Sistema.Id_seguridad = int.Parse(objSistemaDALC.ID_SEGURIDAD.ToString());
+                    objDTO.Sistema.Id_sensibilidad = int.Parse(objSistemaDALC.SENSIBILIDAD.ToString());
+                    objDTO.Documento.Id_documento = int.Parse(objSistemaDALC.MODULO.DOCUMENTO.ID_DOCUMENTO.ToString());
+                    objDTO.Documento.Url_documento = objSistemaDALC.MODULO.DOCUMENTO.URL_DOCUMENTO;
+                    objDTO.Lenguaje.Id_lenguaje = int.Parse(objSistemaDALC.LENGUAJE.ID_LENGUAJE.ToString());
+                    objDTO.Lenguaje.Nombre_lenguaje = objSistemaDALC.LENGUAJE.NOMBRE_LENGUAJE;
+                    objDTO.Proveedor.Id_proveedor = int.Parse(objSistemaDALC.MODULO.PROVEEDOR1.ID_PROVEEDOR.ToString());
+                    objDTO.Proveedor.Nombre_empresa = objSistemaDALC.MODULO.PROVEEDOR1.NOMBRE_EMPRESA;
+                    objDTO.Seguridad.Id_seguridad = int.Parse(objSistemaDALC.SEGURIDAD.ID_SEGURIDAD.ToString());
+                    objDTO.Seguridad.Tipo_seguridad = objSistemaDALC.SEGURIDAD.TIPO_SEGURIDAD;
+                    objDTO.Sencibilidad.Id_sensibilidad = int.Parse(objSistemaDALC.SENSIBILIDAD.ID_SENSIBILIDAD.ToString());
+                    objDTO.Sencibilidad.Tipo_sensibilidad = objSistemaDALC.SENSIBILIDAD.TIPO_SENSIBILIDAD;
+
+                    listadoSistemas.Add(objDTO);
+                }
+                return listadoSistemas;
             }
             catch
             {
