@@ -28,7 +28,7 @@ namespace WSHomeroSystem
         [OperationContract]
         string AgregarServidor(Servidor objServidor);
         [OperationContract]
-        string AgregarSistema(Sistema objSistema);
+        string AgregarSistema(Sistema objSistema,List<string> listadoBaseDatos, List<string> listadoServicios);
         [OperationContract]
         List<DTO> ListarUsuarios();
         [OperationContract]
@@ -196,6 +196,12 @@ namespace WSHomeroSystem
         Seguridad buscarSeguridad(int idSeguridad);
         [OperationContract]
         List<DTO> listadoSistemas();
+        [OperationContract]
+        bool EliminarSistema(string codigoSistema);
+        [OperationContract]
+        bool ModificarSistema(Sistema _objSistema, List<string> listadoBaseDatos, List<string> listadoServicios);
+        [OperationContract]
+        string BuscarNombreModuloPorCodigo(string cod);
 
     }
 }

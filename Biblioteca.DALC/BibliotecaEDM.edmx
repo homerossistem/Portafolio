@@ -238,6 +238,7 @@
           <Property Name="PROBLEMA" Type="varchar2" MaxLength="500" Nullable="false" />
           <Property Name="RUT_FUNCIONARIO" Type="varchar2" MaxLength="10" Nullable="false" />
           <Property Name="MODULO_COD_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE_MODULO" Type="varchar2" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TIPO">
           <Key>
@@ -702,18 +703,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TICKET_MODULO_FK">
-          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
-          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MODULO">
-              <PropertyRef Name="COD_MODULO" />
-            </Principal>
-            <Dependent Role="TICKET">
-              <PropertyRef Name="MODULO_COD_MODULO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="USUARIO_ROL_FK">
           <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
@@ -902,10 +891,6 @@
             <End Role="FUNCIONARIO" EntitySet="FUNCIONARIO" />
             <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
-          <AssociationSet Name="TICKET_MODULO_FK" Association="Self.TICKET_MODULO_FK">
-            <End Role="MODULO" EntitySet="MODULO" />
-            <End Role="TICKET" EntitySet="TICKET" />
-          </AssociationSet>
           <AssociationSet Name="USUARIO_ROL_FK" Association="Self.USUARIO_ROL_FK">
             <End Role="ROL" EntitySet="ROL" />
             <End Role="USUARIO" EntitySet="USUARIO" />
@@ -1009,7 +994,6 @@
           <NavigationProperty Name="SERVICIOS" Relationship="Self.SERVICIOS_MODULO_FK" FromRole="MODULO" ToRole="SERVICIOS" />
           <NavigationProperty Name="SERVIDOR" Relationship="Self.SERVIDOR_MODULO_FK" FromRole="MODULO" ToRole="SERVIDOR" />
           <NavigationProperty Name="SISTEMA" Relationship="Self.SISTEMA_MODULO_FK" FromRole="MODULO" ToRole="SISTEMA" />
-          <NavigationProperty Name="TICKET" Relationship="Self.TICKET_MODULO_FK" FromRole="MODULO" ToRole="TICKET" />
           <Property Name="RUT_FUNC_ADMIN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ID_PROVEEDOR" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <NavigationProperty Name="FUNCIONARIO" Relationship="Model.MODULO_FUNCIONARIO_FK" FromRole="MODULO" ToRole="FUNCIONARIO" />
@@ -1176,8 +1160,8 @@
           <Property Name="RUT_FUNCIONARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MODULO_COD_MODULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="FUNCIONARIO" Relationship="Self.TICKET_FUNCIONARIO_FK" FromRole="TICKET" ToRole="FUNCIONARIO" />
-          <NavigationProperty Name="MODULO" Relationship="Self.TICKET_MODULO_FK" FromRole="TICKET" ToRole="MODULO" />
           <NavigationProperty Name="SOLUCION" Relationship="Self.SOLUCION_TICKET_FK" FromRole="TICKET" ToRole="SOLUCION" />
+          <Property Name="NOMBRE_MODULO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TIPO">
           <Key>
@@ -1381,18 +1365,6 @@
             </Principal>
             <Dependent Role="SISTEMA">
               <PropertyRef Name="CODIGO_SISTEMA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TICKET_MODULO_FK">
-          <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
-          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MODULO">
-              <PropertyRef Name="COD_MODULO" />
-            </Principal>
-            <Dependent Role="TICKET">
-              <PropertyRef Name="MODULO_COD_MODULO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1639,10 +1611,6 @@
           <AssociationSet Name="SISTEMA_MODULO_FK" Association="Self.SISTEMA_MODULO_FK">
             <End Role="MODULO" EntitySet="MODULO" />
             <End Role="SISTEMA" EntitySet="SISTEMA" />
-          </AssociationSet>
-          <AssociationSet Name="TICKET_MODULO_FK" Association="Self.TICKET_MODULO_FK">
-            <End Role="MODULO" EntitySet="MODULO" />
-            <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
           <AssociationSet Name="RACK_SALA_SERVIDORES_FK" Association="Self.RACK_SALA_SERVIDORES_FK">
             <End Role="SALA_SERVIDORES" EntitySet="SALA_SERVIDORES" />
@@ -1980,6 +1948,7 @@
           <EntitySetMapping Name="TICKET">
             <EntityTypeMapping TypeName="Model.TICKET">
               <MappingFragment StoreEntitySet="TICKET">
+                <ScalarProperty Name="NOMBRE_MODULO" ColumnName="NOMBRE_MODULO" />
                 <ScalarProperty Name="ID_TICKET" ColumnName="ID_TICKET" />
                 <ScalarProperty Name="FECHA_PROBLEMA" ColumnName="FECHA_PROBLEMA" />
                 <ScalarProperty Name="PROBLEMA" ColumnName="PROBLEMA" />

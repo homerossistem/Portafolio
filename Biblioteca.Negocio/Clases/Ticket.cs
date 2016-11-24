@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.Negocio.Clases
 {
-    [Serializable]
+   [Serializable]
    public class Ticket
     {
         private int id_ticket;
@@ -14,6 +14,7 @@ namespace Biblioteca.Negocio.Clases
         private string problema;
         private string rut_funcionario;
         private string codigo_modulo;
+        private string nombre_modulo;
 
         public int Id_ticket
         {
@@ -80,6 +81,19 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public string Nombre_modulo
+        {
+            get
+            {
+                return nombre_modulo;
+            }
+
+            set
+            {
+                nombre_modulo = value;
+            }
+        }
+
         public Ticket()
         {
             this.Init();
@@ -92,6 +106,7 @@ namespace Biblioteca.Negocio.Clases
             this.Problema = string.Empty;
             this.Rut_funcionario = string.Empty;
             this.Codigo_modulo = string.Empty;
+            this.Nombre_modulo = string.Empty;
         }
 
     }

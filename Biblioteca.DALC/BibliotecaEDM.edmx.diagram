@@ -46,7 +46,6 @@
         <AssociationConnector Association="Model.SERVICIOS_MODULO_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SERVIDOR_MODULO_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SISTEMA_MODULO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.TICKET_MODULO_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.RACK_SALA_SERVIDORES_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SERVIDOR_RACK_FK" ManuallyRouted="false" />
         <AssociationConnector Association="Model.USUARIO_ROL_FK" ManuallyRouted="false" />

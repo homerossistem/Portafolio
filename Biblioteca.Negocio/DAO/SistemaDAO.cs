@@ -7,22 +7,49 @@ using Biblioteca.DALC;
 using Biblioteca.Negocio.Clases;
 using System.Security.Cryptography;
 using Biblioteca.Negocio.DTOs;
-
+using System.Data.Entity.Infrastructure;
 
 namespace Biblioteca.Negocio.DAO
 {
     public class SistemaDAO
     {
-        public bool AgregarSistema(Sistema _objSistema)
+        public bool AgregarSistema(Sistema _objSistema,List<string> listadoBaseDatos, List<string> listadoServicios)
         {
+            List<BASE_DATOS> listadoBaseDatosDALC = new List<BASE_DATOS>();
+            List<SERVICIOS> listadoServiciosDALC = new List<SERVICIOS>();
             try
             {
+                foreach (string cod in listadoBaseDatos)
+                {
+                    BASE_DATOS objBaseDatos = CommonBC.HomeroSystemEntities.BASE_DATOS.First
+                        (
+                          bd => bd.COD_BASE_DATOS == cod
+                        );
+                    listadoBaseDatosDALC.Add(objBaseDatos);
+                }
+                foreach (string cod in listadoServicios)
+                {
+                    SERVICIOS objServicio = CommonBC.HomeroSystemEntities.SERVICIOS.First
+                        (
+                          servi => servi.COD_SERVICIO == cod
+                        );
+                    listadoServiciosDALC.Add(objServicio);
+                }
                 string codigoGenerado = GeneradorCodigSistema();
+                SEGURIDAD objSeguridad = CommonBC.HomeroSystemEntities.SEGURIDAD.First
+                    (seg=>seg.ID_SEGURIDAD == _objSistema.Id_seguridad);
+                SENSIBILIDAD objSensibilidad = CommonBC.HomeroSystemEntities.SENSIBILIDAD.First
+                    (sen=>sen.ID_SENSIBILIDAD== _objSistema.Id_sensibilidad);
+                DOCUMENTO objDocumento = CommonBC.HomeroSystemEntities.DOCUMENTO.First
+                    (doc=>doc.ID_DOCUMENTO == _objSistema.Id_documento);
                 MODULO objModuloDALC = new MODULO();
                 objModuloDALC.COD_MODULO = codigoGenerado;
+                objModuloDALC.RUT_FUNC_ADMIN = _objSistema.Rut_administrador;
                 objModuloDALC.NOMBRE = _objSistema.Nombre;
                 objModuloDALC.GARANTIA = _objSistema.Garantia;
+                objModuloDALC.ID_PROVEEDOR = int.Parse(_objSistema.Id_proveedor.ToString());
                 objModuloDALC.ID_DOCUMENTO = _objSistema.Id_documento;
+                objModuloDALC.DOCUMENTO = objDocumento;
                 SISTEMA objSistemaDALC = new SISTEMA();
                 objSistemaDALC.CODIGO_SISTEMA = codigoGenerado;
                 objSistemaDALC.COD_SERVIDOR = _objSistema.Codigo_servidor;
@@ -30,7 +57,11 @@ namespace Biblioteca.Negocio.DAO
                 objSistemaDALC.ID_LENGUAJE = _objSistema.Id_lenguaje;
                 objSistemaDALC.ID_SEGURIDAD = _objSistema.Id_seguridad;
                 objSistemaDALC.ID_SENSIBILIDAD = _objSistema.Id_sensibilidad;
+                objSistemaDALC.SENSIBILIDAD = objSensibilidad;
+                objSistemaDALC.SEGURIDAD = objSeguridad;
                 objSistemaDALC.MODULO = objModuloDALC;
+                objSistemaDALC.BASE_DATOS = listadoBaseDatosDALC;
+                objSistemaDALC.SERVICIOS = listadoServiciosDALC;
                 CommonBC.HomeroSystemEntities.SISTEMA.Add(objSistemaDALC);
                 CommonBC.HomeroSystemEntities.SaveChanges();
 
@@ -42,18 +73,105 @@ namespace Biblioteca.Negocio.DAO
 
             return true;
         }
+        public bool ModificarSistema(Sistema _objSistema,List<string>listadoBaseDatos,List<string>listadoServicios)
+        {
+            List<BASE_DATOS> listadoBaseDatosDALC = new List<BASE_DATOS>();
+            List<SERVICIOS> listadoServiciosDALC = new List<SERVICIOS>();
+            try
+            {
+                foreach (string cod in listadoBaseDatos)
+                {
+                    BASE_DATOS objBaseDatos = CommonBC.HomeroSystemEntities.BASE_DATOS.First
+                        (
+                          bd => bd.COD_BASE_DATOS == cod
+                        );
+                    listadoBaseDatosDALC.Add(objBaseDatos);
+                }
+                foreach (string cod in listadoServicios)
+                {
+                    SERVICIOS objServicio = CommonBC.HomeroSystemEntities.SERVICIOS.First
+                        (
+                          servi => servi.COD_SERVICIO == cod
+                        );
+                    listadoServiciosDALC.Add(objServicio);
+                }
+                SISTEMA objSistemaDACL = CommonBC.HomeroSystemEntities.SISTEMA.First
+                    (sis => sis.CODIGO_SISTEMA == _objSistema.Codigo);
+                objSistemaDACL.MODULO.NOMBRE = _objSistema.Nombre;
+                objSistemaDACL.MODULO.GARANTIA = _objSistema.Garantia;
+                objSistemaDACL.MODULO.ID_DOCUMENTO = _objSistema.Id_documento;
+                objSistemaDACL.MODULO.RUT_FUNC_ADMIN = _objSistema.Rut_administrador;
+                objSistemaDACL.MODULO.ID_PROVEEDOR = _objSistema.Id_proveedor;
+                objSistemaDACL.CODIGO_SISTEMA = _objSistema.Codigo;
+                objSistemaDACL.COD_SERVIDOR = _objSistema.Codigo_servidor;
+                objSistemaDACL.DESCRIPCION = _objSistema.Descripcion;
+                objSistemaDACL.ID_SEGURIDAD = _objSistema.Id_seguridad;
+                objSistemaDACL.ID_SENSIBILIDAD = _objSistema.Id_sensibilidad;
+                objSistemaDACL.BASE_DATOS = listadoBaseDatosDALC;
+                objSistemaDACL.SERVICIOS = listadoServiciosDALC;
+                objSistemaDACL.ID_LENGUAJE = _objSistema.Id_lenguaje;
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public bool EliminarSistema(string codigoSistema)
+        {
+                int resultado = 0;
+                SISTEMA objSistemaDALC = CommonBC.HomeroSystemEntities.SISTEMA.First
+                    (sis => sis.CODIGO_SISTEMA == codigoSistema);
+                MODULO objModuloDALLC = CommonBC.HomeroSystemEntities.MODULO.First
+                    (mod => mod.COD_MODULO == codigoSistema);
+                
+                CommonBC.HomeroSystemEntities.SISTEMA.Remove(objSistemaDALC);
+                CommonBC.HomeroSystemEntities.MODULO.Remove(objModuloDALLC);
+                bool saveFailed;
+                do
+                {
+                    saveFailed = false;
+
+                    try
+                    {
+                        CommonBC.HomeroSystemEntities.SaveChanges();
+                    }
+                    catch (DbUpdateException exx)
+                    {
+                        saveFailed = true;
+                        CommonBC.HomeroSystemEntities.Entry(objModuloDALLC).Reload();
+                        CommonBC.HomeroSystemEntities.Entry(objSistemaDALC).Reload();
+                        resultado = 1;
+                        exx.Entries.Single().Reload();
+                    }
+
+                } while (saveFailed);
+
+                if (resultado == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+        }
 
         private string GeneradorCodigSistema()
         {
             string Codigo = string.Empty;
-            string ultimoCodigo = CommonBC.HomeroSystemEntities.BASE_DATOS.Max(bd => bd.COD_BASE_DATOS);
+            string ultimoCodigo = CommonBC.HomeroSystemEntities.SISTEMA.Max(sis => sis.CODIGO_SISTEMA);
             if (ultimoCodigo == null)
             {
                 Codigo = string.Format("SISTEM-{0:000000}", 1);
             }
             else
             {
-                Codigo = ultimoCodigo.Substring(3);
+                Codigo = ultimoCodigo.Substring(7);
                 int digitoCodigo = int.Parse(Codigo) + 1;
                 Codigo = string.Format("SISTEM-{0:000000}", digitoCodigo);
             }
@@ -359,12 +477,14 @@ namespace Biblioteca.Negocio.DAO
                     objDTO.Sistema.Codigo = objSistemaDALC.CODIGO_SISTEMA;
                     objDTO.Sistema.Codigo_servidor = objSistemaDALC.COD_SERVIDOR;
                     objDTO.Sistema.Descripcion = objSistemaDALC.DESCRIPCION;
+                    objDTO.Sistema.Nombre = objSistemaDALC.MODULO.NOMBRE;
                     objDTO.Sistema.Garantia = int.Parse(objSistemaDALC.MODULO.GARANTIA.ToString());
                     objDTO.Sistema.Id_documento = int.Parse(objSistemaDALC.MODULO.ID_DOCUMENTO.ToString());
+                    objDTO.Sistema.Rut_administrador = objSistemaDALC.MODULO.RUT_FUNC_ADMIN;
                     objDTO.Sistema.Id_lenguaje = int.Parse(objSistemaDALC.ID_LENGUAJE.ToString());
                     objDTO.Sistema.Id_proveedor = int.Parse(objSistemaDALC.MODULO.ID_PROVEEDOR.ToString());
                     objDTO.Sistema.Id_seguridad = int.Parse(objSistemaDALC.ID_SEGURIDAD.ToString());
-                    objDTO.Sistema.Id_sensibilidad = int.Parse(objSistemaDALC.SENSIBILIDAD.ToString());
+                    objDTO.Sistema.Id_sensibilidad = int.Parse(objSistemaDALC.SENSIBILIDAD.ID_SENSIBILIDAD.ToString());
                     objDTO.Documento.Id_documento = int.Parse(objSistemaDALC.MODULO.DOCUMENTO.ID_DOCUMENTO.ToString());
                     objDTO.Documento.Url_documento = objSistemaDALC.MODULO.DOCUMENTO.URL_DOCUMENTO;
                     objDTO.Lenguaje.Id_lenguaje = int.Parse(objSistemaDALC.LENGUAJE.ID_LENGUAJE.ToString());
@@ -375,6 +495,9 @@ namespace Biblioteca.Negocio.DAO
                     objDTO.Seguridad.Tipo_seguridad = objSistemaDALC.SEGURIDAD.TIPO_SEGURIDAD;
                     objDTO.Sencibilidad.Id_sensibilidad = int.Parse(objSistemaDALC.SENSIBILIDAD.ID_SENSIBILIDAD.ToString());
                     objDTO.Sencibilidad.Tipo_sensibilidad = objSistemaDALC.SENSIBILIDAD.TIPO_SENSIBILIDAD;
+                    objDTO.Funcionario.Nombre = objSistemaDALC.MODULO.FUNCIONARIO.NOMBRE;
+                    objDTO.Funcionario.Apellido = objSistemaDALC.MODULO.FUNCIONARIO.APELLIDO;
+                    objDTO.Servidor.Nombre = objSistemaDALC.SERVIDOR.MODULO.NOMBRE;
 
                     listadoSistemas.Add(objDTO);
                 }

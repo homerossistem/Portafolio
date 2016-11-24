@@ -209,6 +209,10 @@ namespace WSHomeroSystem
         {
             return objTicketDAO.ListarTodosLosTicketConSolucion();
         }
+        public string BuscarNombreModuloPorCodigo(string cod)
+        {
+            return objTicketDAO.BuscarNombreModuloPorCodigo(cod);
+        }
         #endregion
         #region Agregar,Modificar,listado Base Datos
         public string AgregarBaseDatos(BaseDeDatos _objBaseDatos)
@@ -399,12 +403,12 @@ namespace WSHomeroSystem
         }
         #endregion
         #region Agregar,Modificar,listado Sistema
-        public string AgregarSistema(Sistema objSistema)
+        public string AgregarSistema(Sistema objSistema,List<string> listadoBaseDatos, List<string> listadoServicios)
         {
             string mensaje = "";
             try
             {
-                if (objSistemaDAO.AgregarSistema(objSistema))
+                if (objSistemaDAO.AgregarSistema(objSistema, listadoBaseDatos, listadoServicios))
                 {
                     mensaje = "Sistema Agregado Con Exito";
                 }
@@ -447,6 +451,14 @@ namespace WSHomeroSystem
         public List<DTO> listadoSistemas()
         {
             return objSistemaDAO.listadoSistemas();
+        }
+        public bool EliminarSistema(string codigoSistema)
+        {
+            return objSistemaDAO.EliminarSistema(codigoSistema);
+        }
+        public bool ModificarSistema(Sistema _objSistema, List<string> listadoBaseDatos, List<string> listadoServicios)
+        {
+            return objSistemaDAO.ModificarSistema(_objSistema, listadoBaseDatos, listadoServicios);
         }
         #endregion
         #region listadoRol,listado equipo,listado Lenguajes,metodos Documento

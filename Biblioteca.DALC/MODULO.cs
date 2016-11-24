@@ -14,12 +14,6 @@ namespace Biblioteca.DALC
     
     public partial class MODULO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MODULO()
-        {
-            this.TICKET = new HashSet<TICKET>();
-        }
-    
         public string COD_MODULO { get; set; }
         public string NOMBRE { get; set; }
         public Nullable<decimal> GARANTIA { get; set; }
@@ -32,8 +26,6 @@ namespace Biblioteca.DALC
         public virtual SERVICIOS SERVICIOS { get; set; }
         public virtual SERVIDOR SERVIDOR { get; set; }
         public virtual SISTEMA SISTEMA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TICKET> TICKET { get; set; }
         public virtual FUNCIONARIO FUNCIONARIO { get; set; }
         public virtual PROVEEDOR PROVEEDOR1 { get; set; }
     }

@@ -25,9 +25,9 @@ namespace Biblioteca.DALC
         public string PROBLEMA { get; set; }
         public string RUT_FUNCIONARIO { get; set; }
         public string MODULO_COD_MODULO { get; set; }
+        public string NOMBRE_MODULO { get; set; }
     
         public virtual FUNCIONARIO FUNCIONARIO { get; set; }
-        public virtual MODULO MODULO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SOLUCION> SOLUCION { get; set; }
     }

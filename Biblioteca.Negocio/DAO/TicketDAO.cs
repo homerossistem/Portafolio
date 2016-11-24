@@ -10,11 +10,11 @@ using Biblioteca.Negocio.DTOs;
 
 namespace Biblioteca.Negocio.DAO
 {
-   public class TicketDAO
-   {
+    public class TicketDAO
+    {
 
 
-        public bool AgregarTicket(Ticket _objTicket,int id_equipo_trabajo,string nombre_funcionario)
+        public bool AgregarTicket(Ticket _objTicket, int id_equipo_trabajo, string nombre_funcionario)
         {
             try
             {
@@ -23,8 +23,9 @@ namespace Biblioteca.Negocio.DAO
                 objTicketDALC.PROBLEMA = _objTicket.Problema;
                 objTicketDALC.RUT_FUNCIONARIO = _objTicket.Rut_funcionario;
                 objTicketDALC.MODULO_COD_MODULO = _objTicket.Codigo_modulo;
+                objTicketDALC.NOMBRE_MODULO = _objTicket.Nombre_modulo;
 
-                if (EnviarCorreo(id_equipo_trabajo,_objTicket,nombre_funcionario))
+                if (EnviarCorreo(id_equipo_trabajo, _objTicket, nombre_funcionario))
                 {
 
                     CommonBC.HomeroSystemEntities.TICKET.Add(objTicketDALC);
@@ -34,14 +35,14 @@ namespace Biblioteca.Negocio.DAO
 
                 return false;
 
-            }catch
+            } catch
             {
                 throw new ArgumentException("Error al intentar agregar un ticket");
             }
 
         }
 
-        private bool EnviarCorreo(int id_equipo_trabajo,Ticket objticket,string nombre_funcionario)
+        private bool EnviarCorreo(int id_equipo_trabajo, Ticket objticket, string nombre_funcionario)
         {
             try
             {
@@ -53,29 +54,29 @@ namespace Biblioteca.Negocio.DAO
                     ).ToList();
                 MODULO objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First
                     (
-                      mo=>mo.COD_MODULO == objticket.Codigo_modulo
+                      mo => mo.COD_MODULO == objticket.Codigo_modulo
                     );
                 Correo Correo = new Correo();
                 MailMessage mnsj = new MailMessage();
 
-                mnsj.Subject = string.Format("Contingencia en el modulo {0}",objticket.Codigo_modulo);
+                mnsj.Subject = string.Format("Contingencia en el modulo {0}", objticket.Codigo_modulo);
                 foreach (FUNCIONARIO listFuncionarios in listfuncionario)
                 {
                     FUNCIONARIO objfuncionarioDALC = (FUNCIONARIO)listFuncionarios;
                     mnsj.To.Add(objfuncionarioDALC.EMAIL);
                 }
-                mnsj.From = new MailAddress("homerossystem@gmail.com",string.Format("Homero System"));
+                mnsj.From = new MailAddress("homerossystem@gmail.com", string.Format("Homero System"));
                 mnsj.Body = string.Format("Codigo Modulo : {0}\n\r" +
                                           "Nombre Modulo : {1}\n\r" +
                                           "Problema      : {2}\n\r" +
                                           "Fecha y Hora  : {3}\n\r" +
                                           "Enviado Por   : {4} - {5}\n\r" +
-                                          "ATTE\n\r HOMERO SYSTEM", objticket.Codigo_modulo,objModuloDALC.NOMBRE,objticket.Problema,objticket.FechaProblema,nombre_funcionario, objticket.Rut_funcionario);
+                                          "ATTE\n\r HOMERO SYSTEM", objticket.Codigo_modulo, objModuloDALC.NOMBRE, objticket.Problema, objticket.FechaProblema, nombre_funcionario, objticket.Rut_funcionario);
                 mnsj.IsBodyHtml = false;
                 Correo.EnviarCorreo(mnsj);
                 return true;
             }
-            catch 
+            catch
             {
                 throw new ArgumentException("error al intentar enviar el correo");
             }
@@ -96,7 +97,7 @@ namespace Biblioteca.Negocio.DAO
                         {
                             ID_TICKET = result.tic.ID_TICKET,
                             COD_MODULO = result.tic.MODULO_COD_MODULO,
-                            MODULO = result.tic.MODULO.NOMBRE,
+                            MODULO = result.tic.NOMBRE_MODULO,
                             FECHA_PROBLEMA = result.tic.FECHA_PROBLEMA,
                             FECHA_SOLUCION = result.ticso.FECHA_SOLUCION,
                             PROBLEMA = result.tic.PROBLEMA,
@@ -104,8 +105,8 @@ namespace Biblioteca.Negocio.DAO
                             ID_EQUIPO = fun.ID_EQUIPO_TRABAJO,
                             EQUIPO = fun.EQUIPO_TRABAJO.NOMBRE_EQUIPO
                         }
-                    ).Where(result=>result.ID_EQUIPO == id_equipo_Trabajo);
-                foreach(var result in query)
+                    ).Where(result => result.ID_EQUIPO == id_equipo_Trabajo);
+                foreach (var result in query)
                 {
                     DTO objDTO = new DTO();
                     objDTO.Ticket.Id_ticket = int.Parse(result.ID_TICKET.ToString());
@@ -123,7 +124,7 @@ namespace Biblioteca.Negocio.DAO
 
                 return listadoTicketSolucionados;
 
-            }catch
+            } catch
             {
                 throw new ArgumentException("Error al Cargar los ticket");
             }
@@ -139,7 +140,7 @@ namespace Biblioteca.Negocio.DAO
                     {
                         ID_TICKET = tic.ID_TICKET,
                         COD_MODULO = tic.MODULO_COD_MODULO,
-                        MODULO = tic.MODULO.NOMBRE,
+                        MODULO = tic.NOMBRE_MODULO,
                         FECHA_PROBLEMA = tic.FECHA_PROBLEMA,
                         FECHA_SOLUCION = ticso.FECHA_SOLUCION,
                         PROBLEMA = tic.PROBLEMA,
@@ -170,6 +171,14 @@ namespace Biblioteca.Negocio.DAO
             {
                 throw new ArgumentException("Error al Cargar los ticket");
             }
+        }
+
+        public string BuscarNombreModuloPorCodigo(string cod)
+        {
+            MODULO objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First
+                (mod => mod.COD_MODULO == cod);
+
+            return objModuloDALC.NOMBRE;
         }
 
     }
