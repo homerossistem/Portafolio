@@ -358,6 +358,10 @@ namespace Biblioteca.Negocio.DAO
 
         public Sistema BuscarSistema(string CodigoSistema)
         {
+            BaseDatosDAO objBDDAO = new BaseDatosDAO();
+            ServicioDAO objServicioDAO = new ServicioDAO();
+            List<BaseDeDatos> listadoBaseDeDatos = new List<BaseDeDatos>();
+            List<Servicio> listadoServicio = new List<Servicio>();
             Sistema objSistema = new Sistema();
             try
             {
@@ -376,8 +380,20 @@ namespace Biblioteca.Negocio.DAO
                 objSistema.Id_sensibilidad = int.Parse(objSistemaDALC.ID_SENSIBILIDAD.ToString());
                 objSistema.Nombre = objSistemaDALC.MODULO.NOMBRE;
                 objSistema.Rut_administrador = objSistemaDALC.MODULO.RUT_FUNC_ADMIN;
+                foreach (BASE_DATOS bdDALC in objSistemaDALC.BASE_DATOS)
+                {
+                    BaseDeDatos objBD = objBDDAO.BuscarBaseDeDatosPorCodigo(bdDALC.COD_BASE_DATOS);
+                    listadoBaseDeDatos.Add(objBD);
+                }
+                foreach(SERVICIOS serviDALC in objSistemaDALC.SERVICIOS)
+                {
+                    Servicio objServicio = objServicioDAO.BuscarServicio(serviDALC.COD_SERVICIO);
+                    listadoServicio.Add(objServicio);
+                }
+                objSistema.ListadoBaseDatos = listadoBaseDeDatos;
+                objSistema.ListadoServicios = listadoServicio;
 
-                return objSistema;
+                    return objSistema;
             }catch
             {
                 return null;
