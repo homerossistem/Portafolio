@@ -129,27 +129,56 @@ namespace Biblioteca.Negocio.DAO
         }
         public Organizacion BuscarOrganizacion(int id_Org)
         {
-            SistemaDAO objSistemaDAO = new SistemaDAO();
-            Organizacion _objOrg = null;
-            ORGANIZACION objOrg= CommonBC.HomeroSystemEntities.ORGANIZACION.First(org => org.ID_ORGANIZACION == id_Org);
-            if (objOrg != null)
+            try
             {
-                _objOrg = new Organizacion();
-                _objOrg.Id_organizacion = int.Parse(objOrg.ID_ORGANIZACION.ToString());
-                _objOrg.Nombre_organizacion = objOrg.NOMBRE_ORGANIZACION;
-                _objOrg.Direccion = objOrg.DIRECCION;
-                _objOrg.Telefono = int.Parse(objOrg.TELEFONO.ToString());
-                _objOrg.Email = objOrg.EMAIL;
-                if (objOrg.SISTEMA.Count > 0)
+                SistemaDAO objSistemaDAO = new SistemaDAO();
+                Organizacion _objOrg = null;
+                ORGANIZACION objOrg = CommonBC.HomeroSystemEntities.ORGANIZACION.First(org => org.ID_ORGANIZACION == id_Org);
+                if (objOrg != null)
                 {
-                    foreach (SISTEMA sr in objOrg.SISTEMA)
+                    _objOrg = new Organizacion();
+                    _objOrg.Id_organizacion = int.Parse(objOrg.ID_ORGANIZACION.ToString());
+                    _objOrg.Nombre_organizacion = objOrg.NOMBRE_ORGANIZACION;
+                    _objOrg.Direccion = objOrg.DIRECCION;
+                    _objOrg.Telefono = int.Parse(objOrg.TELEFONO.ToString());
+                    _objOrg.Email = objOrg.EMAIL;
+                    if (objOrg.SISTEMA.Count > 0)
                     {
-                        _objOrg.ListadoSistemas.Add(objSistemaDAO.BuscarSistema(sr.CODIGO_SISTEMA));
+                        foreach (SISTEMA sr in objOrg.SISTEMA)
+                        {
+                            _objOrg.ListadoSistemas.Add(objSistemaDAO.BuscarSistema(sr.CODIGO_SISTEMA));
+                        }
                     }
-                }
 
+                }
+                return _objOrg;
+            }catch
+            {
+                return null;
             }
-            return _objOrg;
+        }
+        public Organizacion BuscarOrganizacionPorid(int id_Org)
+        {
+            try
+            {
+                SistemaDAO objSistemaDAO = new SistemaDAO();
+                Organizacion _objOrg = null;
+                ORGANIZACION objOrg = CommonBC.HomeroSystemEntities.ORGANIZACION.First(org => org.ID_ORGANIZACION == id_Org);
+                if (objOrg != null)
+                {
+                    _objOrg = new Organizacion();
+                    _objOrg.Id_organizacion = int.Parse(objOrg.ID_ORGANIZACION.ToString());
+                    _objOrg.Nombre_organizacion = objOrg.NOMBRE_ORGANIZACION;
+                    _objOrg.Direccion = objOrg.DIRECCION;
+                    _objOrg.Telefono = int.Parse(objOrg.TELEFONO.ToString());
+                    _objOrg.Email = objOrg.EMAIL;
+                }
+                return _objOrg;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

@@ -394,7 +394,7 @@ namespace Biblioteca.Negocio.DAO
                 }
                 foreach(ORGANIZACION orgaDALC in objSistemaDALC.ORGANIZACION)
                 {
-                    Organizacion objOrganizacion = objOrganizacionesDAO.BuscarOrganizacion(int.Parse(orgaDALC.ID_ORGANIZACION.ToString()));
+                    Organizacion objOrganizacion = objOrganizacionesDAO.BuscarOrganizacionPorid(int.Parse(orgaDALC.ID_ORGANIZACION.ToString()));
                     listadoOrganizacion.Add(objOrganizacion);
                 }
                 objSistema.ListadoOrganizacion = listadoOrganizacion;

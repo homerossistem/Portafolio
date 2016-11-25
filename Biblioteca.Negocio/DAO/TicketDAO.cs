@@ -46,23 +46,24 @@ namespace Biblioteca.Negocio.DAO
         {
             try
             {
-                List<FUNCIONARIO> listfuncionario = CommonBC.HomeroSystemEntities.FUNCIONARIO.Where
-                    (
-
-                       fun => fun.ID_EQUIPO_TRABAJO == id_equipo_trabajo
-
-                    ).ToList();
+                
                 MODULO objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First
                     (
                       mo => mo.COD_MODULO == objticket.Codigo_modulo
                     );
+                List<FUNCIONARIO> listfuncionario = CommonBC.HomeroSystemEntities.FUNCIONARIO.Where
+                    (
+
+                       fun => fun.ID_EQUIPO_TRABAJO == objModuloDALC.FUNCIONARIO.ID_EQUIPO_TRABAJO
+
+                    ).ToList();
                 Correo Correo = new Correo();
                 MailMessage mnsj = new MailMessage();
-
+                FUNCIONARIO objfuncionarioDALC = new FUNCIONARIO();
                 mnsj.Subject = string.Format("Contingencia en el modulo {0}", objticket.Codigo_modulo);
                 foreach (FUNCIONARIO listFuncionarios in listfuncionario)
                 {
-                    FUNCIONARIO objfuncionarioDALC = (FUNCIONARIO)listFuncionarios;
+                    objfuncionarioDALC = (FUNCIONARIO)listFuncionarios;
                     mnsj.To.Add(objfuncionarioDALC.EMAIL);
                 }
                 mnsj.From = new MailAddress("homerossystem@gmail.com", string.Format("Homero System"));
@@ -179,6 +180,48 @@ namespace Biblioteca.Negocio.DAO
                 (mod => mod.COD_MODULO == cod);
 
             return objModuloDALC.NOMBRE;
+        }
+
+        public List<Ticket> listadoTicketPendientesPorEquipoTrabajo(int idequipo)
+        {
+            try {
+                List<TICKET> listadoTicketDALC = CommonBC.HomeroSystemEntities.TICKET.ToList();
+                List<Ticket> listadoTicket = new List<Ticket>();
+                foreach (TICKET objTicketDALC in listadoTicketDALC)
+                {
+                    if (objTicketDALC.SOLUCION.Count == 0 && objTicketDALC.FUNCIONARIO.ID_EQUIPO_TRABAJO == idequipo)
+                    {
+                        Ticket objticket = buscarTicketPorid(int.Parse(objTicketDALC.ID_TICKET.ToString()));
+                        listadoTicket.Add(objticket);
+                    }
+                }
+                return listadoTicket;
+            }catch
+            {
+                return null;
+            }
+        }
+
+        public Ticket buscarTicketPorid(int id)
+        {
+            try
+            {
+                TICKET objTICKETDALC = CommonBC.HomeroSystemEntities.TICKET.First
+                    (
+                     tick => tick.ID_TICKET == id
+                    );
+                Ticket objTicket = new Ticket();
+                objTicket.Id_ticket = int.Parse(objTICKETDALC.ID_TICKET.ToString());
+                objTicket.Codigo_modulo = objTICKETDALC.MODULO_COD_MODULO;
+                objTicket.FechaProblema = objTICKETDALC.FECHA_PROBLEMA;
+                objTicket.Nombre_modulo = objTICKETDALC.NOMBRE_MODULO;
+                objTicket.Problema = objTICKETDALC.PROBLEMA;
+                objTicket.Rut_funcionario = objTICKETDALC.RUT_FUNCIONARIO;
+                return objTicket;
+            }catch
+            {
+                return null;
+            }
         }
 
     }

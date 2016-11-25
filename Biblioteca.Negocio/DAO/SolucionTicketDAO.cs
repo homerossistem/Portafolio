@@ -20,6 +20,7 @@ namespace Biblioteca.Negocio.DAO
                 objSolucionTicketDALC.ID_TICKET = _solucionTicket.Id_ticket;
 
                 CommonBC.HomeroSystemEntities.SOLUCION.Add(objSolucionTicketDALC);
+                CommonBC.HomeroSystemEntities.SaveChanges();
                 return true;
             }
             catch

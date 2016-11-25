@@ -217,6 +217,14 @@ namespace WSHomeroSystem
         {
             return objTicketDAO.BuscarNombreModuloPorCodigo(cod);
         }
+        public List<Ticket> listadoTicketPendientesPorEquipoTrabajo(int idequipo)
+        {
+            return objTicketDAO.listadoTicketPendientesPorEquipoTrabajo(idequipo);
+        }
+        public Ticket buscarTicketPorid(int id)
+        {
+            return objTicketDAO.buscarTicketPorid(id);
+        }
         #endregion
         #region Agregar,Modificar,listado Base Datos
         public string AgregarBaseDatos(BaseDeDatos _objBaseDatos)

@@ -206,6 +206,10 @@ namespace WSHomeroSystem
         Documento buscarDocumentoPorId(int id);
         [OperationContract]
         Usuario ObtenerUsuarioPorNombreUsuario(string nombreUsuario);
+        [OperationContract]
+        List<Ticket> listadoTicketPendientesPorEquipoTrabajo(int idequipo);
+        [OperationContract]
+        Ticket buscarTicketPorid(int id);
 
     }
 }
