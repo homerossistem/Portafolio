@@ -18,6 +18,8 @@ namespace Biblioteca.DALC
         public string DESCRIPCION_SOLUCION { get; set; }
         public Nullable<System.DateTime> FECHA_SOLUCION { get; set; }
         public decimal ID_TICKET { get; set; }
+        public string NOMBRE_FUNCIONARIO { get; set; }
+        public string EQUIPO_DE_TRABAJO { get; set; }
     
         public virtual TICKET TICKET { get; set; }
     }

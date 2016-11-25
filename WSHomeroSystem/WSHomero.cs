@@ -225,6 +225,10 @@ namespace WSHomeroSystem
         {
             return objTicketDAO.buscarTicketPorid(id);
         }
+        public SolucionTicket buscarSolucionTicketPoridTicket(int id)
+        {
+            return objTicketDAO.buscarSolucionTicketPoridTicket(id);
+        }
         #endregion
         #region Agregar,Modificar,listado Base Datos
         public string AgregarBaseDatos(BaseDeDatos _objBaseDatos)

@@ -94,6 +94,8 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+      
+
         public Ticket()
         {
             this.Init();

@@ -147,20 +147,26 @@ namespace Biblioteca.Negocio.DAO
                         PROBLEMA = tic.PROBLEMA,
                         SOLUCION = ticso.DESCRIPCION_SOLUCION,
                         ID_EQUIPO = tic.FUNCIONARIO.ID_EQUIPO_TRABAJO,
-                        EQUIPO = tic.FUNCIONARIO.EQUIPO_TRABAJO.NOMBRE_EQUIPO
+                        EQUIPO = tic.FUNCIONARIO.EQUIPO_TRABAJO.NOMBRE_EQUIPO,
+                        NOMBREFUNCIONARIO = ticso.NOMBRE_FUNCIONARIO,
+                        EQUIPOTRABAJO = ticso.EQUIPO_DE_TRABAJO,
+                        ID_SOLUCION = ticso.ID_SOLUCION
                     });
                 foreach (var result in query)
                 {
                     DTO objDTO = new DTO();
                     objDTO.Ticket.Id_ticket = int.Parse(result.ID_TICKET.ToString());
                     objDTO.Ticket.Codigo_modulo = result.COD_MODULO;
-                    objDTO.Modulo.Nombre = result.MODULO;
                     objDTO.Ticket.FechaProblema = DateTime.Parse(result.FECHA_PROBLEMA.ToString());
-                    objDTO.SolucionTicket.Fecha_solucion = DateTime.Parse(result.FECHA_SOLUCION.ToString());
+                    objDTO.Ticket.Nombre_modulo = result.MODULO;
                     objDTO.Ticket.Problema = result.PROBLEMA;
+                    objDTO.SolucionTicket.Fecha_solucion = DateTime.Parse(result.FECHA_SOLUCION.ToString());
+                    objDTO.SolucionTicket.Equipo_trabajo = result.EQUIPOTRABAJO;
+                    objDTO.SolucionTicket.Nombre_funcionario = result.NOMBREFUNCIONARIO;
                     objDTO.SolucionTicket.Descripcion_solucion = result.SOLUCION;
                     objDTO.EquipoTrabajo.Id_equipo = int.Parse(result.ID_EQUIPO.ToString());
                     objDTO.EquipoTrabajo.Nombre_equipo = result.EQUIPO;
+                    objDTO.SolucionTicket.Id_solucion = int.Parse(result.ID_SOLUCION.ToString());
                     listadoTicketSolucionados.Add(objDTO);
 
                 }
@@ -218,6 +224,28 @@ namespace Biblioteca.Negocio.DAO
                 objTicket.Problema = objTICKETDALC.PROBLEMA;
                 objTicket.Rut_funcionario = objTICKETDALC.RUT_FUNCIONARIO;
                 return objTicket;
+            }catch
+            {
+                return null;
+            }
+        }
+
+        public SolucionTicket buscarSolucionTicketPoridTicket(int id)
+        {
+            try
+            {
+                SOLUCION objSolucion = CommonBC.HomeroSystemEntities.SOLUCION.First
+                    (so=>so.ID_TICKET == id);
+
+                SolucionTicket objSolucionTicket = new SolucionTicket();
+                objSolucionTicket.Id_solucion = int.Parse(objSolucion.ID_TICKET.ToString());
+                objSolucionTicket.Descripcion_solucion = objSolucion.DESCRIPCION_SOLUCION;
+                objSolucionTicket.Equipo_trabajo = objSolucion.EQUIPO_DE_TRABAJO;
+                objSolucionTicket.Fecha_solucion = DateTime.Parse(objSolucion.FECHA_SOLUCION.ToString());
+                objSolucionTicket.Id_ticket = int.Parse(objSolucion.ID_TICKET.ToString());
+                objSolucionTicket.Nombre_funcionario = objSolucion.NOMBRE_FUNCIONARIO;
+
+                return objSolucionTicket;
             }catch
             {
                 return null;

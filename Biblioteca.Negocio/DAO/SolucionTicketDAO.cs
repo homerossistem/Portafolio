@@ -18,14 +18,15 @@ namespace Biblioteca.Negocio.DAO
                 objSolucionTicketDALC.DESCRIPCION_SOLUCION = _solucionTicket.Descripcion_solucion;
                 objSolucionTicketDALC.FECHA_SOLUCION = _solucionTicket.Fecha_solucion;
                 objSolucionTicketDALC.ID_TICKET = _solucionTicket.Id_ticket;
-
+                objSolucionTicketDALC.NOMBRE_FUNCIONARIO = _solucionTicket.Nombre_funcionario;
+                objSolucionTicketDALC.EQUIPO_DE_TRABAJO = _solucionTicket.Equipo_trabajo;
                 CommonBC.HomeroSystemEntities.SOLUCION.Add(objSolucionTicketDALC);
                 CommonBC.HomeroSystemEntities.SaveChanges();
                 return true;
             }
             catch
             {
-                throw new ArgumentException("Error al agregar una solucion al ticket");
+                return false;
             }
         }
     }

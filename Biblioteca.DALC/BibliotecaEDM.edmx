@@ -228,6 +228,8 @@
           <Property Name="DESCRIPCION_SOLUCION" Type="varchar2" MaxLength="500" />
           <Property Name="FECHA_SOLUCION" Type="date" />
           <Property Name="ID_TICKET" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE_FUNCIONARIO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="EQUIPO_DE_TRABAJO" Type="varchar2" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TICKET">
           <Key>
@@ -1149,6 +1151,8 @@
           <Property Name="FECHA_SOLUCION" Type="DateTime" />
           <Property Name="ID_TICKET" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="TICKET" Relationship="Self.SOLUCION_TICKET_FK" FromRole="SOLUCION" ToRole="TICKET" />
+          <Property Name="NOMBRE_FUNCIONARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EQUIPO_DE_TRABAJO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TICKET">
           <Key>
@@ -1938,6 +1942,8 @@
           <EntitySetMapping Name="SOLUCION">
             <EntityTypeMapping TypeName="Model.SOLUCION">
               <MappingFragment StoreEntitySet="SOLUCION">
+                <ScalarProperty Name="EQUIPO_DE_TRABAJO" ColumnName="EQUIPO_DE_TRABAJO" />
+                <ScalarProperty Name="NOMBRE_FUNCIONARIO" ColumnName="NOMBRE_FUNCIONARIO" />
                 <ScalarProperty Name="ID_SOLUCION" ColumnName="ID_SOLUCION" />
                 <ScalarProperty Name="DESCRIPCION_SOLUCION" ColumnName="DESCRIPCION_SOLUCION" />
                 <ScalarProperty Name="FECHA_SOLUCION" ColumnName="FECHA_SOLUCION" />

@@ -13,6 +13,8 @@ namespace Biblioteca.Negocio.Clases
         private string descripcion_solucion;
         private DateTime fecha_solucion;
         private int id_ticket;
+        private string nombre_funcionario;
+        private string equipo_trabajo;
 
         public int Id_solucion
         {
@@ -66,12 +68,40 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public string Nombre_funcionario
+        {
+            get
+            {
+                return nombre_funcionario;
+            }
+
+            set
+            {
+                nombre_funcionario = value;
+            }
+        }
+
+        public string Equipo_trabajo
+        {
+            get
+            {
+                return equipo_trabajo;
+            }
+
+            set
+            {
+                equipo_trabajo = value;
+            }
+        }
+
         public SolucionTicket()
         {
             this.Id_solucion = 0;
             this.Descripcion_solucion = string.Empty;
             this.Fecha_solucion = DateTime.Now;
             this.Id_ticket = 0;
+            this.Nombre_funcionario = string.Empty;
+            this.Equipo_trabajo = string.Empty;
         }
     }
 }

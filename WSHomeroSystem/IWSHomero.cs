@@ -210,6 +210,8 @@ namespace WSHomeroSystem
         List<Ticket> listadoTicketPendientesPorEquipoTrabajo(int idequipo);
         [OperationContract]
         Ticket buscarTicketPorid(int id);
+        [OperationContract]
+        SolucionTicket buscarSolucionTicketPoridTicket(int id);
 
     }
 }
