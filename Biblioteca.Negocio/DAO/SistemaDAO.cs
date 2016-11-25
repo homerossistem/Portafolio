@@ -360,8 +360,10 @@ namespace Biblioteca.Negocio.DAO
         {
             BaseDatosDAO objBDDAO = new BaseDatosDAO();
             ServicioDAO objServicioDAO = new ServicioDAO();
+            OrganizacionesDAO objOrganizacionesDAO = new OrganizacionesDAO();
             List<BaseDeDatos> listadoBaseDeDatos = new List<BaseDeDatos>();
             List<Servicio> listadoServicio = new List<Servicio>();
+            List<Organizacion> listadoOrganizacion = new List<Organizacion>();
             Sistema objSistema = new Sistema();
             try
             {
@@ -390,6 +392,12 @@ namespace Biblioteca.Negocio.DAO
                     Servicio objServicio = objServicioDAO.BuscarServicio(serviDALC.COD_SERVICIO);
                     listadoServicio.Add(objServicio);
                 }
+                foreach(ORGANIZACION orgaDALC in objSistemaDALC.ORGANIZACION)
+                {
+                    Organizacion objOrganizacion = objOrganizacionesDAO.BuscarOrganizacion(int.Parse(orgaDALC.ID_ORGANIZACION.ToString()));
+                    listadoOrganizacion.Add(objOrganizacion);
+                }
+                objSistema.ListadoOrganizacion = listadoOrganizacion;
                 objSistema.ListadoBaseDatos = listadoBaseDeDatos;
                 objSistema.ListadoServicios = listadoServicio;
 
@@ -513,6 +521,7 @@ namespace Biblioteca.Negocio.DAO
                     objDTO.Sencibilidad.Tipo_sensibilidad = objSistemaDALC.SENSIBILIDAD.TIPO_SENSIBILIDAD;
                     objDTO.Funcionario.Nombre = objSistemaDALC.MODULO.FUNCIONARIO.NOMBRE;
                     objDTO.Funcionario.Apellido = objSistemaDALC.MODULO.FUNCIONARIO.APELLIDO;
+                    objDTO.Funcionario.Id_equipo_trabajo = int.Parse(objSistemaDALC.MODULO.FUNCIONARIO.ID_EQUIPO_TRABAJO.ToString());
                     objDTO.Servidor.Nombre = objSistemaDALC.SERVIDOR.MODULO.NOMBRE;
 
                     listadoSistemas.Add(objDTO);

@@ -254,7 +254,14 @@ namespace Biblioteca.Negocio.DAO
         }
         public bool EliminarUsuario(int id_usuario)
         {
-            USUARIO objusuario = CommonBC.HomeroSystemEntities.USUARIO.First(us => us.ID_USUARIO == id_usuario);
+            USUARIO objusuario;
+            try {
+                objusuario = CommonBC.HomeroSystemEntities.USUARIO.First(us => us.ID_USUARIO == id_usuario);
+            }
+            catch
+            {
+                return false;
+            }
             FUNCIONARIO objFuncionario = null;
             HASH_PASS objHashPass = null;
             int resultado = 0;

@@ -16,6 +16,7 @@ namespace Biblioteca.Negocio.Clases
         private int id_lenguaje;
         private List<BaseDeDatos> listadoBaseDatos;
         private List<Servicio> listadoServicios;
+        private List<Organizacion> listadoOrganizacion;
         private Servidor objServidor;
 
         public int Id_sensibilidad
@@ -122,6 +123,19 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public List<Organizacion> ListadoOrganizacion
+        {
+            get
+            {
+                return listadoOrganizacion;
+            }
+
+            set
+            {
+                listadoOrganizacion = value;
+            }
+        }
+
         public Sistema()
         {
             this.Init();
@@ -142,6 +156,7 @@ namespace Biblioteca.Negocio.Clases
             this.listadoBaseDatos = new List<BaseDeDatos>();
             this.ListadoServicios = new List<Servicio>();
             this.ObjServidor = new Servidor();
+            this.ListadoOrganizacion = new List<Organizacion>();
         }
     }
 }

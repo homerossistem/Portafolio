@@ -46,15 +46,39 @@ namespace Biblioteca.Negocio.DAO
 
         public Documento bsucarDocumento(String url)
         {
-            Documento objDocumento = new Documento();
-            DOCUMENTO objDocumentoDALC = CommonBC.HomeroSystemEntities.DOCUMENTO.First
-                (
-                    doc => doc.URL_DOCUMENTO == url
-                );
-            objDocumento.Id_documento = int.Parse(objDocumentoDALC.ID_DOCUMENTO.ToString());
-            objDocumento.Url_documento = objDocumentoDALC.URL_DOCUMENTO;
-
-            return objDocumento;
+            try
+            {
+                Documento objDocumento = new Documento();
+                DOCUMENTO objDocumentoDALC = CommonBC.HomeroSystemEntities.DOCUMENTO.First
+                    (
+                        doc => doc.URL_DOCUMENTO == url
+                    );
+                objDocumento.Id_documento = int.Parse(objDocumentoDALC.ID_DOCUMENTO.ToString());
+                objDocumento.Url_documento = objDocumentoDALC.URL_DOCUMENTO;
+                return objDocumento;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public Documento buscarDocumentoPorId(int id)
+        {
+            try
+            {
+                Documento objDocumento = new Documento();
+                DOCUMENTO objDocumentoDALC = CommonBC.HomeroSystemEntities.DOCUMENTO.First
+                    (
+                        doc => doc.ID_DOCUMENTO == id
+                    );
+                objDocumento.Id_documento = int.Parse(objDocumentoDALC.ID_DOCUMENTO.ToString());
+                objDocumento.Url_documento = objDocumentoDALC.URL_DOCUMENTO;
+                return objDocumento;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

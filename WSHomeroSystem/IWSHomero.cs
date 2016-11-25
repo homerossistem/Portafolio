@@ -202,6 +202,10 @@ namespace WSHomeroSystem
         bool ModificarSistema(Sistema _objSistema, List<string> listadoBaseDatos, List<string> listadoServicios);
         [OperationContract]
         string BuscarNombreModuloPorCodigo(string cod);
+        [OperationContract]
+        Documento buscarDocumentoPorId(int id);
+        [OperationContract]
+        Usuario ObtenerUsuarioPorNombreUsuario(string nombreUsuario);
 
     }
 }

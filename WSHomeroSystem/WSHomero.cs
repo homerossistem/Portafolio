@@ -162,6 +162,10 @@ namespace WSHomeroSystem
         {
             return objFuncionarioDAO.buscarFuncionarioPorRut(rut);
         }
+        public Usuario ObtenerUsuarioPorNombreUsuario(string nombreUsuario)
+        {
+            return objUsuarioDAO.ObtenerUsuarioPorNombreUsuario(nombreUsuario);
+        }
         #endregion
         #region Agregar,Listra,Ticket
         public string AgregarTicket(Ticket objTicket, int id_equipoTrabajo, string nombre_funcionario)
@@ -506,6 +510,10 @@ namespace WSHomeroSystem
         public Lenguaje BuscarLenguaje(int idLenguaje)
         {
             return objLenguajeDAO.BuscarLenguaje(idLenguaje);
+        }
+        public Documento buscarDocumentoPorId(int id)
+        {
+            return objDocumentoDAO.buscarDocumentoPorId(id);
         }
         #endregion
         #region Sala Servidores
