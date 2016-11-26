@@ -94,6 +94,7 @@ namespace Biblioteca.Negocio.DAO
                              ESTADO = resultado.us.ESTADO,
                              FECHA_CREACION = resultado.us.FECHA_CREACION,
                              ID_ROL = resultado.us.ID_ROL,
+                             ROL = resultado.us.ROL.NOMBRE_ROL,
                              PASS = hash.HASH_PASS1,
                              Rut = resultado.fun.RUT_FUNCIONARIO,
                              Nombre = resultado.fun.NOMBRE,
@@ -101,6 +102,7 @@ namespace Biblioteca.Negocio.DAO
                              Email = resultado.fun.EMAIL,
                              Celular = resultado.fun.CELULAR,
                              Direccion = resultado.fun.DIRECION,
+                             EQUIPOTRABAJO = resultado.fun.EQUIPO_TRABAJO.NOMBRE_EQUIPO,
                              ID_EQUIPO = resultado.fun.ID_EQUIPO_TRABAJO
                          }
                          ).Where(us => us.NOMBRE_USUARIO == nombre_usuario.ToUpper() && us.PASS == hash_pass);
@@ -123,6 +125,8 @@ namespace Biblioteca.Negocio.DAO
                     objdto.Funcionario.Celular = int.Parse(result.Celular.ToString());
                     objdto.Funcionario.Direccion = result.Direccion;
                     objdto.Funcionario.Id_equipo_trabajo = int.Parse(result.ID_EQUIPO.ToString());
+                    objdto.EquipoTrabajo.Nombre_equipo = result.EQUIPOTRABAJO;
+                    objdto.Rol.Nombre_rol = result.ROL;
                 }
                 return objdto;
             }catch
@@ -405,11 +409,11 @@ namespace Biblioteca.Negocio.DAO
             return sb.ToString();
         }
 
-        public bool AGREGARAUDITORIA(string nombreUsuario,string equipoTrabajo,string nombreFuncionario,string ip,string host,string query)
+        public bool AGREGARAUDITORIA(string nombreUsuario,string rol,string nombreFuncionario,string ip,string host,string accion)
         {
             try
             {
-                CommonBC.HomeroSystemEntities.INSERTAR_TO_AUDITORIA(ultimoIdAUDITORIA(), nombreUsuario, equipoTrabajo, nombreFuncionario, ip, host, query);
+                CommonBC.HomeroSystemEntities.INSERTAR_TO_AUDITORIA(ultimoIdAUDITORIA(), nombreUsuario,rol, nombreFuncionario, ip, host, accion);
                 CommonBC.HomeroSystemEntities.SaveChanges();
                 return true;
             }catch

@@ -16,10 +16,10 @@ namespace Biblioteca.DALC
     {
         public decimal ID_AUDITORIA { get; set; }
         public string NOMBRE_USUARIO { get; set; }
-        public string EQUIPO_TRABAJO { get; set; }
         public string NOMBRE_FUNCIONARIO { get; set; }
         public string IP { get; set; }
         public string HOST { get; set; }
-        public string QUERY { get; set; }
+        public string ROL { get; set; }
+        public string ACCION { get; set; }
     }
 }

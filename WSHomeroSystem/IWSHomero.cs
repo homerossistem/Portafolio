@@ -106,10 +106,6 @@ namespace WSHomeroSystem
         [OperationContract]
         List<DTO> listadoUsuariosPorEquipoDeTrabajo(int id_equipo);
         [OperationContract]
-        List<Servicio> listadoServiciosByEquipoTrabajo(int id_equipoTrabajo);
-        [OperationContract]
-        List<Sistema> ListadoSistemasbyEquipoTrabajo(int id_equipoTrabajo, int id_rol);
-        [OperationContract]
         List<Funcionario> listadoFuncionariosResponsables();
         [OperationContract]
         bool AgregarLenguaje(Lenguaje _lenguaje);
@@ -217,7 +213,11 @@ namespace WSHomeroSystem
         [OperationContract]
         List<DTO> buscarTicketSistemasSolucionados(DateTime fechaInicio, DateTime fehcaFinal);
         [OperationContract]
-        bool AGREGARAUDITORIA(string nombreUsuario, string equipoTrabajo, string nombreFuncionario, string ip, string host, string query);
+        bool AGREGARAUDITORIA(string nombreUsuario, string rol, string nombreFuncionario, string ip, string host, string accion);
+        [OperationContract]
+        List<DTO> buscarTicketServidorSolucionados(DateTime fechaInicio, DateTime fehcaFinal);
+        [OperationContract]
+        List<DTO> buscarTicketServiciosSolucionados(DateTime fechaInicio, DateTime fehcaFinal);
 
     }
 }

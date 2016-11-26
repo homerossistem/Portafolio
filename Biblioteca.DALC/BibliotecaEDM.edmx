@@ -11,11 +11,11 @@
           </Key>
           <Property Name="ID_AUDITORIA" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_USUARIO" Type="varchar2" MaxLength="50" Nullable="false" />
-          <Property Name="EQUIPO_TRABAJO" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="ROL" Type="varchar2" MaxLength="20" Nullable="false" />
           <Property Name="NOMBRE_FUNCIONARIO" Type="varchar2" MaxLength="50" Nullable="false" />
           <Property Name="IP" Type="varchar2" MaxLength="20" Nullable="false" />
           <Property Name="HOST" Type="varchar2" MaxLength="20" Nullable="false" />
-          <Property Name="QUERY" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="ACCION" Type="varchar2" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="BASE_DATOS">
           <Key>
@@ -1767,11 +1767,11 @@
           </Key>
           <Property Name="ID_AUDITORIA" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE_USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EQUIPO_TRABAJO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NOMBRE_FUNCIONARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="HOST" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="QUERY" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ROL" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ACCION" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2078,11 +2078,11 @@
           <EntitySetMapping Name="AUDITORIA">
             <EntityTypeMapping TypeName="Model.AUDITORIA">
               <MappingFragment StoreEntitySet="AUDITORIA">
-                <ScalarProperty Name="QUERY" ColumnName="QUERY" />
+                <ScalarProperty Name="ACCION" ColumnName="ACCION" />
+                <ScalarProperty Name="ROL" ColumnName="ROL" />
                 <ScalarProperty Name="HOST" ColumnName="HOST" />
                 <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="NOMBRE_FUNCIONARIO" ColumnName="NOMBRE_FUNCIONARIO" />
-                <ScalarProperty Name="EQUIPO_TRABAJO" ColumnName="EQUIPO_TRABAJO" />
                 <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
                 <ScalarProperty Name="ID_AUDITORIA" ColumnName="ID_AUDITORIA" />
               </MappingFragment>

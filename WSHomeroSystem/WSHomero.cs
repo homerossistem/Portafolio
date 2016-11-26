@@ -208,7 +208,6 @@ namespace WSHomeroSystem
 
             return mensaje;
         }
-
         public List<DTO> listadoTicketConSolcuion()
         {
             return objTicketDAO.ListarTodosLosTicketConSolucion();
@@ -232,6 +231,14 @@ namespace WSHomeroSystem
         public List<DTO> buscarTicketSistemasSolucionados(DateTime fechaInicio, DateTime fehcaFinal)
         {
             return objTicketDAO.buscarTicketSistemasSolucionados(fechaInicio, fehcaFinal);
+        }
+        public List<DTO> buscarTicketServidorSolucionados(DateTime fechaInicio, DateTime fehcaFinal)
+        {
+            return objTicketDAO.buscarTicketServidorSolucionados(fechaInicio, fehcaFinal);
+        }
+        public List<DTO> buscarTicketServiciosSolucionados(DateTime fechaInicio, DateTime fehcaFinal)
+        {
+            return objTicketDAO.buscarTicketServiciosSolucionados(fechaInicio, fehcaFinal);
         }
         #endregion
         #region Agregar,Modificar,listado Base Datos
@@ -659,23 +666,12 @@ namespace WSHomeroSystem
         }
         #endregion
         #region AUDITORIA
-        public bool AGREGARAUDITORIA(string nombreUsuario, string equipoTrabajo, string nombreFuncionario, string ip, string host, string query)
+        public bool AGREGARAUDITORIA(string nombreUsuario, string rol, string nombreFuncionario, string ip, string host, string accion)
         {
-            return objUsuarioDAO.AGREGARAUDITORIA(nombreUsuario, equipoTrabajo, nombreFuncionario, ip, host, query);
+            return objUsuarioDAO.AGREGARAUDITORIA(nombreUsuario,rol, nombreFuncionario, ip, host,accion);
         }
         #endregion
         #endregion
-
-        public List<Servicio> listadoServiciosByEquipoTrabajo(int id_equipoTrabajo)
-        {
-            return null;
-        }
-        public List<Sistema> ListadoSistemasbyEquipoTrabajo(int id_equipoTrabajo, int id_rol)
-        {
-            return objSistemaDAO.ListadoSistemasbyEquipoTrabajo(id_equipoTrabajo, id_rol);
-        }
-
-
         }
 }
 
