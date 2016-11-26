@@ -381,6 +381,18 @@ namespace Biblioteca.Negocio.DAO
             }
                 
         }
+        public int ultimoIdAUDITORIA()
+        {
+            try
+            {
+                int ultimoID = int.Parse(CommonBC.HomeroSystemEntities.AUDITORIA.Max(a => a.ID_AUDITORIA).ToString());
+                return ultimoID + 1;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
 
         public string GeneradorPasswordsMD5(string contrasena)
         {
@@ -392,6 +404,20 @@ namespace Biblioteca.Negocio.DAO
             for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
             return sb.ToString();
         }
+
+        public bool AGREGARAUDITORIA(string nombreUsuario,string equipoTrabajo,string nombreFuncionario,string ip,string host,string query)
+        {
+            try
+            {
+                CommonBC.HomeroSystemEntities.INSERTAR_TO_AUDITORIA(ultimoIdAUDITORIA(), nombreUsuario, equipoTrabajo, nombreFuncionario, ip, host, query);
+                CommonBC.HomeroSystemEntities.SaveChanges();
+                return true;
+            }catch
+            {
+                return false;
+            }
+        }
+        
 
 
     }

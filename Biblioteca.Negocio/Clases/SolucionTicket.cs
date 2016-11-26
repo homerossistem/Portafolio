@@ -15,6 +15,7 @@ namespace Biblioteca.Negocio.Clases
         private int id_ticket;
         private string nombre_funcionario;
         private string equipo_trabajo;
+        private int tinactividad;
 
         public int Id_solucion
         {
@@ -94,6 +95,19 @@ namespace Biblioteca.Negocio.Clases
             }
         }
 
+        public int Tinactividad
+        {
+            get
+            {
+                return tinactividad;
+            }
+
+            set
+            {
+                tinactividad = value;
+            }
+        }
+
         public SolucionTicket()
         {
             this.Id_solucion = 0;
@@ -102,6 +116,7 @@ namespace Biblioteca.Negocio.Clases
             this.Id_ticket = 0;
             this.Nombre_funcionario = string.Empty;
             this.Equipo_trabajo = string.Empty;
+            this.Tinactividad = 0;
         }
     }
 }

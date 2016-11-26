@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AUDITORIA">
+          <Key>
+            <PropertyRef Name="ID_AUDITORIA" />
+          </Key>
+          <Property Name="ID_AUDITORIA" Type="number" Precision="38" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_USUARIO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="EQUIPO_TRABAJO" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE_FUNCIONARIO" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="IP" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="HOST" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="QUERY" Type="varchar2" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="BASE_DATOS">
           <Key>
             <PropertyRef Name="COD_BASE_DATOS" />
@@ -717,7 +729,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="INSERTAR_TO_AUDITORIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="HOMEROSYSTEM">
+          <Parameter Name="ID_AU" Type="number" Mode="In" />
+          <Parameter Name="NOM_USUARIO" Type="varchar2" Mode="In" />
+          <Parameter Name="EQUIPO_TRABAJO" Type="varchar2" Mode="In" />
+          <Parameter Name="NOMBRE_FUNCIONARIO" Type="varchar2" Mode="In" />
+          <Parameter Name="IP" Type="varchar2" Mode="In" />
+          <Parameter Name="HOSTT" Type="varchar2" Mode="In" />
+          <Parameter Name="QUERYY" Type="varchar2" Mode="In" />
+        </Function>
         <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="AUDITORIA" EntityType="Self.AUDITORIA" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="BASE_DATOS" EntityType="Self.BASE_DATOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="BASE_DE_DATOS_DE_SERVICIOS" EntityType="Self.BASE_DE_DATOS_DE_SERVICIOS" Schema="HOMEROSYSTEM" store:Type="Tables" />
           <EntitySet Name="BASES_DE_DATOS_DE_SISTEMAS" EntityType="Self.BASES_DE_DATOS_DE_SISTEMAS" Schema="HOMEROSYSTEM" store:Type="Tables" />
@@ -1692,6 +1714,16 @@
             <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
             <End Role="MODULO" EntitySet="MODULO" />
           </AssociationSet>
+          <FunctionImport Name="INSERTAR_TO_AUDITORIA">
+            <Parameter Name="ID_AU" Mode="In" Type="Decimal" />
+            <Parameter Name="NOM_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="EQUIPO_TRABAJO" Mode="In" Type="String" />
+            <Parameter Name="NOMBRE_FUNCIONARIO" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="HOSTT" Mode="In" Type="String" />
+            <Parameter Name="QUERYY" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="AUDITORIA" EntityType="Model.AUDITORIA" />
         </EntityContainer>
         <Association Name="FUNCIONARIO_USUARIO_FK">
           <End Type="Model.USUARIO" Role="USUARIO" Multiplicity="1" />
@@ -1729,6 +1761,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AUDITORIA">
+          <Key>
+            <PropertyRef Name="ID_AUDITORIA" />
+          </Key>
+          <Property Name="ID_AUDITORIA" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EQUIPO_TRABAJO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_FUNCIONARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HOST" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="QUERY" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2030,6 +2074,20 @@
               <ScalarProperty Name="CODIGO_SISTEMA" ColumnName="COD_SISTEMA" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="INSERTAR_TO_AUDITORIA" FunctionName="Model.Store.INSERTAR_TO_AUDITORIA" />
+          <EntitySetMapping Name="AUDITORIA">
+            <EntityTypeMapping TypeName="Model.AUDITORIA">
+              <MappingFragment StoreEntitySet="AUDITORIA">
+                <ScalarProperty Name="QUERY" ColumnName="QUERY" />
+                <ScalarProperty Name="HOST" ColumnName="HOST" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="NOMBRE_FUNCIONARIO" ColumnName="NOMBRE_FUNCIONARIO" />
+                <ScalarProperty Name="EQUIPO_TRABAJO" ColumnName="EQUIPO_TRABAJO" />
+                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+                <ScalarProperty Name="ID_AUDITORIA" ColumnName="ID_AUDITORIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

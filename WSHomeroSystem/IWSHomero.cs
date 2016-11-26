@@ -212,6 +212,12 @@ namespace WSHomeroSystem
         Ticket buscarTicketPorid(int id);
         [OperationContract]
         SolucionTicket buscarSolucionTicketPoridTicket(int id);
+        [OperationContract]
+        List<DTO> buscarTicketBaseDeDatosSolucionados(DateTime fechaInicio, DateTime fehcaFinal);
+        [OperationContract]
+        List<DTO> buscarTicketSistemasSolucionados(DateTime fechaInicio, DateTime fehcaFinal);
+        [OperationContract]
+        bool AGREGARAUDITORIA(string nombreUsuario, string equipoTrabajo, string nombreFuncionario, string ip, string host, string query);
 
     }
 }

@@ -59,6 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AUDITORIA.cs">
+      <DependentUpon>BibliotecaEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="BASE_DATOS.cs">
       <DependentUpon>BibliotecaEDM.tt</DependentUpon>
     </Compile>

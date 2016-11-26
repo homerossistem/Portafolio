@@ -229,6 +229,10 @@ namespace WSHomeroSystem
         {
             return objTicketDAO.buscarSolucionTicketPoridTicket(id);
         }
+        public List<DTO> buscarTicketSistemasSolucionados(DateTime fechaInicio, DateTime fehcaFinal)
+        {
+            return objTicketDAO.buscarTicketSistemasSolucionados(fechaInicio, fehcaFinal);
+        }
         #endregion
         #region Agregar,Modificar,listado Base Datos
         public string AgregarBaseDatos(BaseDeDatos _objBaseDatos)
@@ -277,6 +281,10 @@ namespace WSHomeroSystem
         public MotorBD buscarMotorBDPorNombreMBD(string nombre)
         {
             return objBaseDatosDAO.buscarMotorBDPorNombreMBD(nombre);
+        }
+        public List<DTO> buscarTicketBaseDeDatosSolucionados(DateTime fechaInicio, DateTime fehcaFinal)
+        {
+            return objTicketDAO.buscarTicketBaseDeDatosSolucionados(fechaInicio, fehcaFinal);
         }
 
 
@@ -648,6 +656,12 @@ namespace WSHomeroSystem
         public MotorBD buscarMotorBDPorId(int id)
         {
             return objBaseDatosDAO.buscarMotorBDPorId(id);
+        }
+        #endregion
+        #region AUDITORIA
+        public bool AGREGARAUDITORIA(string nombreUsuario, string equipoTrabajo, string nombreFuncionario, string ip, string host, string query)
+        {
+            return objUsuarioDAO.AGREGARAUDITORIA(nombreUsuario, equipoTrabajo, nombreFuncionario, ip, host, query);
         }
         #endregion
         #endregion

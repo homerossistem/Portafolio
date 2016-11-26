@@ -19,7 +19,7 @@ namespace Biblioteca.Negocio.DAO
             try
             {
                 TICKET objTicketDALC = new TICKET();
-                objTicketDALC.FECHA_PROBLEMA = _objTicket.FechaProblema;
+                objTicketDALC.FECHA_PROBLEMA = _objTicket.FechaProblema.Date;
                 objTicketDALC.PROBLEMA = _objTicket.Problema;
                 objTicketDALC.RUT_FUNCIONARIO = _objTicket.Rut_funcionario;
                 objTicketDALC.MODULO_COD_MODULO = _objTicket.Codigo_modulo;
@@ -247,6 +247,86 @@ namespace Biblioteca.Negocio.DAO
 
                 return objSolucionTicket;
             }catch
+            {
+                return null;
+            }
+        }
+
+        public List<DTO> buscarTicketBaseDeDatosSolucionados(DateTime fechaInicio,DateTime fehcaFinal)
+        {
+            BaseDatosDAO objBaseDatosDAO = new BaseDatosDAO();
+            FuncionarioDAO objfuncionarioDA =  new FuncionarioDAO();
+            ServidorDAO objServidorDAO = new ServidorDAO();
+            List<DTO> listadoTicketContingeciaBD = new List<DTO>();
+            try
+            {
+                List<SOLUCION> listado = CommonBC.HomeroSystemEntities.SOLUCION.Where
+                     (so => so.TICKET.FECHA_PROBLEMA >= fechaInicio.Date & so.TICKET.FECHA_PROBLEMA <= fehcaFinal.Date & so.TICKET.MODULO_COD_MODULO.Contains("BD")).ToList();
+
+                foreach (SOLUCION objSolucion in listado)
+                {
+                    TimeSpan ts = DateTime.Parse(objSolucion.FECHA_SOLUCION.ToString()) - DateTime.Parse(objSolucion.TICKET.FECHA_PROBLEMA.ToString());
+                    DTO objSolucionTicket = new DTO();
+                    objSolucionTicket.SolucionTicket.Id_solucion = int.Parse(objSolucion.ID_TICKET.ToString());
+                    objSolucionTicket.SolucionTicket.Descripcion_solucion = objSolucion.DESCRIPCION_SOLUCION;
+                    objSolucionTicket.SolucionTicket.Equipo_trabajo = objSolucion.EQUIPO_DE_TRABAJO;
+                    objSolucionTicket.SolucionTicket.Fecha_solucion = DateTime.Parse(objSolucion.FECHA_SOLUCION.ToString());
+                    objSolucionTicket.SolucionTicket.Id_ticket = int.Parse(objSolucion.ID_TICKET.ToString());
+                    objSolucionTicket.SolucionTicket.Nombre_funcionario = objSolucion.NOMBRE_FUNCIONARIO;
+                    objSolucionTicket.Ticket.Codigo_modulo = objSolucion.TICKET.MODULO_COD_MODULO;
+                    objSolucionTicket.Ticket.Nombre_modulo = objSolucion.TICKET.NOMBRE_MODULO;
+                    objSolucionTicket.Ticket.FechaProblema = objSolucion.TICKET.FECHA_PROBLEMA;
+                    objSolucionTicket.BaseDeDatos = objBaseDatosDAO.BuscarBaseDeDatosPorCodigo(objSolucion.TICKET.MODULO_COD_MODULO);
+                    objSolucionTicket.Servidor = objServidorDAO.BuscarServidorPorCod(objSolucionTicket.BaseDeDatos.Codigo_servidor);
+                    objSolucionTicket.Funcionario = objfuncionarioDA.buscarFuncionarioPorRut(objSolucionTicket.BaseDeDatos.Rut_administrador);
+                    objSolucionTicket.SolucionTicket.Tinactividad = ts.Days;
+
+                    listadoTicketContingeciaBD.Add(objSolucionTicket);
+                }
+
+                return listadoTicketContingeciaBD;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<DTO> buscarTicketSistemasSolucionados(DateTime fechaInicio, DateTime fehcaFinal)
+        {
+            FuncionarioDAO objfuncionarioDA = new FuncionarioDAO();
+            ServidorDAO objServidorDAO = new ServidorDAO();
+            SistemaDAO objSistemaDAO = new SistemaDAO();
+            List<DTO> listadoTicketContingeciaSistema = new List<DTO>();
+            try
+            {
+                List<SOLUCION> listado = CommonBC.HomeroSystemEntities.SOLUCION.Where
+                     (so => so.TICKET.FECHA_PROBLEMA >= fechaInicio.Date & so.TICKET.FECHA_PROBLEMA <= fehcaFinal.Date & so.TICKET.MODULO_COD_MODULO.Contains("SISTEM")).ToList();
+
+                foreach (SOLUCION objSolucion in listado)
+                {
+                    TimeSpan ts = DateTime.Parse(objSolucion.FECHA_SOLUCION.ToString()) - DateTime.Parse(objSolucion.TICKET.FECHA_PROBLEMA.ToString());
+                    DTO objSolucionTicket = new DTO();
+                    objSolucionTicket.SolucionTicket.Id_solucion = int.Parse(objSolucion.ID_TICKET.ToString());
+                    objSolucionTicket.SolucionTicket.Descripcion_solucion = objSolucion.DESCRIPCION_SOLUCION;
+                    objSolucionTicket.SolucionTicket.Equipo_trabajo = objSolucion.EQUIPO_DE_TRABAJO;
+                    objSolucionTicket.SolucionTicket.Fecha_solucion = DateTime.Parse(objSolucion.FECHA_SOLUCION.ToString());
+                    objSolucionTicket.SolucionTicket.Id_ticket = int.Parse(objSolucion.ID_TICKET.ToString());
+                    objSolucionTicket.SolucionTicket.Nombre_funcionario = objSolucion.NOMBRE_FUNCIONARIO;
+                    objSolucionTicket.Ticket.Codigo_modulo = objSolucion.TICKET.MODULO_COD_MODULO;
+                    objSolucionTicket.Ticket.Nombre_modulo = objSolucion.TICKET.NOMBRE_MODULO;
+                    objSolucionTicket.Ticket.FechaProblema = objSolucion.TICKET.FECHA_PROBLEMA;
+                    objSolucionTicket.Sistema = objSistemaDAO.BuscarSistema(objSolucion.TICKET.MODULO_COD_MODULO);
+                    objSolucionTicket.Servidor = objServidorDAO.BuscarServidorPorCod(objSolucionTicket.Sistema.Codigo_servidor);
+                    objSolucionTicket.Funcionario = objfuncionarioDA.buscarFuncionarioPorRut(objSolucionTicket.Sistema.Rut_administrador);
+                    objSolucionTicket.SolucionTicket.Tinactividad = ts.Days;
+
+                    listadoTicketContingeciaSistema.Add(objSolucionTicket);
+                }
+
+                return listadoTicketContingeciaSistema;
+            }
+            catch
             {
                 return null;
             }

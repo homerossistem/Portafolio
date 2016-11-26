@@ -12,6 +12,8 @@ namespace Biblioteca.DALC
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class HomeroSystemEntities : DbContext
     {
@@ -52,5 +54,39 @@ namespace Biblioteca.DALC
         public virtual DbSet<TIPO_NIVEL> TIPO_NIVEL { get; set; }
         public virtual DbSet<TIPO_SERVICIO> TIPO_SERVICIO { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<AUDITORIA> AUDITORIA { get; set; }
+    
+        public virtual int INSERTAR_TO_AUDITORIA(Nullable<decimal> iD_AU, string nOM_USUARIO, string eQUIPO_TRABAJO, string nOMBRE_FUNCIONARIO, string iP, string hOSTT, string qUERYY)
+        {
+            var iD_AUParameter = iD_AU.HasValue ?
+                new ObjectParameter("ID_AU", iD_AU) :
+                new ObjectParameter("ID_AU", typeof(decimal));
+    
+            var nOM_USUARIOParameter = nOM_USUARIO != null ?
+                new ObjectParameter("NOM_USUARIO", nOM_USUARIO) :
+                new ObjectParameter("NOM_USUARIO", typeof(string));
+    
+            var eQUIPO_TRABAJOParameter = eQUIPO_TRABAJO != null ?
+                new ObjectParameter("EQUIPO_TRABAJO", eQUIPO_TRABAJO) :
+                new ObjectParameter("EQUIPO_TRABAJO", typeof(string));
+    
+            var nOMBRE_FUNCIONARIOParameter = nOMBRE_FUNCIONARIO != null ?
+                new ObjectParameter("NOMBRE_FUNCIONARIO", nOMBRE_FUNCIONARIO) :
+                new ObjectParameter("NOMBRE_FUNCIONARIO", typeof(string));
+    
+            var iPParameter = iP != null ?
+                new ObjectParameter("IP", iP) :
+                new ObjectParameter("IP", typeof(string));
+    
+            var hOSTTParameter = hOSTT != null ?
+                new ObjectParameter("HOSTT", hOSTT) :
+                new ObjectParameter("HOSTT", typeof(string));
+    
+            var qUERYYParameter = qUERYY != null ?
+                new ObjectParameter("QUERYY", qUERYY) :
+                new ObjectParameter("QUERYY", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTAR_TO_AUDITORIA", iD_AUParameter, nOM_USUARIOParameter, eQUIPO_TRABAJOParameter, nOMBRE_FUNCIONARIOParameter, iPParameter, hOSTTParameter, qUERYYParameter);
+        }
     }
 }

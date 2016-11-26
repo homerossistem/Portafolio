@@ -16,7 +16,7 @@ namespace Biblioteca.Negocio.DAO
             {
                 SOLUCION objSolucionTicketDALC = new SOLUCION();
                 objSolucionTicketDALC.DESCRIPCION_SOLUCION = _solucionTicket.Descripcion_solucion;
-                objSolucionTicketDALC.FECHA_SOLUCION = _solucionTicket.Fecha_solucion;
+                objSolucionTicketDALC.FECHA_SOLUCION = _solucionTicket.Fecha_solucion.Date;
                 objSolucionTicketDALC.ID_TICKET = _solucionTicket.Id_ticket;
                 objSolucionTicketDALC.NOMBRE_FUNCIONARIO = _solucionTicket.Nombre_funcionario;
                 objSolucionTicketDALC.EQUIPO_DE_TRABAJO = _solucionTicket.Equipo_trabajo;
