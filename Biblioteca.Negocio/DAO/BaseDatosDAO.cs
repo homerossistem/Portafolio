@@ -22,12 +22,25 @@ namespace Biblioteca.Negocio.DAO
                     (
                       doc => doc.ID_DOCUMENTO == _objBaseDatos.Id_documento
                     );
+                PROVEEDOR objProveedorDALC = CommonBC.HomeroSystemEntities.PROVEEDOR.First
+                    (
+                      pro=>pro.ID_PROVEEDOR == _objBaseDatos.Id_proveedor
+                    );
+                MOTOR_BASE_DATOS objMotorDALC = CommonBC.HomeroSystemEntities.MOTOR_BASE_DATOS.First
+                    (
+                      motor=>motor.ID_MOTOR == _objBaseDatos.Id_motor
+                    );
+                SERVIDOR objServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.First
+                    (
+                      seri=>seri.COD_SERVIDOR == _objBaseDatos.Codigo_servidor
+                    );
                 string codigoGenerado = GeneradorCodigoBaseDatos();
                 MODULO objModuloDALC = new MODULO();
                 objModuloDALC.COD_MODULO = codigoGenerado;
                 objModuloDALC.NOMBRE = _objBaseDatos.Nombre;
                 objModuloDALC.GARANTIA = _objBaseDatos.Garantia;
                 objModuloDALC.ID_PROVEEDOR = _objBaseDatos.Id_proveedor;
+                objModuloDALC.PROVEEDOR1 = objProveedorDALC;
                 objModuloDALC.ID_DOCUMENTO = _objBaseDatos.Id_documento;
                 objModuloDALC.DOCUMENTO = objDocumentoDALC;
                 objModuloDALC.RUT_FUNC_ADMIN = _objBaseDatos.Rut_administrador;
@@ -37,7 +50,9 @@ namespace Biblioteca.Negocio.DAO
                 BASE_DATOS objBaseDatosDALC = new BASE_DATOS();
                 objBaseDatosDALC.COD_BASE_DATOS = codigoGenerado;
                 objBaseDatosDALC.ID_MOTOR = _objBaseDatos.Id_motor;
+                objBaseDatosDALC.MOTOR_BASE_DATOS = objMotorDALC;
                 objBaseDatosDALC.COD_SERVIDOR = _objBaseDatos.Codigo_servidor;
+                objBaseDatosDALC.SERVIDOR = objServidorDALC;
                 objBaseDatosDALC.NOM_USUARIO = _objBaseDatos.NomUSer;
                 objBaseDatosDALC.MODULO = objModuloDALC;
                 objBaseDatosDALC.HASH_PASS_BASE_DATOS = objHashPassDALC;
