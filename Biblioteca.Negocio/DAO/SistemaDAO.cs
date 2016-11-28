@@ -42,19 +42,28 @@ namespace Biblioteca.Negocio.DAO
                     (sen=>sen.ID_SENSIBILIDAD== _objSistema.Id_sensibilidad);
                 DOCUMENTO objDocumento = CommonBC.HomeroSystemEntities.DOCUMENTO.First
                     (doc=>doc.ID_DOCUMENTO == _objSistema.Id_documento);
+                PROVEEDOR objProveedorDALC = CommonBC.HomeroSystemEntities.PROVEEDOR.First
+                    (prov =>prov.ID_PROVEEDOR == _objSistema.Id_proveedor);
+                SERVIDOR objServidorDALC = CommonBC.HomeroSystemEntities.SERVIDOR.First
+                    (servi=>servi.COD_SERVIDOR == _objSistema.Codigo_servidor);
+                LENGUAJE objLenguajeDALC = CommonBC.HomeroSystemEntities.LENGUAJE.First
+                    (leng=>leng.ID_LENGUAJE == _objSistema.Id_lenguaje);
                 MODULO objModuloDALC = new MODULO();
                 objModuloDALC.COD_MODULO = codigoGenerado;
                 objModuloDALC.RUT_FUNC_ADMIN = _objSistema.Rut_administrador;
                 objModuloDALC.NOMBRE = _objSistema.Nombre;
                 objModuloDALC.GARANTIA = _objSistema.Garantia;
                 objModuloDALC.ID_PROVEEDOR = int.Parse(_objSistema.Id_proveedor.ToString());
+                objModuloDALC.PROVEEDOR1 = objProveedorDALC;
                 objModuloDALC.ID_DOCUMENTO = _objSistema.Id_documento;
                 objModuloDALC.DOCUMENTO = objDocumento;
                 SISTEMA objSistemaDALC = new SISTEMA();
                 objSistemaDALC.CODIGO_SISTEMA = codigoGenerado;
                 objSistemaDALC.COD_SERVIDOR = _objSistema.Codigo_servidor;
+                objSistemaDALC.SERVIDOR = objServidorDALC;
                 objSistemaDALC.DESCRIPCION = _objSistema.Descripcion;
                 objSistemaDALC.ID_LENGUAJE = _objSistema.Id_lenguaje;
+                objSistemaDALC.LENGUAJE = objLenguajeDALC;
                 objSistemaDALC.ID_SEGURIDAD = _objSistema.Id_seguridad;
                 objSistemaDALC.ID_SENSIBILIDAD = _objSistema.Id_sensibilidad;
                 objSistemaDALC.SENSIBILIDAD = objSensibilidad;
