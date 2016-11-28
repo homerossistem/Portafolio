@@ -212,7 +212,6 @@
           <Property Name="ID_RACK" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_TIPO_NIVEL" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="ID_LENGUAJE" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="SISTEMA">
           <Key>
@@ -1126,7 +1125,6 @@
           <Property Name="ID_RACK" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_TIPO_NIVEL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_TIPO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="ID_LENGUAJE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="BASE_DATOS" Relationship="Self.BASE_DATOS_SERVIDOR_FK" FromRole="SERVIDOR" ToRole="BASE_DATOS" />
           <NavigationProperty Name="HASH_PASS_SERVIDOR" Relationship="Self.HASH_PASS_SERVIDOR_SERVIDOR_FK" FromRole="SERVIDOR" ToRole="HASH_PASS_SERVIDOR" />
           <NavigationProperty Name="MODULO" Relationship="Self.SERVIDOR_MODULO_FK" FromRole="SERVIDOR" ToRole="MODULO" />
@@ -1959,7 +1957,6 @@
                 <ScalarProperty Name="ID_RACK" ColumnName="ID_RACK" />
                 <ScalarProperty Name="ID_TIPO_NIVEL" ColumnName="ID_TIPO_NIVEL" />
                 <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
-                <ScalarProperty Name="ID_LENGUAJE" ColumnName="ID_LENGUAJE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

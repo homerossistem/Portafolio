@@ -30,7 +30,6 @@ namespace Biblioteca.DALC
         public decimal ID_RACK { get; set; }
         public decimal ID_TIPO_NIVEL { get; set; }
         public decimal ID_TIPO { get; set; }
-        public decimal ID_LENGUAJE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BASE_DATOS> BASE_DATOS { get; set; }
