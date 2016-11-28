@@ -18,6 +18,10 @@ namespace Biblioteca.Negocio.DAO
         {
             try
             {
+                DOCUMENTO objDocumentoDALC = CommonBC.HomeroSystemEntities.DOCUMENTO.First
+                    (
+                      doc => doc.ID_DOCUMENTO == _objBaseDatos.Id_documento
+                    );
                 string codigoGenerado = GeneradorCodigoBaseDatos();
                 MODULO objModuloDALC = new MODULO();
                 objModuloDALC.COD_MODULO = codigoGenerado;
@@ -25,6 +29,7 @@ namespace Biblioteca.Negocio.DAO
                 objModuloDALC.GARANTIA = _objBaseDatos.Garantia;
                 objModuloDALC.ID_PROVEEDOR = _objBaseDatos.Id_proveedor;
                 objModuloDALC.ID_DOCUMENTO = _objBaseDatos.Id_documento;
+                objModuloDALC.DOCUMENTO = objDocumentoDALC;
                 objModuloDALC.RUT_FUNC_ADMIN = _objBaseDatos.Rut_administrador;
                 HASH_PASS_BASE_DATOS objHashPassDALC = new HASH_PASS_BASE_DATOS();
                 objHashPassDALC.COD_MODULO = codigoGenerado;
@@ -51,6 +56,7 @@ namespace Biblioteca.Negocio.DAO
         }
         public bool ModificarBaseDeDatos(BaseDeDatos _objBaseDatos)
         {
+        
             try {
                 BASE_DATOS objBaseDatosDALC = CommonBC.HomeroSystemEntities.BASE_DATOS.First
                     (
