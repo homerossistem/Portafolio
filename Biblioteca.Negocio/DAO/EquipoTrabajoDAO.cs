@@ -129,6 +129,26 @@ namespace Biblioteca.Negocio.DAO
         }
 
 
+        public EquipoTrabajo ObtenerEquipoPorNombre(string nombre)
+        {
+            EquipoTrabajo equipo = new EquipoTrabajo();
+            try
+            {
+                EQUIPO_TRABAJO equipoDALC = CommonBC.HomeroSystemEntities.EQUIPO_TRABAJO.First
+                    (
+                        equ => equ.NOMBRE_EQUIPO == nombre
+                    );
+                equipo.Id_equipo = int.Parse(equipoDALC.ID_EQUIPO_TRABAJO.ToString());
+                equipo.Nombre_equipo = equipoDALC.NOMBRE_EQUIPO;
+                return equipo;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
 
     }
 

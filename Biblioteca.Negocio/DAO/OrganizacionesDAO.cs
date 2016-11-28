@@ -180,5 +180,29 @@ namespace Biblioteca.Negocio.DAO
                 return null;
             }
         }
+
+        public Organizacion ObtenerOrganizacionPorNombre(string nombre)
+        {
+            try
+            {
+                SistemaDAO objSistemaDAO = new SistemaDAO();
+                Organizacion _objOrg = null;
+                ORGANIZACION objOrg = CommonBC.HomeroSystemEntities.ORGANIZACION.First(org => org.NOMBRE_ORGANIZACION == nombre);
+                if (objOrg != null)
+                {
+                    _objOrg = new Organizacion();
+                    _objOrg.Id_organizacion = int.Parse(objOrg.ID_ORGANIZACION.ToString());
+                    _objOrg.Nombre_organizacion = objOrg.NOMBRE_ORGANIZACION;
+                    _objOrg.Direccion = objOrg.DIRECCION;
+                    _objOrg.Telefono = int.Parse(objOrg.TELEFONO.ToString());
+                    _objOrg.Email = objOrg.EMAIL;
+                }
+                return _objOrg;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

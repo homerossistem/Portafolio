@@ -145,5 +145,34 @@ namespace Biblioteca.Negocio.DAO
             } 
             
         }
+
+        public Proveedor ObtenerProveedorPorEmail(string email)
+        {
+            try
+            {
+                Proveedor _objProv = null;
+                PROVEEDOR objProv = CommonBC.HomeroSystemEntities.PROVEEDOR.First(prov => prov.EMAIL == email);
+                if (objProv != null)
+                {
+                    _objProv = new Proveedor();
+                    _objProv.Id_proveedor = int.Parse(objProv.ID_PROVEEDOR.ToString());
+                    _objProv.Nombre_empresa = objProv.NOMBRE_EMPRESA;
+                    _objProv.Nombre_encargado = objProv.NOMBRE_ENCARGADO;
+                    _objProv.Telefono = int.Parse(objProv.TELEFONO.ToString());
+                    _objProv.Celular = int.Parse(objProv.CELULAR.ToString());
+                    _objProv.Direcccion = objProv.DIRECCION;
+                    _objProv.Email = objProv.EMAIL;
+
+                }
+                return _objProv;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
+
     }
 }

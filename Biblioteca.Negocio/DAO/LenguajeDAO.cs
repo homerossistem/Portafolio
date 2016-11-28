@@ -107,5 +107,25 @@ namespace Biblioteca.Negocio.DAO
                 return null;
             }
         }
+
+
+        public Lenguaje ObtenerLeguajePorNombre(string nombre)
+        {
+            try
+            {
+                Lenguaje objLenguaje = new Lenguaje();
+                LENGUAJE objLengujaeDALC = CommonBC.HomeroSystemEntities.LENGUAJE.First
+                    (
+                      leng => leng.NOMBRE_LENGUAJE== nombre
+                    );
+                objLenguaje.Id_lenguaje = int.Parse(objLengujaeDALC.ID_LENGUAJE.ToString());
+                objLenguaje.Nombre_lenguaje = objLengujaeDALC.NOMBRE_LENGUAJE;
+                return objLenguaje;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

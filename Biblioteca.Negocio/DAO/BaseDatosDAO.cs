@@ -312,6 +312,29 @@ namespace Biblioteca.Negocio.DAO
             }
 
         }
+
+
+        public BaseDeDatos ObtenerBaseDeDatosPorNomuser(string nomuser)
+        {
+            BASE_DATOS bd = CommonBC.HomeroSystemEntities.BASE_DATOS.First
+                (
+                basedatos => basedatos.NOM_USUARIO == nomuser
+                );
+            BaseDeDatos objBaseDeDatos = new BaseDeDatos();
+            objBaseDeDatos.Codigo = bd.COD_BASE_DATOS;
+            objBaseDeDatos.Codigo_servidor = bd.COD_SERVIDOR;
+            objBaseDeDatos.Garantia = int.Parse(bd.MODULO.GARANTIA.ToString());
+            objBaseDeDatos.Id_documento = int.Parse(bd.MODULO.ID_DOCUMENTO.ToString());
+            objBaseDeDatos.Id_motor = int.Parse(bd.ID_MOTOR.ToString());
+            objBaseDeDatos.Id_proveedor = int.Parse(bd.MODULO.ID_PROVEEDOR.ToString());
+            objBaseDeDatos.Nombre = bd.MODULO.NOMBRE;
+            objBaseDeDatos.NomUSer = bd.NOM_USUARIO;
+            objBaseDeDatos.Rut_administrador = bd.MODULO.RUT_FUNC_ADMIN;
+            objBaseDeDatos.ObjHashPassBaseDatos.Cod_modulo = bd.COD_BASE_DATOS;
+            objBaseDeDatos.ObjHashPassBaseDatos.Hash_pass = DesencriptarPasswordBaseDeDatos(bd.HASH_PASS_BASE_DATOS.HASH_PASS);
+
+            return objBaseDeDatos;
+        }
         //metodos para agrear,modificar,listar y eliminar para el mantenedor de MotorBD
 
         public bool AgregarMotorBaseDeDatos(MotorBD objMotorBD)

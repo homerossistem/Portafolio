@@ -65,6 +65,11 @@ namespace WSHomeroSystem
             return objRackDAO.BuscarRack(id_rack);
         }
 
+        public Rack ObtenerRackPorUnidad(int unidad)
+        {
+            return objRackDAO.ObtenerRackPorUnidad(unidad);
+        }
+
         #endregion
         #region Agregar,Listra,Modificar,Eliminar,IniciarSession Usuarios
         public string AgregarUsuario(Usuario objusuario, HashPass objHashPass, Funcionario objFuncionario)
@@ -293,6 +298,10 @@ namespace WSHomeroSystem
         {
             return objTicketDAO.buscarTicketBaseDeDatosSolucionados(fechaInicio, fehcaFinal);
         }
+        public BaseDeDatos ObtenerBaseDeDatosPorNomuser(string nomuser)
+        {
+            return objBaseDatosDAO.ObtenerBaseDeDatosPorNomuser(nomuser);
+        }
 
 
         #endregion
@@ -359,6 +368,11 @@ namespace WSHomeroSystem
         public Servicio BuscarServicio(string codigoServicio)
         {
             return objServicioDAO.BuscarServicio(codigoServicio);
+        }
+
+        public Servicio ObtenerServicioPorDescripcion(string descripcion)
+        {
+            return objServicioDAO.ObtenerServicioPorDescripcion(descripcion);
         }
         #endregion
         #region Agregar,Modificar,listado Servidor
@@ -432,6 +446,11 @@ namespace WSHomeroSystem
         {
             return objServidorDAO.ModificarServidor(_servidor);
         }
+
+        public Servidor ObtenerServidorPorIp(string ip)
+        {
+            return objServidorDAO.ObtenerServidorPorIp(ip);
+        }
         #endregion
         #region Agregar,Modificar,listado Sistema
         public string AgregarSistema(Sistema objSistema,List<string> listadoBaseDatos, List<string> listadoServicios)
@@ -491,6 +510,10 @@ namespace WSHomeroSystem
         {
             return objSistemaDAO.ModificarSistema(_objSistema, listadoBaseDatos, listadoServicios);
         }
+        public Sistema ObtenerSistemaPorDescripcion(string descripcion)
+        {
+            return objSistemaDAO.ObtenerSistemaPorDescripcion(descripcion);
+        }
         #endregion
         #region listadoRol,listado equipo,listado Lenguajes,metodos Documento
         public List<Rol> listadoRol()
@@ -542,6 +565,11 @@ namespace WSHomeroSystem
         {
             return objDocumentoDAO.buscarDocumentoPorId(id);
         }
+        public Lenguaje ObtenerLenguajePorNombre(string nombre)
+        {
+            return objLenguajeDAO.ObtenerLeguajePorNombre(nombre);
+        }
+
         #endregion
         #region Sala Servidores
         public List<SalaServidores> ListadoSalaServidores()
@@ -569,6 +597,11 @@ namespace WSHomeroSystem
         {
             return objSalaServidoresDao.EliminarSalaServidor(idSalaServidor);
         }
+
+        public SalaServidores ObtenerSalaServidorPorNombre(string nombre)
+        {
+            return objSalaServidoresDao.ObtenerSalaServidorPorNombre(nombre);
+        }
         #endregion
         #region Agregar,Modificar,listado,Buscar, Eliminar Proveedor
         public bool AgregarProveedor(Proveedor _prov)
@@ -595,6 +628,11 @@ namespace WSHomeroSystem
         {
             return objProveedorDAO.BuscarProveedor(id_prov);
         }
+        public Proveedor ObtenerProveedorPorEmail(string email)
+        {
+            return objProveedorDAO.ObtenerProveedorPorEmail(email);
+        }
+
         #endregion
         #region Agregar,Modificar,listado,Buscar, Eliminar Organizaciones
         public bool AgregarOrganizacion(Organizacion _org, List<string> codSistema)
@@ -621,6 +659,10 @@ namespace WSHomeroSystem
         {
             return objOrganizacionDAO.BuscarOrganizacion(id_Org);
         }
+        public Organizacion ObtenerOrganizacionPorNombre(string nombre)
+        {
+            return objOrganizacionDAO.ObtenerOrganizacionPorNombre(nombre);
+        }
         #endregion
         #region EquipoTrabajo
         public bool AgregarEquipoTrabajo(EquipoTrabajo _equipo)
@@ -645,6 +687,10 @@ namespace WSHomeroSystem
         public bool ModificarEquipoTrabajo(EquipoTrabajo eqt)
         {
             return objEquipoDAO.ModificarEquipoTrabajo(eqt);
+        }
+        public EquipoTrabajo ObtenerEquipoPorNombre(string nombre)
+        {
+            return objEquipoDAO.ObtenerEquipoPorNombre(nombre);
         }
         #endregion
         #region motorBD

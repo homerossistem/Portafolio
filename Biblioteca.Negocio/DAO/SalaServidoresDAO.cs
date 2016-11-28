@@ -155,6 +155,29 @@ namespace Biblioteca.Negocio.DAO
             return GenerarListado(salaServidores);
         }
 
+        public SalaServidores ObtenerSalaServidorPorNombre(string nombre)
+        {
 
+            SalaServidores objSalaServidores = new SalaServidores();
+            try
+            {
+                SALA_SERVIDORES sala = CommonBC.HomeroSystemEntities.SALA_SERVIDORES.First
+                    (
+                        sa => sa.NOMBRE_SALA == nombre
+                    );
+
+                objSalaServidores.Id_salaServidor = int.Parse(sala.ID_SALA_SERVIDOR.ToString());
+                objSalaServidores.Nombre_sala = sala.NOMBRE_SALA;
+                objSalaServidores.Piso = int.Parse(sala.PISO.ToString());
+
+                return objSalaServidores;
+
+            }
+            catch
+            {
+                return null;
+
+            }
+        }
     }
 }

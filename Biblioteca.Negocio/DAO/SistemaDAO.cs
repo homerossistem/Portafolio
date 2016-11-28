@@ -543,5 +543,61 @@ namespace Biblioteca.Negocio.DAO
                 return null;
             }
         }
+
+
+
+        public Sistema ObtenerSistemaPorDescripcion(string descripcion)
+        {
+            BaseDatosDAO objBDDAO = new BaseDatosDAO();
+            ServicioDAO objServicioDAO = new ServicioDAO();
+            OrganizacionesDAO objOrganizacionesDAO = new OrganizacionesDAO();
+            List<BaseDeDatos> listadoBaseDeDatos = new List<BaseDeDatos>();
+            List<Servicio> listadoServicio = new List<Servicio>();
+            List<Organizacion> listadoOrganizacion = new List<Organizacion>();
+            Sistema objSistema = new Sistema();
+            try
+            {
+                SISTEMA objSistemaDALC = CommonBC.HomeroSystemEntities.SISTEMA.First
+                    (
+                       sis => sis.DESCRIPCION == descripcion
+                    );
+                objSistema.Codigo = objSistemaDALC.CODIGO_SISTEMA;
+                objSistema.Codigo_servidor = objSistemaDALC.COD_SERVIDOR;
+                objSistema.Descripcion = objSistemaDALC.DESCRIPCION;
+                objSistema.Garantia = int.Parse(objSistemaDALC.MODULO.GARANTIA.ToString());
+                objSistema.Id_documento = int.Parse(objSistemaDALC.MODULO.ID_DOCUMENTO.ToString());
+                objSistema.Id_lenguaje = int.Parse(objSistemaDALC.ID_LENGUAJE.ToString());
+                objSistema.Id_proveedor = int.Parse(objSistemaDALC.MODULO.ID_PROVEEDOR.ToString());
+                objSistema.Id_seguridad = int.Parse(objSistemaDALC.ID_SEGURIDAD.ToString());
+                objSistema.Id_sensibilidad = int.Parse(objSistemaDALC.ID_SENSIBILIDAD.ToString());
+                objSistema.Nombre = objSistemaDALC.MODULO.NOMBRE;
+                objSistema.Rut_administrador = objSistemaDALC.MODULO.RUT_FUNC_ADMIN;
+                foreach (BASE_DATOS bdDALC in objSistemaDALC.BASE_DATOS)
+                {
+                    BaseDeDatos objBD = objBDDAO.BuscarBaseDeDatosPorCodigo(bdDALC.COD_BASE_DATOS);
+                    listadoBaseDeDatos.Add(objBD);
+                }
+                foreach (SERVICIOS serviDALC in objSistemaDALC.SERVICIOS)
+                {
+                    Servicio objServicio = objServicioDAO.BuscarServicio(serviDALC.COD_SERVICIO);
+                    listadoServicio.Add(objServicio);
+                }
+                foreach (ORGANIZACION orgaDALC in objSistemaDALC.ORGANIZACION)
+                {
+                    Organizacion objOrganizacion = objOrganizacionesDAO.BuscarOrganizacionPorid(int.Parse(orgaDALC.ID_ORGANIZACION.ToString()));
+                    listadoOrganizacion.Add(objOrganizacion);
+                }
+                objSistema.ListadoOrganizacion = listadoOrganizacion;
+                objSistema.ListadoBaseDatos = listadoBaseDeDatos;
+                objSistema.ListadoServicios = listadoServicio;
+
+                return objSistema;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
     }
 }

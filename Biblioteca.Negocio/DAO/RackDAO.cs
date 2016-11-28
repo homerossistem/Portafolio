@@ -153,5 +153,28 @@ namespace Biblioteca.Negocio.DAO
             
         }
 
+
+        public Rack ObtenerRackPorUnidad(int unidad)
+        {
+            try
+            {
+                Rack _objRack = null;
+                RACK objrack = CommonBC.HomeroSystemEntities.RACK.First(rack => rack.UNIDAD_RACK == unidad);
+                if (objrack != null)
+                {
+                    _objRack = new Rack();
+                    _objRack.Id_rack = int.Parse(objrack.ID_RACK.ToString());
+                    _objRack.Id_sala = int.Parse(objrack.ID_SALA_SERVIDOR.ToString());
+                    _objRack.Unidad_rack = int.Parse(objrack.UNIDAD_RACK.ToString());
+                }
+                return _objRack;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
     }
 }

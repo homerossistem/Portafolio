@@ -219,5 +219,35 @@ namespace WSHomeroSystem
         [OperationContract]
         List<DTO> buscarTicketServiciosSolucionados(DateTime fechaInicio, DateTime fehcaFinal);
 
+
+        [OperationContract]
+        Sistema ObtenerSistemaPorDescripcion(string descripcion);
+
+        [OperationContract]
+        Servidor ObtenerServidorPorIp(string ip);
+
+        [OperationContract]
+        Servicio ObtenerServicioPorDescripcion(string descripcion);
+
+        [OperationContract]
+        Rack ObtenerRackPorUnidad(int unidad);
+
+        [OperationContract]
+        Proveedor ObtenerProveedorPorEmail(string email);
+
+        [OperationContract]
+        Organizacion ObtenerOrganizacionPorNombre(string nombre);
+
+        [OperationContract]
+        EquipoTrabajo ObtenerEquipoPorNombre(string nombre);
+
+        [OperationContract]
+        BaseDeDatos ObtenerBaseDeDatosPorNomuser(string nomuser);
+
+        [OperationContract]
+        SalaServidores ObtenerSalaServidorPorNombre(string nombre);
+
+        [OperationContract]
+        Lenguaje ObtenerLenguajePorNombre(string nombre);
     }
 }
