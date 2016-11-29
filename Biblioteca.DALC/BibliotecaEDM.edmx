@@ -1118,7 +1118,7 @@
             <PropertyRef Name="COD_SERVIDOR" />
           </Key>
           <Property Name="COD_SERVIDOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IP" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DISCO_DURO" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="RAM" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="ID_SO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
