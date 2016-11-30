@@ -37,7 +37,7 @@ namespace Biblioteca.Negocio.DAO
 
             } catch
             {
-                throw new ArgumentException("Error al intentar agregar un ticket");
+                return false;
             }
 
         }
@@ -79,7 +79,7 @@ namespace Biblioteca.Negocio.DAO
             }
             catch
             {
-                throw new ArgumentException("error al intentar enviar el correo");
+                return false;
             }
         }
 
@@ -182,10 +182,16 @@ namespace Biblioteca.Negocio.DAO
 
         public string BuscarNombreModuloPorCodigo(string cod)
         {
-            MODULO objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First
-                (mod => mod.COD_MODULO == cod);
+            try
+            {
+                MODULO objModuloDALC = CommonBC.HomeroSystemEntities.MODULO.First
+                    (mod => mod.COD_MODULO == cod);
 
-            return objModuloDALC.NOMBRE;
+                return objModuloDALC.NOMBRE;
+            }catch
+            {
+                return null;
+            }
         }
 
         public List<Ticket> listadoTicketPendientesPorEquipoTrabajo(int idequipo)
